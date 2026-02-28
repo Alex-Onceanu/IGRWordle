@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="IGRWordle"
+run/main_scene="uid://cvn4o6hrrxnxj"
+config/features=PackedStringArray("4.6", "Mobile")
+config/icon="res://icon.svg"
+run/size/viewport_height=648
+run/size/viewport_width=1152
+run/handheld/orientation=0
+
+[display]
+
+window/size/viewport_width=648
+window/size/viewport_height=1152
+window/stretch/mode="viewport"
+window/handheld/orientation=1
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
