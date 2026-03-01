@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bop7mc88fdo7p"]
 
 [ext_resource type="Texture2D" uid="uid://b66dxhqhqc04y" path="res://assets/emptyletter.png" id="1_r6swm"]
-[ext_resource type="Shader" uid="uid://d1r6k3yidd4lb" path="res://letter.gdshader" id="2_57kop"]
+[ext_resource type="Shader" uid="uid://d1r6k3yidd4lb" path="res://shaders/letter.gdshader" id="2_57kop"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kv2n4"]
 resource_local_to_scene = true

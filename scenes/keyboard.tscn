@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgqr6a5l1ohly"]
 
-[ext_resource type="Script" uid="uid://b1sio0vtb4dcf" path="res://keyboard.gd" id="1_yo7bg"]
+[ext_resource type="Script" uid="uid://b1sio0vtb4dcf" path="res://scripts/keyboard.gd" id="1_yo7bg"]
 [ext_resource type="Texture2D" uid="uid://dfl3tfhhgl2ro" path="res://assets/grid.png" id="2_6veuu"]
 
 [node name="Keyboard" type="Node2D" unique_id=1914374966]

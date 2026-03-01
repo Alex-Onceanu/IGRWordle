@@ -1,6 +1,6 @@
 extends Node2D
 
-var LETTER_SCENE = preload("res://letter.tscn")
+var LETTER_SCENE = preload("res://scenes/letter.tscn")
 @export var DIM := Vector2i(5, 5) # replace this with 2D array
 const CELL_SIZE := Vector2(70, 70)
 const PADDING := Vector2(10.0, 10.0)

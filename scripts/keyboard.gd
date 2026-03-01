@@ -3,7 +3,7 @@ extends Node2D
 signal DelPressed
 signal EnterPressed
 
-const KEY_SCENE := preload("res://key.tscn")
+const KEY_SCENE := preload("res://scenes/key.tscn")
 const KEYBOARD := "QWERTYUIOPASDFGHJKLZZXCVBNM"
 const PADDING := Vector2(12.0, 24.0)
 const CELL_SIZE := Vector2(48.0, 72.0)
