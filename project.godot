@@ -18,6 +18,10 @@ run/size/viewport_height=648
 run/size/viewport_width=1152
 run/handheld/orientation=0
 
+[autoload]
+
+GameState="*uid://dalnv4ctvosjo"
+
 [display]
 
 window/size/viewport_width=648
