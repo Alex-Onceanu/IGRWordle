@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cu1qcg01266av"]
 
-[ext_resource type="Script" uid="uid://cge00dc8ok2no" path="res://scripts/grid.gd" id="1_65i6o"]
+[ext_resource type="Script" uid="uid://cge00dc8ok2no" path="res://game/level/grid.gd" id="1_65i6o"]
 [ext_resource type="Texture2D" uid="uid://dfl3tfhhgl2ro" path="res://assets/grid.png" id="1_ebq2e"]
-[ext_resource type="Texture2D" uid="uid://gkrx4ajjr02k" path="res://assets/ok.png" id="3_sle3t"]
-[ext_resource type="Texture2D" uid="uid://b6v2wtvpo76bb" path="res://assets/no.png" id="4_bghhw"]
+[ext_resource type="Texture2D" uid="uid://bbevgroje2xhq" path="res://assets/ok.png" id="3_sle3t"]
+[ext_resource type="Texture2D" uid="uid://da1qyajbahw8k" path="res://assets/no.png" id="4_bghhw"]
 
 [node name="Grid" type="Node2D" unique_id=1919714740]
 script = ExtResource("1_65i6o")
