@@ -21,6 +21,7 @@ run/handheld/orientation=0
 [autoload]
 
 GameState="*uid://dalnv4ctvosjo"
+SignalBus="*uid://c8whqqleu2jbv"
 
 [display]
 
