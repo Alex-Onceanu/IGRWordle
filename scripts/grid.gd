@@ -21,9 +21,11 @@ func _ready() -> void:
 			letter.position = topLeft + (PADDING + CELL_SIZE) * Vector2(x, y)
 			add_child(letter)
 
+
 func okOrNot(ok : bool, no : bool):
 	$Ok.visible = ok
 	$No.visible = no
+
 
 func displayLetter(k : String) -> void:
 	if nextCell.y >= DIM.x or nextCell.x >= DIM.y:
@@ -40,10 +42,14 @@ func displayLetter(k : String) -> void:
 		else:
 			okOrNot(false, true)
 
+
 func keyCallback(k : String) -> void:
+	print("key press received!")
 	displayLetter(k)
 
+
 func delCallback() -> void:
+	print("delete press received!")
 	nextCell.x -= 1
 	get_node(str(nextCell.x) + "_" + str(nextCell.y) + "/Label").text = ""
 	word = word.substr(0, len(word) - 1)
@@ -53,6 +59,7 @@ func delCallback() -> void:
 	if nextCell.x <= 0:
 		get_node("../Keyboard/Del").disabled = true
 
+
 func colorOfLetter(i : int) -> Color:
 	if word[i] == mysteryWord[i]:
 		return Color.GREEN
@@ -61,7 +68,9 @@ func colorOfLetter(i : int) -> Color:
 	else:
 		return Color(0.4, 0.4, 0.4, 1.0)
 
+
 func enterCallback() -> void:
+	print("enter press received!")
 	for i in range(DIM.x):
 		var clr = colorOfLetter(i)
 		get_node(str(i) + "_" + str(nextCell.y) + "/Background").\

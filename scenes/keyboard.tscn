@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b1sio0vtb4dcf" path="res://scripts/keyboard.gd" id="1_yo7bg"]
 [ext_resource type="Texture2D" uid="uid://dfl3tfhhgl2ro" path="res://assets/grid.png" id="2_6veuu"]
+[ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="3_a8m4y"]
 
-[node name="Keyboard" type="Node2D" unique_id=1914374966]
+[node name="Keyboard" type="Node2D" unique_id=1914374966 node_paths=PackedStringArray("sender")]
 script = ExtResource("1_yo7bg")
+sender = NodePath("SignalBusSender")
 
 [node name="Grid" type="Sprite2D" parent="." unique_id=35247775]
 visible = false
@@ -32,5 +34,10 @@ theme_override_font_sizes/font_size = 48
 disabled = true
 text = "OK"
 
+[node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("3_a8m4y")]
+signal_prefix = "keyboard_"
+
+[connection signal="delete_pressed" from="." to="SignalBusSender" method="connect_signal"]
+[connection signal="enter_pressed" from="." to="SignalBusSender" method="connect_signal"]
 [connection signal="pressed" from="Del" to="." method="_on_del_pressed"]
 [connection signal="pressed" from="Enter" to="." method="_on_enter_pressed"]
