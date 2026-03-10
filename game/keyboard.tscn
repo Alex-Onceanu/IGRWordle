@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bgqr6a5l1ohly"]
+
+[ext_resource type="Script" uid="uid://b1sio0vtb4dcf" path="res://scripts/keyboard.gd" id="1_yo7bg"]
+[ext_resource type="Texture2D" uid="uid://dfl3tfhhgl2ro" path="res://assets/grid.png" id="2_6veuu"]
+[ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="3_a8m4y"]
+
+[node name="Keyboard" type="Node2D" unique_id=1914374966 node_paths=PackedStringArray("sender")]
+script = ExtResource("1_yo7bg")
+sender = NodePath("SignalBusSender")
+
+[node name="Grid" type="Sprite2D" parent="." unique_id=35247775]
+visible = false
+position = Vector2(-4.9999967, -6.500002)
+scale = Vector2(1.5739349, 0.8686132)
+texture = ExtResource("2_6veuu")
+
+[node name="Del" type="Button" parent="." unique_id=1252390152]
+offset_left = 185.0
+offset_top = 60.0
+offset_right = 285.0
+offset_bottom = 125.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "DEL"
+
+[node name="Enter" type="Button" parent="." unique_id=1277644526]
+offset_left = -125.0
+offset_top = 208.0
+offset_right = 126.0
+offset_bottom = 303.0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 48
+disabled = true
+text = "OK"
+
+[node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("3_a8m4y")]
+signal_prefix = "keyboard_"
+
+[connection signal="delete_pressed" from="." to="SignalBusSender" method="connect_signal"]
+[connection signal="enter_pressed" from="." to="SignalBusSender" method="connect_signal"]
+[connection signal="pressed" from="Del" to="." method="_on_del_pressed"]
+[connection signal="pressed" from="Enter" to="." method="_on_enter_pressed"]
