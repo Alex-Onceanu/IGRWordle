@@ -1,7 +1,7 @@
 extends Control
 class_name Grid
 
-var grid_size = Vector2i(7,8)
+var grid_size = Vector2i(7,5)
 
 const GRID_SCENE_PATH = "res://scenes/level_ui/Grid.tscn"
 
