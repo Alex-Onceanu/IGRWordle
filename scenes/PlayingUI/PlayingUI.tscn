@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dcpssc0j75bf6" path="res://scenes/PlayingUI/Grid.tscn" id="2_4piya"]
 [ext_resource type="PackedScene" uid="uid://fe2yb7f61hmb" path="res://scenes/PlayingUI/Keyboard.tscn" id="3_ps8e1"]
 [ext_resource type="PackedScene" uid="uid://dalnv4ctvosjo" path="res://scenes/game_state.tscn" id="4_3gimm"]
-[ext_resource type="Script" uid="uid://cd86y5qwcea3f" path="res://scenes/PlayingUI/level_label.gd" id="4_4piya"]
+[ext_resource type="Script" uid="uid://cd86y5qwcea3f" path="res://scripts/PlayingUI/level_label.gd" id="4_4piya"]
 
 [node name="PlayingUI" type="Node2D" unique_id=1641894213]
 script = ExtResource("1_r1an4")
