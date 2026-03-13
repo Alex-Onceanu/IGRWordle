@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://fe2yb7f61hmb"]
 
-[ext_resource type="Script" uid="uid://b2rrxnacshgix" path="res://scripts/level_ui/keyboard.gd" id="1_m6qkj"]
+[ext_resource type="Script" uid="uid://b2rrxnacshgix" path="res://scripts/PlayingUI/keyboard.gd" id="1_m6qkj"]
 
 [node name="Keyboard" type="Control" unique_id=1574060102]
 layout_mode = 3

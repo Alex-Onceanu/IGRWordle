@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cgxfc3ivqv2ga"]
+
+[ext_resource type="Script" uid="uid://k707fky4etqv" path="res://scripts/PlayingUI/key.gd" id="1_6jomu"]
+
+[node name="Key" type="Control" unique_id=1801578507]
+custom_minimum_size = Vector2(40, 70)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6jomu")
+
+[node name="Button" type="Button" parent="." unique_id=1068750492]
+custom_minimum_size = Vector2(40, 50)
+layout_mode = 0
+offset_right = 35.0
+offset_bottom = 45.0
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

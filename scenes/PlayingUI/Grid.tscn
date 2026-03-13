@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcpssc0j75bf6"]
 
-[ext_resource type="Script" uid="uid://dgercpqu4jq06" path="res://scenes/level_ui/grid.gd" id="1_cvds4"]
+[ext_resource type="Script" uid="uid://dgercpqu4jq06" path="res://scripts/PlayingUI/grid.gd" id="1_ppjbs"]
 
 [node name="Grid" type="Control" unique_id=688690635]
 layout_mode = 3
@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-script = ExtResource("1_cvds4")
+script = ExtResource("1_ppjbs")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=2041539914]
 layout_mode = 1

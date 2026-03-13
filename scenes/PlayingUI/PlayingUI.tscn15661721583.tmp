@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://c70ykmwrgxg33"]
+
+[ext_resource type="Script" uid="uid://hytjpbfjiojs" path="res://scripts/PlayingUI/core_game.gd" id="1_r1an4"]
+[ext_resource type="PackedScene" uid="uid://dcpssc0j75bf6" path="res://scenes/PlayingUI/Grid.tscn" id="2_4piya"]
+[ext_resource type="Script" uid="uid://dgercpqu4jq06" path="res://scripts/PlayingUI/grid.gd" id="3_4piya"]
+[ext_resource type="PackedScene" uid="uid://fe2yb7f61hmb" path="res://scenes/PlayingUI/Keyboard.tscn" id="3_ps8e1"]
+[ext_resource type="PackedScene" uid="uid://dalnv4ctvosjo" path="res://scenes/game_state.tscn" id="4_3gimm"]
+
+[node name="PlayingUI" type="Node2D" unique_id=1641894213]
+script = ExtResource("1_r1an4")
+
+[node name="Grid" parent="." unique_id=688690635 instance=ExtResource("2_4piya")]
+offset_left = 153.0
+offset_top = 211.0
+offset_right = 484.0
+offset_bottom = 544.0
+script = ExtResource("3_4piya")
+
+[node name="Keyboard" parent="." unique_id=1574060102 instance=ExtResource("3_ps8e1")]
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_top = 899.0
+offset_right = 393.0
+offset_bottom = 961.0
+
+[node name="BackgroundColorRect" type="ColorRect" parent="." unique_id=732121032]
+z_index = -1
+offset_left = -17.0
+offset_top = -12.0
+offset_right = 660.0
+offset_bottom = 1162.0
+mouse_filter = 2
+color = Color(0.96254605, 0.96254593, 0.96254593, 1)
+
+[node name="LevelLabel" type="RichTextLabel" parent="." unique_id=331414528]
+offset_left = 301.0
+offset_top = 21.0
+offset_right = 347.0
+offset_bottom = 45.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Level"
+
+[node name="GameState" parent="." unique_id=23191891 instance=ExtResource("4_3gimm")]
+
+[node name="GameOverUI" type="Control" parent="." unique_id=1686120609]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 54.0
+offset_top = 597.0
+offset_right = 605.0
+offset_bottom = 758.0
+
+[node name="RestartGameButton" type="Button" parent="GameOverUI" unique_id=42441061]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 59.0
+offset_right = 187.0
+offset_bottom = 135.0
+text = "Restart ?"
+
+[node name="ReturnMainMenu" type="Button" parent="GameOverUI" unique_id=1336147775]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 279.0
+offset_top = 61.0
+offset_right = 516.0
+offset_bottom = 136.0
+text = "Return to main menu"
+
+[node name="NextLevelUI" type="Control" parent="." unique_id=71501995]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 233.0
+offset_top = 322.0
+offset_right = 434.0
+offset_bottom = 509.0
+
+[node name="NextLevelButton" type="Button" parent="NextLevelUI" unique_id=1638014788]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 56.0
+offset_right = 254.0
+offset_bottom = 124.0
+text = "Next Level !"
+
+[connection signal="char_pressed" from="Keyboard" to="." method="char_pressed_callback"]
+[connection signal="del_pressed" from="Keyboard" to="." method="del_pressed_callback"]
+[connection signal="enter_pressed" from="Keyboard" to="." method="enter_pressed_callback"]
+[connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
+[connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]
+[connection signal="button_up" from="NextLevelUI/NextLevelButton" to="." method="_on_next_level_button_button_up"]
