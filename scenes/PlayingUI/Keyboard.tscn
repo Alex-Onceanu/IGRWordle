@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://fe2yb7f61hmb"]
+
+[ext_resource type="Script" uid="uid://b2rrxnacshgix" path="res://scripts/PlayingUI/keyboard.gd" id="1_m6qkj"]
+
+[node name="Keyboard" type="Control" unique_id=1574060102]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_m6qkj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1012518237]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -21.5
+offset_right = 56.5
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="row1" type="HBoxContainer" parent="VBoxContainer" unique_id=1120380783]
+layout_mode = 2
+alignment = 1
+
+[node name="row2" type="HBoxContainer" parent="VBoxContainer" unique_id=2143151766]
+layout_mode = 2
+alignment = 1
+
+[node name="row3" type="HBoxContainer" parent="VBoxContainer" unique_id=1301926067]
+layout_mode = 2
+alignment = 1
+
+[node name="rowEnterDel" type="HBoxContainer" parent="VBoxContainer" unique_id=610934483]
+layout_mode = 2
+
+[node name="Enter" type="Button" parent="VBoxContainer/rowEnterDel" unique_id=2023936444]
+layout_mode = 2
+text = "Enter"
+
+[node name="Del" type="Button" parent="VBoxContainer/rowEnterDel" unique_id=1680678328]
+layout_mode = 2
+text = "Delete"
+
+[connection signal="button_up" from="VBoxContainer/rowEnterDel/Enter" to="." method="_on_enter_button_up"]
+[connection signal="button_up" from="VBoxContainer/rowEnterDel/Del" to="." method="_on_del_button_up"]

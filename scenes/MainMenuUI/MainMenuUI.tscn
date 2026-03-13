@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://clhkh6p1yd0xt"]
+
+[ext_resource type="Script" uid="uid://cqdw4q01x5l72" path="res://scripts/MainMenuUI/main_menu_ui.gd" id="1_uc8a1"]
+
+[node name="MainMenuUi" type="Node2D" unique_id=1041060977]
+script = ExtResource("1_uc8a1")
+
+[node name="Button" type="Button" parent="." unique_id=942586521]
+offset_left = 179.0
+offset_top = 607.0
+offset_right = 468.0
+offset_bottom = 774.0
+text = "PLAY"
+
+[node name="BackgroundColorRect" type="ColorRect" parent="." unique_id=687099473]
+z_index = -1
+offset_left = -17.0
+offset_top = -12.0
+offset_right = 660.0
+offset_bottom = 1162.0
+mouse_filter = 2
+color = Color(0.96254605, 0.96254593, 0.96254593, 1)
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
