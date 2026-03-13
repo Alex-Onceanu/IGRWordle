@@ -31,5 +31,4 @@ func _enter_state(state : UIState):
 func _ready():
 	main_menu_ui.play.connect(func(): change_state(UIState.PLAYING))
 	playing_ui.return_to_main_menu.connect(func(): change_state(UIState.MAIN_MENU))
-	
-	main_menu_ui.show()
+	change_state(current_state)
