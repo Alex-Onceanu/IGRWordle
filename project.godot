@@ -25,6 +25,7 @@ buses/default_bus_layout=""
 [autoload]
 
 GameState="*uid://dalnv4ctvosjo"
+SignalBus="*uid://c8whqqleu2jbv"
 
 [display]
 
