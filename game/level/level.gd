@@ -15,8 +15,9 @@ func _ready():
 	$Keyboard.char_pressed.connect(char_pressed_callback)
 	$Keyboard.enter_pressed.connect(enter_pressed_callback)
 	$Keyboard.del_pressed.connect(del_pressed_callback)
+	$WinningMenu.next_level_pressed.connect(next_level_game)
 	$GameOverUI.hide()
-	$NextLevelUI.hide()
+	$WinningMenu.hide()
 #endregion
 
 #region Public functions
@@ -58,7 +59,7 @@ func enter_pressed_callback() -> void:
 				texture_rect.modulate = Color(0.273, 0.273, 0.273, 1.0)
 		if (number_correct == $Grid.grid_size.y):
 			print("YOU WIN !")
-			$NextLevelUI.show()
+			$WinningMenu.show()
 			return
 		else :
 			$GameState.current_string_guess = ""
@@ -93,7 +94,7 @@ func reset_game(next_level : bool) -> void:
 	$Grid.reset()
 	$Keyboard.reset()
 	$GameOverUI.hide()
-	$NextLevelUI.hide()
+	$WinningMenu.hide()
 	# Reseting data the right way
 	$GameState.mystery_word = ""
 	$GameState.current_string_guess = ""
@@ -131,6 +132,3 @@ func _on_restart_game_button_button_up() -> void:
 
 func _on_return_main_menu_button_up() -> void:
 	return_to_main_menu.emit()
-
-func _on_next_level_button_button_up() -> void:
-	next_level_game()

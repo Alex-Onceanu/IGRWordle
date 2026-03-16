@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b1836ertt7ahd"]
 
-[ext_resource type="Script" path="res://game/level/level.gd" id="1_qq5er"]
+[ext_resource type="Script" uid="uid://hytjpbfjiojs" path="res://game/level/level.gd" id="1_qq5er"]
 [ext_resource type="PackedScene" uid="uid://c0hsy6u3o3kiq" path="res://game/level/grid.tscn" id="2_dynoe"]
-[ext_resource type="PackedScene" uid="uid://bgqr6a5l1ohly" path="res://game/level/keyboard.tscn" id="3_k26x8"]
+[ext_resource type="PackedScene" uid="uid://fe2yb7f61hmb" path="res://game/level/keyboard.tscn" id="3_k26x8"]
+[ext_resource type="PackedScene" uid="uid://fjhnfmwsawo3" path="res://game/level/winning_menu.tscn" id="5_dynoe"]
 [ext_resource type="PackedScene" uid="uid://dalnv4ctvosjo" path="res://game/game_state.tscn" id="5_y11jn"]
 
 [node name="Level" type="Node2D" unique_id=1641894213]
@@ -14,14 +15,18 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_left = 220.0
+offset_top = 278.0
+offset_right = 360.0
+offset_bottom = 428.0
 grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Keyboard" parent="." unique_id=1574060102 instance=ExtResource("3_k26x8")]
+offset_left = 325.0
+offset_top = 971.0
+offset_right = 325.0
+offset_bottom = 971.0
 
 [node name="BackgroundColorRect" type="ColorRect" parent="." unique_id=732121032]
 z_index = -1
@@ -43,6 +48,7 @@ text = "Level 1"
 [node name="GameState" parent="." unique_id=23191891 instance=ExtResource("5_y11jn")]
 
 [node name="GameOverUI" type="Control" parent="." unique_id=1686120609]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 54.0
@@ -67,23 +73,12 @@ offset_right = 516.0
 offset_bottom = 136.0
 text = "Return to main menu"
 
-[node name="NextLevelUI" type="Control" parent="." unique_id=71501995]
+[node name="WinningMenu" parent="." unique_id=1377076184 instance=ExtResource("5_dynoe")]
 visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 233.0
-offset_top = 322.0
-offset_right = 434.0
-offset_bottom = 509.0
-
-[node name="NextLevelButton" type="Button" parent="NextLevelUI" unique_id=1638014788]
-layout_mode = 0
-offset_left = -60.0
-offset_top = 56.0
-offset_right = 254.0
-offset_bottom = 124.0
-text = "Next Level !"
+offset_left = 318.0
+offset_top = 587.0
+offset_right = 418.0
+offset_bottom = 687.0
 
 [connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
 [connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]
-[connection signal="button_up" from="NextLevelUI/NextLevelButton" to="." method="_on_next_level_button_button_up"]
