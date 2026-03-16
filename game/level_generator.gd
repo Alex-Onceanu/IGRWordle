@@ -1,7 +1,7 @@
 extends Node
 class_name LevelGenerator
 
-static var level_scene := preload("res://scenes/level.tscn")
+static var level_scene := preload("res://game/level/level.tscn")
 
 ## experimental
 @export_group("Optional")
