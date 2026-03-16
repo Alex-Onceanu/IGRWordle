@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var main_menu_ui : MainMenuUI
-@export var playing_ui : PlayingUI
+@export var level : Level
 
 var current_state : = UIState.MAIN_MENU
 
@@ -19,16 +19,16 @@ func _exit_state(state : UIState):
 	if (state == UIState.MAIN_MENU):
 		main_menu_ui.hide()
 	elif (state == UIState.PLAYING):
-		playing_ui.hide()
+		level.hide()
 	
 func _enter_state(state : UIState):
 	if (state == UIState.MAIN_MENU):
 		main_menu_ui.show()
 	elif (state == UIState.PLAYING):
-		playing_ui.show()
-		playing_ui.new_game()
+		level.show()
+		level.new_game()
 	
 func _ready():
 	main_menu_ui.play.connect(func(): change_state(UIState.PLAYING))
-	playing_ui.return_to_main_menu.connect(func(): change_state(UIState.MAIN_MENU))
+	level.return_to_main_menu.connect(func(): change_state(UIState.MAIN_MENU))
 	change_state(current_state)

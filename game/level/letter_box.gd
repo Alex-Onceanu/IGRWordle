@@ -2,7 +2,7 @@ extends Control
 class_name LetterBox
 
 #region Variables
-const LETTERBOX_SCENE_PATH = "res://scenes/PlayingUI/LetterBox.tscn"
+const LETTERBOX_SCENE_PATH = "res://game/level/letter_box.tscn"
 
 enum Status{
 	EMPTY,

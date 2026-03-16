@@ -1,31 +1,82 @@
-extends Node2D
+extends Control
+class_name Keyboard
 
-signal DelPressed
-signal EnterPressed
+#region Variables
+const KEYBOARD_SCENE_PATH = "res://game/level/keyboard.tscn"
 
-const KEY_SCENE := preload("res://scenes/key.tscn")
-const KEYBOARD := "QWERTYUIOPASDFGHJKLZZXCVBNM"
-const PADDING := Vector2(12.0, 24.0)
-const CELL_SIZE := Vector2(48.0, 72.0)
-const DIMS : Array[int] = [10, 9, 7]
+var _key_rows : Array[HBoxContainer] = []
+var _string_rows : Array[String] = ["AZERTYUIOP", "QSDFGHJKLM", "WXCVBN"]
+var _keys : Array[KeyboardKey] = []
+#endregion
 
+#region Signals
+## Emitted when the user wants to confirm something.
+signal enter_pressed
+## Emitted when the user wants to delete something.
+signal del_pressed
+## Emitted when the user types a character on the Keyboard.
+##
+## [param c]: transmitted character.
+signal char_pressed(c :String)
+#endregion
+
+#region Private functions
 func _ready() -> void:
-	DelPressed.connect(get_node("../Grid").delCallback)
-	EnterPressed.connect(get_node("../Grid").enterCallback)
+	_key_rows.append($VBoxContainer/row1)
+	_key_rows.append($VBoxContainer/row2)
+	_key_rows.append($VBoxContainer/row3)
+	assert(len(_string_rows) == len(_key_rows), "string rows and key rows are not equal !")
+	
+	for i in range(len(_key_rows)):
+		var row = _key_rows[i]
+		for key_text in _string_rows[i]:
+			var key = KeyboardKey.create(key_text)
+			row.add_child(key)
+			_keys.append(key)
+			key.key_pressed.connect(_on_char_pressed)
 
-	var topLeft := -(PADDING + CELL_SIZE) * (Vector2(9, 2) / 2.0)
-	for y in range(3):
-		for x in range(DIMS[y]):
-			var i := y * DIMS[y] + x
-			var key = KEY_SCENE.instantiate()
-			key.name = KEYBOARD[i]
-			key.get_node("Label").text = KEYBOARD[y * 10 + x]
-			key.position = topLeft + (PADDING + CELL_SIZE) * Vector2(x + y / 2.0, y)
-			key.KeyPress.connect(get_node("../Grid").keyCallback)
-			add_child(key)
+func _on_enter_button_up() -> void:
+	enter_pressed.emit()
 
-func _on_del_pressed() -> void:
-	DelPressed.emit()
+func _on_del_button_up() -> void:
+	del_pressed.emit()
 
-func _on_enter_pressed() -> void:
-	EnterPressed.emit()
+func _on_char_pressed(c : String) -> void:
+	char_pressed.emit(c)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		var key_name = OS.get_keycode_string(event.keycode)
+		if key_name.length() == 1 and key_name.is_valid_identifier():
+			_on_char_pressed(key_name)
+		elif key_name == "Enter":
+			_on_enter_button_up()
+		elif key_name == "Backspace":
+			_on_del_button_up()
+#endregion
+
+#region Public functions
+## Gets the first LETTER KeyboardKey based on its letter.
+##
+## [param c]: researched character.
+## [returns]: the first KeyboardKey of the keyboard with the same character, else null.
+func get_key(c : String):
+	for key in _keys:
+		if key.key_text == c :
+			return key
+	return null
+
+# Resets the Keyboard.
+func reset() -> void:
+	for key in _keys:
+		key.queue_free()
+	_key_rows.clear()
+	_keys.clear()
+	_ready()
+
+## Instantiate a Keyboard.
+##
+## [returns] an instance of Keyboard.
+static func create() -> Keyboard:
+	return load(KEYBOARD_SCENE_PATH).instantiate()
+#endregion

@@ -1,6 +1,7 @@
 extends Node2D
-class_name PlayingUI
+class_name Level
 
+# TODO change all node references to export variables
 signal return_to_main_menu
 
 #region Variables

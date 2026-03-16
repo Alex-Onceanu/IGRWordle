@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dvlaq8o7sq7c6"]
 
-[ext_resource type="Texture2D" uid="uid://dfl3tfhhgl2ro" path="res://assets/grid.png" id="1_a7k3x"]
-[ext_resource type="Script" uid="uid://byaqov2n12fjb" path="res://scripts/PlayingUI/letter_box.gd" id="1_w7ff6"]
+[ext_resource type="Script" uid="uid://byaqov2n12fjb" path="res://game/level/letter_box.gd" id="1_w7ff6"]
 
 [node name="LetterBox" type="Control" unique_id=573317305]
 custom_minimum_size = Vector2(50, 50)
@@ -13,7 +12,6 @@ script = ExtResource("1_w7ff6")
 layout_mode = 0
 offset_right = 53.0
 offset_bottom = 55.0
-texture = ExtResource("1_a7k3x")
 expand_mode = 1
 stretch_mode = 4
 
