@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b66dxhqhqc04y"
-path="res://.godot/imported/emptyletter.png-480bea617f6121aae5e769e4cf10a334.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/emptyletter.png"
-dest_files=["res://.godot/imported/emptyletter.png-480bea617f6121aae5e769e4cf10a334.ctex"]
 
 [params]
 
