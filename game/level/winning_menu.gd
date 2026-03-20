@@ -8,6 +8,8 @@ extends Control
 class_name WinningMenuUI
 signal next_level_pressed
 
+static var WINNING_MENU_PATH : String = "res://game/level/winning_menu.tscn"
+
 #region Variables
 var _milestones_list : Array[String] = []
 var _values_list : Array[String] = []
@@ -35,4 +37,19 @@ func append_milestone(milestone : String, value : String) -> void:
 func set_summary_message(desc : String, value : String):
 	$SumMilestone._description = desc
 	$SumMilestone._coins_value = value
+
+## Removes all the milestone children.
+func reset() -> void:
+	_milestones_list.clear()
+	_values_list.clear()
+	var milestone_nodes_list = $ScrollContainer/VBoxContainer.get_children()
+	for node in milestone_nodes_list:
+		node.queue_free()
+
+## Instantiates the WinningMenuUI.
+static func create() -> WinningMenuUI:
+	var scene = load(WINNING_MENU_PATH)
+	var node = scene.instantiate()
+	return node
+	
 #endregion
