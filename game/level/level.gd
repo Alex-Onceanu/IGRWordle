@@ -15,11 +15,20 @@ func _ready():
 	$Keyboard.char_pressed.connect(char_pressed_callback)
 	$Keyboard.enter_pressed.connect(enter_pressed_callback)
 	$Keyboard.del_pressed.connect(del_pressed_callback)
-	$GameOverUI.hide()
-	$NextLevelUI.hide()
+	$WinningMenu.next_level_pressed.connect(next_level_game)
+	reset_game(false)
 #endregion
 
 #region Public functions
+
+func on_losing_do():
+	$GameOverUI.show()
+	print("GAME OVER !")
+	
+func on_winning_do():
+	$WinningMenu.show()
+	print("YOU WIN !")
+
 func char_pressed_callback(c : String) -> void:
 	if (len($GameState.current_string_guess) < $Grid.grid_size.y) && ($GameState.current_attempt<$Grid.grid_size.x):
 		$GameState.current_string_guess+=c
@@ -57,16 +66,15 @@ func enter_pressed_callback() -> void:
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.273, 0.273, 0.273, 1.0)
 		if (number_correct == $Grid.grid_size.y):
-			print("YOU WIN !")
-			$NextLevelUI.show()
+			on_winning_do()
 			return
 		else :
 			$GameState.current_string_guess = ""
 			$GameState.current_attempt+=1
 		
 		if ($GameState.current_attempt >= $Grid.grid_size.x):
-			$GameOverUI.show()
-			print("GAME OVER !")
+			on_losing_do()
+			return
 		else :
 			print("TRY AGAIN !")
 	else :
@@ -92,8 +100,9 @@ func reset_game(next_level : bool) -> void:
 	# Reseting the elements
 	$Grid.reset()
 	$Keyboard.reset()
+	$WinningMenu.reset()
 	$GameOverUI.hide()
-	$NextLevelUI.hide()
+	$WinningMenu.hide()
 	# Reseting data the right way
 	$GameState.mystery_word = ""
 	$GameState.current_string_guess = ""
@@ -101,6 +110,7 @@ func reset_game(next_level : bool) -> void:
 	if next_level:
 		$GameState.level += 1
 		print("Starting level: ", $GameState.level)
+		$LevelLabel.text = "Level " +  str($GameState.level)
 	else:
 		$GameState.level = 1
 		$GameState.points = 0
@@ -131,6 +141,3 @@ func _on_restart_game_button_button_up() -> void:
 
 func _on_return_main_menu_button_up() -> void:
 	return_to_main_menu.emit()
-
-func _on_next_level_button_button_up() -> void:
-	next_level_game()
