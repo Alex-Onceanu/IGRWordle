@@ -30,7 +30,7 @@ var status : Status = Status.EMPTY:
 var letter : String = "~":
 	set(letter_v):
 		letter = letter_v.to_upper()
-		$Label.text = letter
+		$AnimatedChar.char = letter
 #endregion
 
 #region Private functions
@@ -40,6 +40,9 @@ func _ready() -> void :
 #endregion
 
 #region Public functions
+func animate() -> void:
+	$AnimatedChar.activate(0.0)
+
 ## Instantiates a LetterBox.
 ##
 ## [param letter]: The letter to show.

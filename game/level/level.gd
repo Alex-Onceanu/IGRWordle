@@ -44,9 +44,10 @@ func enter_pressed_callback() -> void:
 			return
 		var number_correct : int = 0
 		for j in range(len($GameState.current_string_guess)):
+			var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, j)
+			letter_box.animate()
 			if ($GameState.current_string_guess[j] == $GameState.mystery_word[j]):
 				letters_mystery_word.erase($GameState.current_string_guess[j])
-				var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, j)
 				letter_box.status = LetterBox.Status.CORRECT
 				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
@@ -54,17 +55,16 @@ func enter_pressed_callback() -> void:
 				number_correct+=1
 			elif ($GameState.current_string_guess[j] in letters_mystery_word):
 				letters_mystery_word.erase($GameState.current_string_guess[j])
-				var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, j)
 				letter_box.status = LetterBox.Status.MISPLACED
 				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.0, 0.698, 0.0, 1.0)
 			else :
-				var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, j)
 				letter_box.status = LetterBox.Status.WRONG
 				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.273, 0.273, 0.273, 1.0)
+			await get_tree().create_timer(0.2).timeout
 		if (number_correct == $Grid.grid_size.y):
 			on_winning_do()
 			return

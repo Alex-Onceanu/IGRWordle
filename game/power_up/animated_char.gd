@@ -3,6 +3,9 @@ extends Control
 #to change the duration or strength of the animation, change the curves
 @export var rotation_anim : Curve
 @export var scale_anim : Curve
+var char : String = "W":
+	set(v):
+		$Movable/Label.text = v
 
 func spring(t : float) -> void:
 	$Movable.rotation_degrees = rotation_anim.sample(t)

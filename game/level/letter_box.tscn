@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvlaq8o7sq7c6"]
 
 [ext_resource type="Script" uid="uid://byaqov2n12fjb" path="res://game/level/letter_box.gd" id="1_w7ff6"]
-[ext_resource type="PackedScene" uid="uid://db1vwod7r5k1t" path="res://game/power_up/animated_char.tscn" id="2_qvapa"]
+[ext_resource type="PackedScene" path="res://game/power_up/animated_char.tscn" id="2_qvapa"]
 
 [node name="LetterBox" type="Control" unique_id=573317305]
 custom_minimum_size = Vector2(50, 50)
@@ -14,11 +14,5 @@ layout_mode = 0
 offset_right = 53.0
 offset_bottom = 55.0
 
-[node name="AnimatedChar" parent="." unique_id=1741495599 instance=ExtResource("2_qvapa")]
+[node name="AnimatedChar" parent="." unique_id=1376181817 instance=ExtResource("2_qvapa")]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 27.0
-offset_right = 26.0
-offset_bottom = 27.0
-rotation_anim = null
-scale_anim = null
