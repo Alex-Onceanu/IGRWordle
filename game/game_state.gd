@@ -12,7 +12,7 @@ signal level_changed(lvl : int)
 @export var points: int = 0:
 	set(value):
 		points = value
-		points_changed.emit()
+		points_changed.emit(points)
 @export var mystery_word: String = ""
 @export var current_string_guess : String = ""
 @export var current_attempt : int = 0

@@ -9,8 +9,8 @@ var shop_items : Array[Item] = []
 #region Private functions
 func append_item(item : Item) -> void:
 	shop_items.append(item)
-	label.text = 
-	$VBoxContainer/VBoxContainer.add_child(label)
+	# label.text = "gyatt"
+	# $VBoxContainer/VBoxContainer.add_child(label)
 	
 	
 #endregion
