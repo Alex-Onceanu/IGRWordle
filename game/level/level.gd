@@ -16,6 +16,7 @@ func _ready():
 	$Keyboard.enter_pressed.connect(enter_pressed_callback)
 	$Keyboard.del_pressed.connect(del_pressed_callback)
 	$WinningMenu.next_level_pressed.connect(next_level_game)
+	$GameState.points_changed.connect($Score.update_points)
 	reset_game(false)
 #endregion
 
@@ -45,7 +46,7 @@ func enter_pressed_callback() -> void:
 		var number_correct : int = 0
 		for j in range(len($GameState.current_string_guess)):
 			var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, j)
-			letter_box.animate()
+			var points_earned : int = 0
 			if ($GameState.current_string_guess[j] == $GameState.mystery_word[j]):
 				letters_mystery_word.erase($GameState.current_string_guess[j])
 				letter_box.status = LetterBox.Status.CORRECT
@@ -53,18 +54,23 @@ func enter_pressed_callback() -> void:
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.0, 0.698, 0.0, 1.0)
 				number_correct+=1
+				points_earned = 10
 			elif ($GameState.current_string_guess[j] in letters_mystery_word):
 				letters_mystery_word.erase($GameState.current_string_guess[j])
 				letter_box.status = LetterBox.Status.MISPLACED
 				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.0, 0.698, 0.0, 1.0)
+				points_earned = 5
 			else :
 				letter_box.status = LetterBox.Status.WRONG
 				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.273, 0.273, 0.273, 1.0)
-			await get_tree().create_timer(0.2).timeout
+				points_earned = 1
+			letter_box.animate(points_earned)
+			$GameState.points += points_earned
+			await get_tree().create_timer(0.3).timeout
 		if (number_correct == $Grid.grid_size.y):
 			on_winning_do()
 			return

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://fe2yb7f61hmb" path="res://game/level/keyboard.tscn" id="3_k26x8"]
 [ext_resource type="PackedScene" uid="uid://fjhnfmwsawo3" path="res://game/level/winning_menu.tscn" id="5_dynoe"]
 [ext_resource type="PackedScene" uid="uid://dalnv4ctvosjo" path="res://game/game_state.tscn" id="5_y11jn"]
+[ext_resource type="PackedScene" uid="uid://dy1bci3rg7qji" path="res://game/level/score.tscn" id="6_k26x8"]
 
 [node name="Level" type="Node2D" unique_id=1641894213]
 script = ExtResource("1_qq5er")
@@ -38,10 +39,10 @@ mouse_filter = 2
 color = Color(0.96254605, 0.96254593, 0.96254593, 1)
 
 [node name="LevelLabel" type="RichTextLabel" parent="." unique_id=331414528]
-offset_left = 301.0
-offset_top = 21.0
-offset_right = 377.0
-offset_bottom = 45.0
+offset_left = 518.0
+offset_top = 19.0
+offset_right = 594.0
+offset_bottom = 43.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Level 1"
 
@@ -79,6 +80,12 @@ offset_left = 318.0
 offset_top = 587.0
 offset_right = 418.0
 offset_bottom = 687.0
+
+[node name="Score" parent="." unique_id=768050888 instance=ExtResource("6_k26x8")]
+offset_left = 334.0
+offset_top = 13.0
+offset_right = 334.0
+offset_bottom = 13.0
 
 [connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
 [connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]

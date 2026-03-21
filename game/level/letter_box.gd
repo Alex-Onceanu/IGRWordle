@@ -30,18 +30,28 @@ var status : Status = Status.EMPTY:
 var letter : String = "~":
 	set(letter_v):
 		letter = letter_v.to_upper()
-		$AnimatedChar.char = letter
+		$AnimatedChar.txt = letter
+
+@onready var bonus_points_anchor = $BonusPoints.position
 #endregion
 
 #region Private functions
 func _ready() -> void :
 	letter = letter.to_upper()
 	status = status
+	$BonusPoints.modulate.a = 0.0
 #endregion
 
 #region Public functions
-func animate() -> void:
+func animate(pts : int) -> void:
 	$AnimatedChar.activate(0.0)
+	$BonusPoints.position = bonus_points_anchor
+	$BonusPoints.text = "+" + str(pts)
+	$BonusPoints.modulate = Color($TextureRect.modulate)
+	# $BonusPoints.add_theme_color_override("font_color", $TextureRect.color)
+	$BonusPoints.modulate.a = 1.0
+	create_tween().tween_property($BonusPoints, "position", bonus_points_anchor + Vector2(0.0, -30.0), 0.8)
+	create_tween().tween_property($BonusPoints, "modulate:a", 0.0, 0.8)
 
 ## Instantiates a LetterBox.
 ##
