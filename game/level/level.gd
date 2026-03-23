@@ -144,6 +144,8 @@ func next_level_game() -> void:
 
 func _on_restart_game_button_button_up() -> void:
 	new_game()
+	SceneSwitcher.go_to_level()
 
 func _on_return_main_menu_button_up() -> void:
 	return_to_main_menu.emit()
+	SceneSwitcher.go_to_main_menu()
