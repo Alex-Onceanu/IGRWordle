@@ -5,6 +5,8 @@ signal keyboard_enter_pressed()
 signal keyboard_delete_pressed()
 signal keyboard_KeyPress()
 
+signal editor_cell_pressed(cell: EditorCell)
+
 const GROUP := &'RECEIVER_GROUP'
 
 static var _s_dirty := true

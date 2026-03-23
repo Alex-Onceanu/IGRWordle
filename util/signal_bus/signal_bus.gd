@@ -19,7 +19,7 @@ var _buffer: Array[Dictionary] = []
 
 
 func send(signal_name: StringName, args: Array):
-	print("sending ", signal_name)
+	#print("sending ", signal_name)
 	if _locks.size() > 0:
 		_buffer.append({signal_name = signal_name, args = args})
 	else:
@@ -50,6 +50,7 @@ func unlock(lock_id: int):
 
 
 func _broadcast(signal_name: StringName, args: Array):
-	print("broadcasting signal to the following receivers: ", SignalBusReceiver.all(get_tree()))
+	#print_rich("[color=GREEN]broadcasting signal to the following receivers: [/color]", SignalBusReceiver.all(get_tree()))
 	for receiver in SignalBusReceiver.all(get_tree()):
 		receiver.callv(&'emit_signal', [signal_name] + args)
+		#print_rich("[color=ORANGE]signal [/color]", signal_name, "[color=ORANGE] emmited!![/color]")
