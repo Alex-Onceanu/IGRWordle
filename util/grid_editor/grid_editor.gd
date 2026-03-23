@@ -85,7 +85,8 @@ func _save_normalized_grid() -> void:
 	grid_resource.grid_size.y = abs(max_y - min_y + 1)
 	print_rich("[color=aquamarine]the grid will be reduced to ", grid_resource.grid_size.x, ", ", grid_resource.grid_size.y)
 	var normalized_keys = cell_layout.keys()
-	normalized_keys.map(func(x): return x - Vector2i(min_x, min_y))
+	for i in range(normalized_keys.size()):
+		normalized_keys[i] -= Vector2i(min_x, min_y)
 	grid_resource.cell_layout.clear()
 	for key in normalized_keys:
 		grid_resource.cell_layout.get_or_add(key, 0)
