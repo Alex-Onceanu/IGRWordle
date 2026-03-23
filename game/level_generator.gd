@@ -23,6 +23,7 @@ static func create_level(word_size: int, max_attempts: int, points_to_pass: int)
 static func create_level_from_resource(level_resource: LevelResource):
 	var background_node = level_resource.background_scene.instantiate()
 	var keyboard_node = level_resource.keyboard_scene.instantiate()
+	# TODO account for variable-sized words in the grid
 	var grid_node = level_resource.grid_scene.instantiate()
 	var level_node = level_scene.instantiate()
 
