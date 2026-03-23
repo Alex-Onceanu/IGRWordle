@@ -16,8 +16,16 @@ func _ready():
 	$Keyboard.enter_pressed.connect(enter_pressed_callback)
 	$Keyboard.del_pressed.connect(del_pressed_callback)
 	$WinningMenu.next_level_pressed.connect(next_level_game)
-	$GameState.points_changed.connect($Score.update_points)
+	GameState.points_changed.connect($Score.update_points)
 	reset_game(false)
+	
+
+func _on_restart_game_button_button_up() -> void:
+	new_game()
+
+func _on_return_main_menu_button_up() -> void:
+	return_to_main_menu.emit()
+
 #endregion
 
 #region Public functions
@@ -31,54 +39,54 @@ func on_winning_do():
 	print("YOU WIN !")
 
 func char_pressed_callback(c : String) -> void:
-	if (len($GameState.current_string_guess) < $Grid.grid_size.y) && ($GameState.current_attempt<$Grid.grid_size.x):
-		$GameState.current_string_guess+=c
-		var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, len($GameState.current_string_guess)-1)
+	if (len(GameState.current_string_guess) < $Grid.grid_size.y) && (GameState.current_attempt<$Grid.grid_size.x):
+		GameState.current_string_guess+=c
+		var letter_box : LetterBox = $Grid.get_cell(GameState.current_attempt, len(GameState.current_string_guess)-1)
 		letter_box.letter = c
 		letter_box.status = LetterBox.Status.FULL
 
 func enter_pressed_callback() -> void:
-	var letters_mystery_word = $GameState.mystery_word.split("")
-	if (len($GameState.current_string_guess) >= $Grid.grid_size[1]):
-		if ($GameState.current_string_guess not in words_list):
+	var letters_mystery_word = GameState.mystery_word.split("")
+	if (len(GameState.current_string_guess) >= $Grid.grid_size[1]):
+		if (GameState.current_string_guess not in words_list):
 			print("word doesn't exist !")
 			return
 		var number_correct : int = 0
-		for j in range(len($GameState.current_string_guess)):
-			var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, j)
+		for j in range(len(GameState.current_string_guess)):
+			var letter_box : LetterBox = $Grid.get_cell(GameState.current_attempt, j)
 			var points_earned : int = 0
-			if ($GameState.current_string_guess[j] == $GameState.mystery_word[j]):
-				letters_mystery_word.erase($GameState.current_string_guess[j])
+			if (GameState.current_string_guess[j] == GameState.mystery_word[j]):
+				letters_mystery_word.erase(GameState.current_string_guess[j])
 				letter_box.status = LetterBox.Status.CORRECT
-				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
+				var key : KeyboardKey = $Keyboard.get_key(GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.0, 0.698, 0.0, 1.0)
 				number_correct+=1
 				points_earned = 10
-			elif ($GameState.current_string_guess[j] in letters_mystery_word):
-				letters_mystery_word.erase($GameState.current_string_guess[j])
+			elif (GameState.current_string_guess[j] in letters_mystery_word):
+				letters_mystery_word.erase(GameState.current_string_guess[j])
 				letter_box.status = LetterBox.Status.MISPLACED
-				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
+				var key : KeyboardKey = $Keyboard.get_key(GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.0, 0.698, 0.0, 1.0)
 				points_earned = 5
 			else :
 				letter_box.status = LetterBox.Status.WRONG
-				var key : KeyboardKey = $Keyboard.get_key($GameState.current_string_guess[j])
+				var key : KeyboardKey = $Keyboard.get_key(GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.273, 0.273, 0.273, 1.0)
 				points_earned = 1
 			letter_box.animate(points_earned)
-			$GameState.points += points_earned
+			GameState.points += points_earned
 			await get_tree().create_timer(0.3).timeout
 		if (number_correct == $Grid.grid_size.y):
 			on_winning_do()
 			return
 		else :
-			$GameState.current_string_guess = ""
-			$GameState.current_attempt+=1
+			GameState.current_string_guess = ""
+			GameState.current_attempt+=1
 		
-		if ($GameState.current_attempt >= $Grid.grid_size.x):
+		if (GameState.current_attempt >= $Grid.grid_size.x):
 			on_losing_do()
 			return
 		else :
@@ -87,9 +95,9 @@ func enter_pressed_callback() -> void:
 		print("not enough letters ! doing nothing")
 
 func del_pressed_callback() -> void :
-	if len($GameState.current_string_guess) > 0:
-		$GameState.current_string_guess = $GameState.current_string_guess.left(len($GameState.current_string_guess) - 1)
-		var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, len($GameState.current_string_guess))
+	if len(GameState.current_string_guess) > 0:
+		GameState.current_string_guess = GameState.current_string_guess.left(len(GameState.current_string_guess) - 1)
+		var letter_box : LetterBox = $Grid.get_cell(GameState.current_attempt, len(GameState.current_string_guess))
 		letter_box.letter = " "
 		letter_box.status = LetterBox.Status.EMPTY
 
@@ -110,18 +118,18 @@ func reset_game(next_level : bool) -> void:
 	$GameOverUI.hide()
 	$WinningMenu.hide()
 	# Reseting data the right way
-	$GameState.mystery_word = ""
-	$GameState.current_string_guess = ""
-	$GameState.current_attempt = 0
+	GameState.mystery_word = ""
+	GameState.current_string_guess = ""
+	GameState.current_attempt = 0
 	if next_level:
-		$GameState.level += 1
-		print("Starting level: ", $GameState.level)
-		$LevelLabel.text = "Level " +  str($GameState.level)
+		GameState.level += 1
+		print("Starting level: ", GameState.level)
+		$LevelLabel.text = "Level " +  str(GameState.level)
 	else:
-		$GameState.level = 1
-		$GameState.points = 0
-		$GameState.coins = 0
-		$GameState.power_ups.clear()
+		GameState.level = 1
+		GameState.points = 0
+		GameState.coins = 0
+		GameState.power_ups.clear()
 		print("Game fully reset.")
 		assert(FileAccess.file_exists(WORDS_PATH), "core_game.gd : run aborted because couldn't reach the file on path " + WORDS_PATH)
 	# re-picking a random word.
@@ -135,15 +143,9 @@ func reset_game(next_level : bool) -> void:
 		print("secret word is ", current_mystery_word)
 	else:
 		push_error("No 5 letters word was found in the file")
-	$GameState.mystery_word = current_mystery_word
+	GameState.mystery_word = current_mystery_word
 
 func next_level_game() -> void:
 	reset_game(true)
 	
 #endregion
-
-func _on_restart_game_button_button_up() -> void:
-	new_game()
-
-func _on_return_main_menu_button_up() -> void:
-	return_to_main_menu.emit()

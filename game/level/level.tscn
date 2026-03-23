@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://hytjpbfjiojs" path="res://game/level/level.gd" id="1_qq5er"]
 [ext_resource type="PackedScene" uid="uid://c0hsy6u3o3kiq" path="res://game/level/grid.tscn" id="2_dynoe"]
-[ext_resource type="PackedScene" uid="uid://bgqr6a5l1ohly" path="res://game/level/keyboard.tscn" id="3_k26x8"]
-[ext_resource type="PackedScene" path="res://game/level/winning_menu.tscn" id="5_dynoe"]
-[ext_resource type="PackedScene" uid="uid://dalnv4ctvosjo" path="res://game/game_state.tscn" id="5_y11jn"]
-[ext_resource type="PackedScene" path="res://game/level/score.tscn" id="6_k26x8"]
+[ext_resource type="PackedScene" uid="uid://fe2yb7f61hmb" path="res://game/level/keyboard.tscn" id="3_k26x8"]
+[ext_resource type="PackedScene" uid="uid://fjhnfmwsawo3" path="res://game/level/winning_menu.tscn" id="5_dynoe"]
+[ext_resource type="PackedScene" uid="uid://dy1bci3rg7qji" path="res://game/level/score.tscn" id="6_k26x8"]
 
 [node name="Level" type="Node2D" unique_id=1641894213]
 script = ExtResource("1_qq5er")
@@ -45,8 +44,6 @@ offset_right = 594.0
 offset_bottom = 43.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Level 1"
-
-[node name="GameState" parent="." unique_id=23191891 instance=ExtResource("5_y11jn")]
 
 [node name="GameOverUI" type="Control" parent="." unique_id=1686120609]
 visible = false
