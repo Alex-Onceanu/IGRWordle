@@ -1,5 +1,5 @@
 extends Control
-class_name ShopItem
+class_name Item
 
 #region Signals
 signal item_selected
@@ -23,7 +23,7 @@ var icon : Texture2D = preload("res://game/shop_menu/test_image.png"):
 			$TextureButton.texture_normal = icon
 		_apply_click_mask()
 		
-const ITEM_SCENE_PATH : String = "res://game/shop_menu/shop_item.tscn"
+const ITEM_SCENE_PATH : String = "res://game/shop_menu/item.tscn"
 #endregion
 
 #region Private functions
@@ -55,7 +55,7 @@ func _on_long_press_timer_timeout() -> void:
 #endregion
 
 #region Public functions
-static func create(p_name: String, p_desc: String, p_price: int, p_tex: Texture2D) -> ShopItem:
+static func create(p_name: String, p_desc: String, p_price: int, p_tex: Texture2D) -> Item:
 	var scene = load(ITEM_SCENE_PATH)
 	var node = scene.instantiate()
 	node.item_name = p_name
