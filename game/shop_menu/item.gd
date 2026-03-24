@@ -16,7 +16,7 @@ var description : String = "Lorem ipsum dolor sit amet, consectetur adipiscing e
 		_update_display(item_name, description)
 var price : int = 0
 var i : int = 0
-var icon : Texture2D = preload("res://game/shop_menu/test_image.png"):
+var icon : Texture2D = preload("res://icon.svg"):
 	set(icon_v):
 		icon = icon_v
 		if icon != null:
