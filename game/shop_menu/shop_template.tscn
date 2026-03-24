@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://chhspsqmiuheh"]
+
+[ext_resource type="Script" path="res://game/shop_menu/shop_template.gd" id="1_3csxk"]
+[ext_resource type="Script" path="res://game/shop_menu/shop_manager.gd" id="2_c3sla"]
+
+[node name="ShopUi" type="Control" unique_id=126797957]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3csxk")
+
+[node name="ShopLabel" type="Label" parent="." unique_id=492857314]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 153.0
+offset_right = 385.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 56
+text = "Shop"
+
+[node name="BuyButton" type="Button" parent="." unique_id=1421189903]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 862.0
+offset_right = 429.0
+offset_bottom = 933.0
+text = "Buy !"
+
+[node name="ItemsContainer" type="VBoxContainer" parent="." unique_id=758387652]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 286.0
+offset_right = 319.0
+offset_bottom = 286.0
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="Permanent" type="HBoxContainer" parent="ItemsContainer" unique_id=447372471]
+layout_mode = 2
+
+[node name="Temporary" type="HBoxContainer" parent="ItemsContainer" unique_id=387609459]
+layout_mode = 2
+
+[node name="Challenges" type="HBoxContainer" parent="ItemsContainer" unique_id=111025933]
+layout_mode = 2
+
+[node name="NextLevel" type="Button" parent="." unique_id=78000122]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ShopManager" type="Node" parent="." unique_id=1587962172]
+script = ExtResource("2_c3sla")
+
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="NextLevel" to="." method="_on_next_level_pressed"]
