@@ -3,7 +3,6 @@ class_name Grid
 
 # TODO change Grid to WordGrid so that is less confusing (and change references to it to
 #       word_grid everywhere in the project)
-# TODO actually man redo all of it instead of trying to fit the dynamic level building.
 # TODO add enum with the cell states as well as a function to get the state of a cell and one to set it
 #region Variables
 # enum State {
