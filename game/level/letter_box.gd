@@ -19,7 +19,7 @@ const STATUS_COLORS = {
 	Status.WRONG: Color(0.325, 0.325, 0.325),
 	Status.MISPLACED: Color(1, 0.8, 0.2),
 	Status.CORRECT: Color(0.384, 0.873, 0.0),
-	Status.DISABLED: Color(0.094, 0.094, 0.094)
+	Status.DISABLED: Color(0.094, 0.094, 0.094, 0.0)
 }
 
 var status : Status = Status.EMPTY:
