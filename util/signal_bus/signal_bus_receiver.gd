@@ -3,7 +3,7 @@ extends Node
 
 signal keyboard_enter_pressed()
 signal keyboard_delete_pressed()
-signal keyboard_KeyPress()
+signal keyboard_character_pressed()
 
 signal editor_cell_pressed(cell: EditorCell)
 
