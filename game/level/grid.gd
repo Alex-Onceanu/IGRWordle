@@ -3,15 +3,7 @@ class_name Grid
 
 # TODO change Grid to WordGrid so that is less confusing (and change references to it to
 #       word_grid everywhere in the project)
-# TODO add enum with the cell states as well as a function to get the state of a cell and one to set it
 #region Variables
-# enum State {
-# 	NORMAL,
-# 	FIRE,
-# 	ICE,
-# 	BONE,
-# 	# add / modify as you like :thumbs_up:
-# }
 
 const WORD_GRID_SCENE_PATH = "res://game/level/grid.tscn"
 
