@@ -37,7 +37,7 @@ func _is_last_cell_in_row() -> bool:
 
 
 func _is_valid_guess() -> bool:
-	return true
+	return _is_last_cell_in_row() and GameDictionary.is_in_dictionary(current_guess)
 	
 
 func _on_keyboard_character_pressed(c: String) -> void:
