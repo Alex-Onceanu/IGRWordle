@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://fe2yb7f61hmb"]
+[gd_scene format=3 uid="uid://bgqr6a5l1ohly"]
 
 [ext_resource type="Script" uid="uid://b2rrxnacshgix" path="res://game/level/keyboard.gd" id="1_m6qkj"]
+[ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="2_77wxd"]
 
 [node name="Keyboard" type="Control" unique_id=1574060102]
 layout_mode = 3
@@ -52,5 +53,11 @@ text = "Enter"
 layout_mode = 2
 text = "Delete"
 
+[node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("2_77wxd")]
+signal_prefix = "keyboard_"
+
+[connection signal="character_pressed" from="." to="SignalBusSender" method="connect_signal"]
+[connection signal="delete_pressed" from="." to="SignalBusSender" method="connect_signal"]
+[connection signal="enter_pressed" from="." to="SignalBusSender" method="connect_signal"]
 [connection signal="button_up" from="VBoxContainer/rowEnterDel/Enter" to="." method="_on_enter_button_up"]
 [connection signal="button_up" from="VBoxContainer/rowEnterDel/Del" to="." method="_on_del_button_up"]
