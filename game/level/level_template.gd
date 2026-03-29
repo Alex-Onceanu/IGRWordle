@@ -8,7 +8,6 @@ class_name LevelTemplate
 # What this script DOES NOT do:
 # - keep updating the UI (the ones who _should_ do this are specialized scripts, such as [for example] PointsLabel, LetterBox, Grid...)
 
-const WORDS_PATH : String = "res://words.txt"
 
 @export var winning_menu: WinningMenuUI
 @export var game_over_ui: Control
@@ -17,6 +16,7 @@ const WORDS_PATH : String = "res://words.txt"
 @export var keyboard: Keyboard
 @export var background: ColorRect
 @export var level_manager: LevelManager
+
 
 var words_list : Array = []
 
@@ -37,11 +37,11 @@ func setup() -> void:
 	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)
 	keyboard.position = Vector2(325, 971)
 
+	level_manager.grid = grid
+
 	_make_signal_connections()
 	
 
-## Reset data :
-## Resets game variables. 
+# TODO actually this may not even be needed given SignalBus
 func _make_signal_connections() -> void:
-	# TODO
 	pass
