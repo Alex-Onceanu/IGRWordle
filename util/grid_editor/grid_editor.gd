@@ -2,15 +2,6 @@
 extends Node
 class_name GridEditor
 
-
-# TODO:
-# 1. Fazer com que o dev consiga desenhar uma grid sem começar no (0, 0) e a grid final translada
-#    tudo pro (0, 0) (A BOUNDING BOX DA GRID NÃO A CÉLULA MAIS À ESQUERDA), além de definir uma bounding box sobre as células que foram selecionadas pra
-#    que o limite da grid seja da célula com menor y e da com menor x pra com maior x e pra com maior y.
-# 2. Fazer com que o dev ponha o resource onde ele quer salvar a grid como export var e a grid que
-#    ele montar é salva nesse resource
-# 3. Se o resource que ele pôr já tiver uma grid definida, preencher os espaços quando ele botar
-
 @export_category("Grid Parameters")
 @export_range(1, 100) var grid_size_x: int = 5:
 	set(value):
@@ -101,6 +92,13 @@ func _on_save_pressed() -> void:
 	grid_resource.cell_layout = cell_layout
 	_save_normalized_grid()
 	if not grid_resource.resource_path.ends_with(".tres"):
-		var rng = RandomNumberGenerator.new()
-		grid_resource.take_over_path(default_save_path + "grid_" + str(rng.randi()) + ".tres")
+		var date = Time.get_date_dict_from_system();
+		var time = Time.get_time_dict_from_system()
+		var year: int = date.year
+		var month: int = date.month
+		var day: int = date.day
+		var hour: int = time.hour
+		var minute: int = time.minute
+		var second: int = time.second
+		grid_resource.take_over_path(default_save_path + "grid_" + str(year) + str(month) + str(day) + str(hour) + str(minute) + str(second) + ".tres")
 	ResourceSaver.save(grid_resource, grid_resource.resource_path)
