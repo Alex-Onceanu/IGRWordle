@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dknl00pcu0rb"]
+
+[ext_resource type="Script" uid="uid://dnkflkt4bbb20" path="res://game/level/level_manager.gd" id="1_q76y6"]
+[ext_resource type="PackedScene" uid="uid://b4665yy0lwvt5" path="res://util/signal_bus/signal_bus_receiver.tscn" id="2_83rrn"]
+
+[node name="LevelManager" type="Node2D" unique_id=1138216490 node_paths=PackedStringArray("receiver")]
+script = ExtResource("1_q76y6")
+receiver = NodePath("SignalBusReceiver")
+
+[node name="SignalBusReceiver" parent="." unique_id=1996817024 instance=ExtResource("2_83rrn")]
+
+[connection signal="keyboard_character_pressed" from="SignalBusReceiver" to="." method="_on_keyboard_character_pressed"]
+[connection signal="keyboard_delete_pressed" from="SignalBusReceiver" to="." method="_on_keyboard_delete_pressed"]
+[connection signal="keyboard_enter_pressed" from="SignalBusReceiver" to="." method="_on_keyboard_enter_pressed"]

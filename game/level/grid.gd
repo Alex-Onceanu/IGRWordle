@@ -1,22 +1,33 @@
 extends Control
 class_name Grid
 
+# TODO change Grid to WordGrid so that is less confusing (and change references to it to
+#       word_grid everywhere in the project)
+# TODO add enum with the cell states as well as a function to get the state of a cell and one to set it
 #region Variables
+# enum State {
+# 	NORMAL,
+# 	FIRE,
+# 	ICE,
+# 	BONE,
+# 	# add / modify as you like :thumbs_up:
+# }
+
 const WORD_GRID_SCENE_PATH = "res://game/level/grid.tscn"
 
-var word_grid_size = Vector2i(5,5)
+@export var resource: GridResource = null
+@export_category("Nodes")
+@export var grid_container: GridContainer
 #endregion
 
 #region Private functions
 func _ready() -> void:
-	$GridContainer.columns = word_grid_size.y
-	for i in range(word_grid_size.y):
-		for j in range(word_grid_size.x):
-			var letter_box = LetterBox.create(" ", LetterBox.Status.EMPTY)
-			$GridContainer.add_child(letter_box)
+	setup(resource)
+	pass
 
-func _get_index(i : int, j : int) -> int:
-	return word_grid_size.y*i+j
+
+func _get_index(row : int, col : int) -> int:
+	return resource.grid_size.y*row + col
 #endregion
 
 #region Public functions
@@ -24,30 +35,60 @@ func _get_index(i : int, j : int) -> int:
 ##
 ## [param i,j]: ith-row, jth-column
 ## [returns]: The associated LetterBox of the Grid
-func get_cell(i : int, j : int) -> LetterBox:
-	return $GridContainer.get_child(_get_index(i,j))
+func get_cell_by_coordinates(row : int, col : int) -> LetterBox:
+	return grid_container.get_child(_get_index(row, col))
 
-## Set the cell at coordinate in row-major coordinates)
+
+func get_cell_by_index(i: int) -> LetterBox:
+	if i >= resource.cell_layout.size():
+		return null
+	var cell_position = resource.cell_layout.keys()[i]
+	return get_cell_by_coordinates(cell_position.x, cell_position.y)
+
+
+## Set the cell at given coordinates
 ##
-## [param i,j]: ith-row, jth-column
-func set_cell(i : int, j : int, n_letter_box : LetterBox) -> void:
-	var index = _get_index(i,j)
-	var old_node = $GridContainer.get_child(index)
-	old_node.queue_free()
-	$GridContainer.add_child(n_letter_box)
-	$GridContainer.move_child(n_letter_box, index)
+## [param row, col]: ith-row, jth-column
+func set_cell(row : int, col : int, letter_box : LetterBox = null) -> void:
+	if letter_box == null:
+		letter_box = LetterBox.create(" ", LetterBox.Status.EMPTY)
+	var index = _get_index(row, col)
+	var old_node = grid_container.get_child(index)
+	if old_node != null:
+		old_node.queue_free()
+	grid_container.add_child(letter_box)
+	grid_container.move_child(letter_box, index)
+
+
+func get_cell_count() -> int:
+	return grid_container.get_children().filter(func(x):
+		return x is LetterBox \
+			and x.status != LetterBox.Status.DISABLED
+	).size()
+
 
 ## Resets the grid.
 func reset()-> void:
-	$GridContainer.get_children().map(func(child): child.queue_free())
-	_ready()
+	grid_container.get_children().map(func(child): child.queue_free())
+	setup(resource)
 
-## Instantiates a grid.
-## [param grid_size_v]: grid size coordinates.
-## [returns]: A grid instance.
-static func create(grid_size_v : Vector2i) -> Grid:
-	var scene = load(WORD_GRID_SCENE_PATH)
-	var node = scene.instantiate()
-	node.grid_size = grid_size_v
-	return node
-#endregion	
+
+func setup(grid_resource: GridResource) -> void:
+	if grid_resource == null and resource == null:
+		return
+	if grid_resource == null:
+		grid_resource = resource
+	resource = grid_resource
+	grid_container.columns = grid_resource.grid_size.y
+	_setup_cells()
+
+
+func _setup_cells() -> void:
+	for row in resource.grid_size.x:
+		for col in resource.grid_size.y:
+			var letter_box: LetterBox
+			if Vector2i(row, col) in resource.cell_layout.keys():
+				letter_box = LetterBox.create(" ", LetterBox.Status.EMPTY)
+			else:
+				letter_box = LetterBox.create(" ", LetterBox.Status.DISABLED)
+			set_cell(row, col, letter_box)

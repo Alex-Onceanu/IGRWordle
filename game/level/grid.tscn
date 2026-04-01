@@ -1,62 +1,9 @@
 [gd_scene format=3 uid="uid://c0hsy6u3o3kiq"]
 
-[sub_resource type="GDScript" id="GDScript_w5i5h"]
-script/source = "extends Control
-class_name WordGrid
+[ext_resource type="Script" uid="uid://dgercpqu4jq06" path="res://game/level/grid.gd" id="1_nl6dr"]
+[ext_resource type="Resource" path="res://resources/grid/grid_2026331211556.tres" id="2_apj8q"]
 
-#region Variables
-var grid_size = Vector2i(5,5)
-
-const GRID_SCENE_PATH = \"res://scenes/level_ui/Grid.tscn\"
-#endregion
-
-#region Private functions
-func _ready() -> void:
-	$GridContainer.columns = grid_size.y
-	for i in range(grid_size.y):
-		for j in range(grid_size.x):
-			var letter_box = LetterBox.create(\" \", LetterBox.Status.EMPTY)
-			$GridContainer.add_child(letter_box)
-
-func _get_index(i : int, j : int) -> int:
-	return grid_size.y*i+j
-#endregion
-
-#region Public functions
-## Get the cell at coordinate in row-major coordinates)
-##
-## [param i,j]: ith-row, jth-column
-## [returns]: The associated LetterBox of the Grid
-func get_cell(i : int, j : int) -> LetterBox:
-	return $GridContainer.get_child(_get_index(i,j))
-
-## Set the cell at coordinate in row-major coordinates)
-##
-## [param i,j]: ith-row, jth-column
-func set_cell(i : int, j : int, n_letter_box : LetterBox) -> void:
-	var index = _get_index(i,j)
-	var old_node = $GridContainer.get_child(index)
-	old_node.queue_free()
-	$GridContainer.add_child(n_letter_box)
-	$GridContainer.move_child(n_letter_box, index)
-
-## Resets the grid.
-func reset()-> void:
-	$GridContainer.get_children().map(func(child): child.queue_free())
-	_ready()
-
-## Instantiates a grid.
-## [param grid_size_v]: grid size coordinates.
-## [returns]: A grid instance.
-static func create(grid_size_v : Vector2i) -> Grid:
-	var scene = load(GRID_SCENE_PATH)
-	var node = scene.instantiate()
-	node.grid_size = grid_size_v
-	return node
-#endregion	
-"
-
-[node name="Grid" type="Control" unique_id=688690635]
+[node name="Grid" type="Control" unique_id=688690635 node_paths=PackedStringArray("grid_container")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -71,7 +18,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-script = SubResource("GDScript_w5i5h")
+script = ExtResource("1_nl6dr")
+resource = ExtResource("2_apj8q")
+grid_container = NodePath("GridContainer")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=2041539914]
 layout_mode = 1
@@ -82,4 +31,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
 columns = 5

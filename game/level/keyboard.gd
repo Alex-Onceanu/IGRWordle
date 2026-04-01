@@ -13,11 +13,11 @@ var _keys : Array[KeyboardKey] = []
 ## Emitted when the user wants to confirm something.
 signal enter_pressed
 ## Emitted when the user wants to delete something.
-signal del_pressed
+signal delete_pressed
 ## Emitted when the user types a character on the Keyboard.
 ##
 ## [param c]: transmitted character.
-signal char_pressed(c :String)
+signal character_pressed(c :String)
 #endregion
 
 #region Private functions
@@ -39,10 +39,10 @@ func _on_enter_button_up() -> void:
 	enter_pressed.emit()
 
 func _on_del_button_up() -> void:
-	del_pressed.emit()
+	delete_pressed.emit()
 
 func _on_char_pressed(c : String) -> void:
-	char_pressed.emit(c)
+	character_pressed.emit(c)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
