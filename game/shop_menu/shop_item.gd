@@ -1,5 +1,5 @@
 extends Control
-class_name Item
+class_name ShopItem
 
 enum ItemType{
 	PERMANENT,
@@ -52,7 +52,7 @@ func _on_texture_button_pressed() -> void:
 #endregion
 
 #region Public functions
-static func create(p_name: String, p_desc: String, p_price: int, p_tex: Texture2D) -> Item:
+static func create(p_name: String, p_desc: String, p_price: int, p_tex: Texture2D) -> ShopItem:
 	var scene = load(ITEM_SCENE_PATH)
 	var node = scene.instantiate()
 	node.item_name = p_name

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bpw6st62kf6sp"]
 
 [ext_resource type="Script" uid="uid://b10curtgmkvl1" path="res://game/shop_menu/shop_item.gd" id="1_7qb4y"]
-[ext_resource type="Texture2D" uid="uid://bqlci3hunnwng" path="res://icon.svg" id="2_rrk3b"]
+[ext_resource type="Texture2D" uid="uid://bqlci3hunnwng" path="res://assets/icon.svg" id="2_rrk3b"]
 
 [node name="Item" type="Control" unique_id=1029116977]
 custom_minimum_size = Vector2(50, 50)
