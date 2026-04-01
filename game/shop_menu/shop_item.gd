@@ -1,6 +1,12 @@
 extends Control
 class_name Item
 
+enum ItemType{
+	PERMANENT,
+	TEMPORARY,
+	CHALLENGE,
+}
+
 #region Signals
 signal item_selected
 #endregion
@@ -23,7 +29,8 @@ var icon : Texture2D = preload("res://icon.svg"):
 			$TextureButton.texture_normal = icon
 		_apply_click_mask()
 		
-const ITEM_SCENE_PATH : String = "res://game/shop_menu/item.tscn"
+const ITEM_SCENE_PATH : String = "res://game/shop_menu/shop_item.tscn"
+var item_type : ItemType = ItemType.TEMPORARY
 #endregion
 
 #region Private functions
@@ -40,18 +47,8 @@ func _update_display(titre: String, desc: String):
 	var final_text = template.format({"nom": titre, "info": desc})
 	$PanelContainer/MarginContainer/Description.text = final_text
 
-func _on_texture_button_button_down() -> void:
-	$LongPressTimer.start()
-
-func _on_texture_button_button_up() -> void:
-	if not $LongPressTimer.is_stopped():
-		$LongPressTimer.stop()
-		item_selected.emit()
-	else:
-		$PanelContainer.hide()
-
-func _on_long_press_timer_timeout() -> void:
-	$PanelContainer.show()
+func _on_texture_button_pressed() -> void:
+	item_selected.emit()
 #endregion
 
 #region Public functions
