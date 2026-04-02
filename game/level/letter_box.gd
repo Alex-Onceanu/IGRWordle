@@ -29,6 +29,8 @@ const CORRECTNESS_COLORS = {
 	Correctness.CORRECT: Color(0.384, 0.873, 0.0),
 }
 
+@export var state_machine: CellStateMachine
+
 var status : Status = Status.EMPTY:
 	set(status_v):
 		status = status_v

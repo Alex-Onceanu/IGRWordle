@@ -41,10 +41,4 @@ func setup() -> void:
 	level_manager.grid = grid
 	level_manager.keyboard = keyboard
 
-	_make_signal_connections()
 	level_manager.choose_secret_word()
-	
-
-# TODO actually this may not even be needed given SignalBus
-func _make_signal_connections() -> void:
-	pass
