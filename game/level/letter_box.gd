@@ -29,10 +29,7 @@ var status : Status = Status.EMPTY:
 		status = status_v
 		$TextureRect.modulate = STATUS_COLORS[status]
 
-var letter : String = "~":
-	set(letter_v):
-		letter = letter_v.to_upper()
-		$AnimatedChar.txt = letter
+var letter : String = "~"
 
 @onready var bonus_points_anchor = $BonusPoints.position
 #endregion
