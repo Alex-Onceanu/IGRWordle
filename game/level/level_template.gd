@@ -5,6 +5,7 @@ class_name LevelTemplate
 # This script's sole purpose is to organize the elements visually on the screen for the level. That means:
 # - taking a grid, a keyboard, and a background node, and organizing the UI visually
 # - making all signal connections needed for the interaction to work
+# - initiating all the components of the level accordingly
 # What this script DOES NOT do:
 # - keep updating the UI (the ones who _should_ do this are specialized scripts, such as [for example] PointsLabel, LetterBox, Grid...)
 
@@ -38,3 +39,6 @@ func setup() -> void:
 	keyboard.position = Vector2(325, 971)
 
 	level_manager.grid = grid
+	level_manager.keyboard = keyboard
+
+	level_manager.choose_secret_word()
