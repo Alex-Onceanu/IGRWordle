@@ -2,6 +2,7 @@
 extends Node
 class_name GridEditor
 
+
 @export_category("Grid Parameters")
 @export_range(1, 100) var grid_size_x: int = 5:
 	set(value):
@@ -92,13 +93,5 @@ func _on_save_pressed() -> void:
 	grid_resource.cell_layout = cell_layout
 	_save_normalized_grid()
 	if not grid_resource.resource_path.ends_with(".tres"):
-		var date = Time.get_date_dict_from_system();
-		var time = Time.get_time_dict_from_system()
-		var year: int = date.year
-		var month: int = date.month
-		var day: int = date.day
-		var hour: int = time.hour
-		var minute: int = time.minute
-		var second: int = time.second
-		grid_resource.take_over_path(default_save_path + "grid_" + str(year) + str(month) + str(day) + str(hour) + str(minute) + str(second) + ".tres")
+		grid_resource.take_over_path(default_save_path + "grid_" + Time.get_datetime_string_from_system() + ".tres")
 	ResourceSaver.save(grid_resource, grid_resource.resource_path)
