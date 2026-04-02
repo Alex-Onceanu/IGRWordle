@@ -21,19 +21,20 @@ class_name LevelTemplate
 var words_list : Array = []
 
 
-func _ready() -> void:
-	setup()
-
 ## Sets up the current level's UI elements. It assumes [member LevelTemplate.grid], [member LevelTemplate.keyboard] and
 ## [member LevelTemplate.background] are set.
 func setup() -> void:
-	move_child(background, get_child_count() - 1)
-	move_child(grid, get_child_count() - 1)
-	move_child(keyboard, get_child_count() - 1)
+	add_child(grid)
+	add_child(keyboard)
+	add_child(background)
+
+	move_child(background, -1)
+	move_child(grid, -1)
+	move_child(keyboard, -1)
 	
-	# grid.size = Vector2(229, 200)
-	# grid.position = Vector2(220, 278)
+	grid.size = Vector2(229, 200)
+	grid.position = Vector2(220, 278)
 	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)
-	# keyboard.position = Vector2(325, 971)
+	keyboard.position = Vector2(325, 971)
 
 	level_manager.grid = grid

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0hsy6u3o3kiq"]
 
 [ext_resource type="Script" uid="uid://dgercpqu4jq06" path="res://game/level/grid.gd" id="1_nl6dr"]
-[ext_resource type="Resource" path="res://resources/grid/grid_2026331211556.tres" id="2_apj8q"]
+[ext_resource type="Resource" uid="uid://b5108vevvolpb" path="res://resources/grid/test_grid.tres" id="2_apj8q"]
 
 [node name="Grid" type="Control" unique_id=688690635 node_paths=PackedStringArray("grid_container")]
 layout_mode = 3

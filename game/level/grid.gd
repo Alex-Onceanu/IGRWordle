@@ -22,7 +22,7 @@ const WORD_GRID_SCENE_PATH = "res://game/level/grid.tscn"
 
 #region Private functions
 func _ready() -> void:
-	setup(resource)
+	#setup(resource)
 	pass
 
 
