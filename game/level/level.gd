@@ -46,30 +46,36 @@ func char_pressed_callback(c : String) -> void:
 		letter_box.status = LetterBox.Status.FULL
 
 func enter_pressed_callback() -> void:
-	var letters_mystery_word = GameState.mystery_word.split("")
-	if (len(GameState.current_string_guess) >= $Grid.grid_size[1]):
-		if (GameState.current_string_guess not in words_list):
+	var letters_mystery_word = $GameState.mystery_word.split("")
+	# verifies if it takes the whole row
+	if (len($GameState.current_string_guess) >= $Grid.grid_size[1]):
+		# verifies if it is in dictionary
+		if ($GameState.current_string_guess not in words_list):
 			print("word doesn't exist !")
 			return
 		var number_correct : int = 0
-		for j in range(len(GameState.current_string_guess)):
-			var letter_box : LetterBox = $Grid.get_cell(GameState.current_attempt, j)
+		# iterate through each letter
+		for j in range(len($GameState.current_string_guess)):
+			var letter_box : LetterBox = $Grid.get_cell($GameState.current_attempt, j)
 			var points_earned : int = 0
-			if (GameState.current_string_guess[j] == GameState.mystery_word[j]):
-				letters_mystery_word.erase(GameState.current_string_guess[j])
+			# verifies if it is in the right position
+			if ($GameState.current_string_guess[j] == $GameState.mystery_word[j]):
+				letters_mystery_word.erase($GameState.current_string_guess[j])
 				letter_box.status = LetterBox.Status.CORRECT
 				var key : KeyboardKey = $Keyboard.get_key(GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.0, 0.698, 0.0, 1.0)
 				number_correct+=1
 				points_earned = 10
-			elif (GameState.current_string_guess[j] in letters_mystery_word):
-				letters_mystery_word.erase(GameState.current_string_guess[j])
+			# verifies if it is in the word
+			elif ($GameState.current_string_guess[j] in letters_mystery_word):
+				letters_mystery_word.erase($GameState.current_string_guess[j])
 				letter_box.status = LetterBox.Status.MISPLACED
 				var key : KeyboardKey = $Keyboard.get_key(GameState.current_string_guess[j])
 				var texture_rect : Button = key.find_child("Button")
 				texture_rect.modulate = Color(0.0, 0.698, 0.0, 1.0)
 				points_earned = 5
+			# not in word
 			else :
 				letter_box.status = LetterBox.Status.WRONG
 				var key : KeyboardKey = $Keyboard.get_key(GameState.current_string_guess[j])
@@ -79,6 +85,7 @@ func enter_pressed_callback() -> void:
 			letter_box.animate(points_earned)
 			GameState.points += points_earned
 			await get_tree().create_timer(0.3).timeout
+		# checks if won
 		if (number_correct == $Grid.grid_size.y):
 			on_winning_do()
 			return
