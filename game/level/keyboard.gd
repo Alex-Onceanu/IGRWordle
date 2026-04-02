@@ -35,15 +35,27 @@ func _ready() -> void:
 			_keys.append(key)
 			key.key_pressed.connect(_on_char_pressed)
 
+
+# Updates letter color based on secret word correctness
+func update_letter(letter: String, correctness: LetterBox.Correctness):
+	print("letter ", letter, " is ", correctness)
+	var key = get_key(letter)
+	var button: Button = key.find_child("Button")
+	button.modulate = correctness
+
+
 func _on_enter_button_up() -> void:
 	enter_pressed.emit()
+
 
 func _on_del_button_up() -> void:
 	delete_pressed.emit()
 
+
 func _on_char_pressed(c : String) -> void:
 	character_pressed.emit(c)
 	
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		var key_name = OS.get_keycode_string(event.keycode)

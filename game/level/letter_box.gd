@@ -7,26 +7,36 @@ const LETTERBOX_SCENE_PATH = "res://game/level/letter_box.tscn"
 enum Status{
 	EMPTY,
 	FULL,
+	DISABLED,
+}
+
+enum Correctness {
+	NONE,
 	WRONG,
 	MISPLACED,
 	CORRECT,
-	DISABLED,
 }
 
 const STATUS_COLORS = {
 	Status.EMPTY: Color(0.862, 0.849, 0.846),
 	Status.FULL: Color(0.862, 0.849, 0.846),
-	Status.WRONG: Color(0.325, 0.325, 0.325),
-	Status.MISPLACED: Color(1, 0.8, 0.2),
-	Status.CORRECT: Color(0.384, 0.873, 0.0),
 	Status.DISABLED: Color(0.094, 0.094, 0.094, 0.0)
+}
+
+const CORRECTNESS_COLORS = {
+	Correctness.WRONG: Color(0.325, 0.325, 0.325),
+	Correctness.MISPLACED: Color(1, 0.8, 0.2),
+	Correctness.CORRECT: Color(0.384, 0.873, 0.0),
 }
 
 var status : Status = Status.EMPTY:
 	set(status_v):
 		status = status_v
 		$TextureRect.modulate = STATUS_COLORS[status]
-
+var correctness: Correctness = Correctness.NONE:
+	set(value):
+		correctness = value
+		$TextureRect.modulate = CORRECTNESS_COLORS[correctness]
 var letter : String = "~":
 	set(letter_v):
 		letter = letter_v.to_upper()

@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://c658n4ghc7jtb" path="res://util/grid_editor/grid_editor.gd" id="1_rqv84"]
 [ext_resource type="PackedScene" uid="uid://23occinmjclh" path="res://util/grid_editor/editor_cell.tscn" id="2_cqe2q"]
-[ext_resource type="Resource" uid="uid://b7nldiw63auaw" path="res://resources/grid/test_grid.tres" id="2_wryuq"]
+[ext_resource type="Script" uid="uid://dj5l3hhcq02ng" path="res://resources/grid/grid_resource.gd" id="2_wryuq"]
 [ext_resource type="PackedScene" uid="uid://b4665yy0lwvt5" path="res://util/signal_bus/signal_bus_receiver.tscn" id="3_uq5i1"]
+
+[sub_resource type="Resource" id="Resource_cu7ls"]
+script = ExtResource("2_wryuq")
+grid_size = Vector2i(72, 62)
+metadata/_custom_type_script = "uid://dj5l3hhcq02ng"
 
 [node name="GridEditor" type="Control" unique_id=2062166691 node_paths=PackedStringArray("grid_container")]
 layout_mode = 3
@@ -13,9 +18,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rqv84")
-grid_size_x = 6
-grid_size_y = 6
-grid_resource = ExtResource("2_wryuq")
+grid_size_x = 41
+grid_size_y = 56
+grid_resource = SubResource("Resource_cu7ls")
 grid_container = NodePath("VBoxContainer/ScrollContainer/GridContainer")
 editor_cell_scene = ExtResource("2_cqe2q")
 
@@ -38,7 +43,7 @@ size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer" unique_id=207068468]
 layout_mode = 2
-columns = 6
+columns = 41
 
 [node name="SignalBusReceiver" parent="." unique_id=1996817024 instance=ExtResource("3_uq5i1")]
 
