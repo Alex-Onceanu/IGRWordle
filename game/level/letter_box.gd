@@ -22,6 +22,8 @@ const STATUS_COLORS = {
 	Status.DISABLED: Color(0.094, 0.094, 0.094, 0.0)
 }
 
+@export var state_machine: CellStateMachine
+
 var status : Status = Status.EMPTY:
 	set(status_v):
 		status = status_v

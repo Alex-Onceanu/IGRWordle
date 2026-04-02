@@ -21,6 +21,7 @@ class_name LevelTemplate
 var words_list : Array = []
 
 
+<<<<<<< HEAD
 func _ready() -> void:
 	setup()
 
@@ -37,3 +38,29 @@ func setup() -> void:
 	# keyboard.position = Vector2(325, 971)
 
 	level_manager.grid = grid
+=======
+## Sets up the current level's UI elements. It assumes [member LevelTemplate.grid], [member LevelTemplate.keyboard] and
+## [member LevelTemplate.background] are set.
+func setup() -> void:
+	add_child(grid)
+	add_child(keyboard)
+	add_child(background)
+
+	move_child(background, -1)
+	move_child(grid, -1)
+	move_child(keyboard, -1)
+	
+	grid.size = Vector2(229, 200)
+	grid.position = Vector2(220, 278)
+	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)
+	keyboard.position = Vector2(325, 971)
+
+	level_manager.grid = grid
+
+	_make_signal_connections()
+	
+
+# TODO actually this may not even be needed given SignalBus
+func _make_signal_connections() -> void:
+	pass
+>>>>>>> origin/cell-states
