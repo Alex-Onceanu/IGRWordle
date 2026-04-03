@@ -7,6 +7,13 @@ signal keyboard_character_pressed()
 
 signal editor_cell_pressed(cell: EditorCell)
 
+signal winning_menu_next_level_pressed()
+
+signal shop_manager_next_level_pressed()
+
+signal level_manager_level_won()
+signal level_manager_level_lost()
+
 const GROUP := &'RECEIVER_GROUP'
 
 static var _s_dirty := true

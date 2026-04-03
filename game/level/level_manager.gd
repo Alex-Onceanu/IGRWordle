@@ -10,6 +10,9 @@ class_name LevelManager
 # - it keeps track of the "challenges" the player has to complete to gain coins (coin power-ups)
 # - it keeps track of word resolution (ordering of effect resolution function calls, total number of points scored, etc.)
 
+signal level_manager_level_won
+signal level_manager_level_lost
+
 @export var receiver: SignalBusReceiver
 
 var next_cell_to_fill_idx: int = 0
@@ -104,6 +107,12 @@ func _is_valid_guess() -> bool:
 
 func _win() -> void:
 	print("you won... now what?")
+	level_manager_level_won.emit()
+	
+
+func _lose() -> void:
+	print("nooo, you lost ;-;")
+	level_manager_level_lost.emit()
 
 
 func _on_keyboard_character_pressed(c: String) -> void:

@@ -6,7 +6,7 @@
 ## use the function set_summary_message to set the final message and the accumulated coins.
 extends Control
 class_name WinningMenuUI
-signal next_level_pressed
+signal winning_menu_next_level_pressed
 
 static var WINNING_MENU_PATH : String = "res://game/level/winning_menu.tscn"
 
@@ -17,7 +17,7 @@ var _values_list : Array[String] = []
 
 #region Private functions
 func _on_button_button_up() -> void:
-	next_level_pressed.emit()
+	winning_menu_next_level_pressed.emit()
 #endregion
 
 #region Public functions
