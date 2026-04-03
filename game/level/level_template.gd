@@ -35,8 +35,10 @@ func setup() -> void:
 	move_child(grid, -1)
 	move_child(keyboard, -1)
 	
-	blackout.size = DisplayServer.window_get_size()
-	print("size of blackout: ", blackout.size)
+	blackout.size = Vector2(
+		ProjectSettings.get_setting("display/window/size/viewport_width"), 
+		ProjectSettings.get_setting("display/window/size/viewport_height")
+	)
 	move_child(blackout, -1)
 	move_child(winning_menu, -1)
 	grid.size = Vector2(229, 200)

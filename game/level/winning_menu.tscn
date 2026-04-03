@@ -57,4 +57,5 @@ grow_vertical = 1
 [node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("3_a1b3a")]
 signal_prefix = "winning_menu_"
 
+[connection signal="next_level_pressed" from="." to="SignalBusSender" method="connect_signal"]
 [connection signal="button_up" from="NextLevel" to="." method="_on_button_button_up"]

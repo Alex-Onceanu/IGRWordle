@@ -34,14 +34,9 @@ func choose_secret_word() -> void:
 	if not grid:
 		push_error("there is no grid for generating secret word!")
 	var last_row: int = -1
-	print("grid cell layout: ", grid.cell_layout)
 	for coord in grid.cell_layout.keys():
-		print("last row: ", last_row)
-		print("coord: ", coord, ", and coord.x: ", coord.x)
 		last_row = max(last_row, coord.x)
-	print("last row is row ", last_row)
 	var last_row_cells = grid.get_row(last_row)
-	print("cells in last row are: ", last_row_cells)
 	secret_word_string = GameDictionary.pick_random_word_of_size(last_row_cells.size())
 	for i in secret_word_string.length():
 		secret_word.get_or_add(secret_word_string[i], []).append(last_row_cells.keys()[i].y)
@@ -70,14 +65,14 @@ func resolve_guess() -> void:
 	# TODO when point threshold is introduced, change win condition here
 	#if correct_letters_in_guess == current_guess.length() \
 	#	and current_guess.length() == secret_word_string.length():
+	keyboard.interaction_blocked = false
 	if _get_next_row() == current_row:
 		if current_points >= point_threshold:
 			_win()
 		else:
-			_lose()
+			_lose()	
 	correct_letters_in_guess = 0
 	current_guess = ""
-	keyboard.interaction_blocked = false
 
 
 func _resolve_letter_guess(coordinates: Vector2i, letter: LetterBox):
@@ -103,7 +98,9 @@ func _resolve_letter_effect(coordinates: Vector2i, letter: LetterBox):
 
 
 func _get_next_row() -> int:
+	print("current row is ", current_row)
 	var idx = grid.resource.cell_layout.keys().find_custom(func(x): return x.x > current_row)
+	print("next row is ", grid.resource.cell_layout.keys()[idx].x)
 	if idx == -1:
 		return current_row
 	return grid.resource.cell_layout.keys()[idx].x
@@ -122,6 +119,7 @@ func _win() -> void:
 	print("you won... now what?")
 	blackout.visible = true
 	winning_menu.visible = true
+	keyboard.interaction_blocked = true
 	level_manager_level_won.emit()
 	
 
@@ -129,6 +127,7 @@ func _lose() -> void:
 	print("nooo, you lost ;-;")
 	blackout.visible = true
 	game_over.visible = true
+	keyboard.interaction_blocked = true	
 	level_manager_level_lost.emit()
 
 
@@ -143,7 +142,6 @@ func _on_keyboard_character_pressed(c: String) -> void:
 
 
 func _on_keyboard_delete_pressed() -> void:
-	print("current guess is ", current_guess)
 	if current_guess == "":
 		return
 	current_guess = current_guess.erase(current_guess.length() - 1, 1)
@@ -158,5 +156,5 @@ func _on_keyboard_enter_pressed() -> void:
 		print("not a valid guess")
 		return
 	# TODO resolve guess, effects, and earn points
-	resolve_guess()
+	await resolve_guess()
 	current_row = _get_next_row()

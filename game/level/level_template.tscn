@@ -13,6 +13,10 @@ level_label = NodePath("LevelLabel")
 level_manager = NodePath("LevelManager")
 blackout = NodePath("Blackout")
 
+[node name="Blackout" type="ColorRect" parent="." unique_id=1351278515]
+visible = false
+color = Color(0, 0, 0, 0.89411765)
+
 [node name="LevelLabel" type="RichTextLabel" parent="." unique_id=331414528]
 offset_left = 518.0
 offset_top = 19.0
@@ -57,10 +61,6 @@ offset_bottom = 13.0
 winning_menu = NodePath("../WinningMenu")
 game_over = NodePath("../GameOverUI")
 blackout = NodePath("../Blackout")
-
-[node name="Blackout" type="ColorRect" parent="." unique_id=1351278515]
-visible = false
-color = Color(0, 0, 0, 0.89411765)
 
 [node name="WinningMenu" parent="." unique_id=1377076184 instance=ExtResource("5_hc0mr")]
 visible = false
