@@ -14,6 +14,9 @@ signal level_manager_level_won
 signal level_manager_level_lost
 
 @export var receiver: SignalBusReceiver
+@export var winning_menu: WinningMenuUI
+@export var game_over: Control
+@export var blackout: ColorRect
 
 var next_cell_to_fill_idx: int = 0
 var current_row: int = 0
@@ -117,11 +120,15 @@ func _is_valid_guess() -> bool:
 
 func _win() -> void:
 	print("you won... now what?")
+	blackout.visible = true
+	winning_menu.visible = true
 	level_manager_level_won.emit()
 	
 
 func _lose() -> void:
 	print("nooo, you lost ;-;")
+	blackout.visible = true
+	game_over.visible = true
 	level_manager_level_lost.emit()
 
 

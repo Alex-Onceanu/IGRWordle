@@ -16,7 +16,7 @@ class_name LevelGenerator
 
 ## This function builds a [Level] from [Grid], [Keyboard], and [Background] resources.
 ## It returns the root node of the generated [Level] scene.
-func generate_level(grid_resource: GridResource, keyboard_resource: Resource, background_resource: Resource):
+func generate_level(grid_resource: GridResource = null, keyboard_resource: Resource = null, background_resource: Resource = null):
 	var level_template_node = level_template_scene.instantiate()
 	var grid_node = grid_scene.instantiate()
 	var keyboard_node = keyboard_scene.instantiate()

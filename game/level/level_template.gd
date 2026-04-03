@@ -17,6 +17,7 @@ class_name LevelTemplate
 @export var keyboard: Keyboard
 @export var background: ColorRect
 @export var level_manager: LevelManager
+@export var blackout: ColorRect
 @export var point_threshold: int
 
 
@@ -34,6 +35,10 @@ func setup() -> void:
 	move_child(grid, -1)
 	move_child(keyboard, -1)
 	
+	blackout.size = DisplayServer.window_get_size()
+	print("size of blackout: ", blackout.size)
+	move_child(blackout, -1)
+	move_child(winning_menu, -1)
 	grid.size = Vector2(229, 200)
 	grid.position = Vector2(220, 278)
 	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)

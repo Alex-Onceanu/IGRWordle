@@ -15,5 +15,5 @@ grid_scene = ExtResource("4_y2dic")
 keyboard_scene = ExtResource("5_f4oy5")
 background_scene = ExtResource("6_fcflg")
 min_word_size = 3
-max_word_size = 5
-attempts = 9
+max_word_size = 3
+attempts = 4
