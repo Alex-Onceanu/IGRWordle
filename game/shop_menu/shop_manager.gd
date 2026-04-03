@@ -1,7 +1,7 @@
 extends Node
 class_name ShopManager
 
-signal shop_manager_next_level_pressed
+signal next_level_pressed
 @export var permanents_container : HBoxContainer
 @export var temporaries_container : HBoxContainer
 @export var challenges_container : HBoxContainer
@@ -40,7 +40,7 @@ func _on_buy_item(item : ShopItem) -> void:
 	# TODO: Implement the buy action
 	
 func _on_next_level_pressed() -> void:
-	shop_manager_next_level_pressed.emit()
+	next_level_pressed.emit()
 #endregion
 
 #region Public functions
