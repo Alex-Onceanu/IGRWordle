@@ -11,6 +11,8 @@ signal winning_menu_next_level_pressed()
 
 signal shop_manager_next_level_pressed()
 
+signal main_menu_play_pressed()
+
 signal level_manager_level_won()
 signal level_manager_level_lost()
 

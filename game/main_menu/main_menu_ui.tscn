@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://clhkh6p1yd0xt"]
 
 [ext_resource type="Script" uid="uid://cqdw4q01x5l72" path="res://game/main_menu/main_menu_ui.gd" id="1_uc8a1"]
+[ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="2_katpf"]
 
 [node name="MainMenuUi" type="Node2D" unique_id=1041060977]
 script = ExtResource("1_uc8a1")
@@ -21,4 +22,8 @@ offset_bottom = 1162.0
 mouse_filter = 2
 color = Color(0.96254605, 0.96254593, 0.96254593, 1)
 
+[node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("2_katpf")]
+signal_prefix = "main_menu_"
+
+[connection signal="play_pressed" from="." to="SignalBusSender" method="connect_signal"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
