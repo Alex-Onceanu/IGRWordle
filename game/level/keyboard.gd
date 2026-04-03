@@ -39,7 +39,6 @@ func _ready() -> void:
 
 # Updates letter color based on secret word correctness
 func update_letter(letter: String, correctness: LetterBox.Correctness):
-	print("letter ", letter, " is ", correctness)
 	var key = get_key(letter)
 	var button: Button = key.find_child("Button")
 	button.modulate = correctness

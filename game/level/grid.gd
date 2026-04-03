@@ -53,7 +53,6 @@ func get_row(row: int) -> Dictionary[Vector2i, LetterBox]:
 	var coordinates_in_row = cell_layout.keys().filter(func(x):
 		return x.x == row and cell_layout[x].status != LetterBox.Status.DISABLED
 	)
-	print("these are the coordinates in this row: ", coordinates_in_row)
 	var cells_in_row: Dictionary[Vector2i, LetterBox] = {}
 	for coord in coordinates_in_row:
 		cells_in_row[coord] =  cell_layout[coord]
@@ -98,8 +97,6 @@ func setup(grid_resource: GridResource) -> void:
 
 
 func _setup_cells() -> void:
-	print("this grid resource has a grid of size: (", resource.grid_size.x, ", ", resource.grid_size.y, ")")
-	print("resource cell layout: ", resource.cell_layout)
 	for row in resource.grid_size.x:
 		for col in resource.grid_size.y:
 			var letter_box: LetterBox
@@ -109,4 +106,3 @@ func _setup_cells() -> void:
 				letter_box = LetterBox.create(" ", LetterBox.Status.DISABLED)
 			set_cell(row, col, letter_box)
 			cell_layout[Vector2i(row, col)] = letter_box
-	print("resulting cell layout: ", cell_layout)
