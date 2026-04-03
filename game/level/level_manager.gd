@@ -17,6 +17,7 @@ signal level_manager_level_lost
 @export var winning_menu: WinningMenuUI
 @export var game_over: Control
 @export var blackout: ColorRect
+@export var score: Control
 
 var next_cell_to_fill_idx: int = 0
 var current_row: int = 0
@@ -73,6 +74,7 @@ func resolve_guess() -> void:
 			_lose()	
 	correct_letters_in_guess = 0
 	current_guess = ""
+	score.update_points(current_points)
 
 
 func _resolve_letter_guess(coordinates: Vector2i, letter: LetterBox):
