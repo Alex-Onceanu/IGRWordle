@@ -54,6 +54,7 @@ func get_next_cell_to_fill() -> void:
 # based on letter judgement, then resolve the effects as a list of functions that take
 # those "base_points" and return the modified value to chain with the next effect or something like that.
 func resolve_guess() -> void:
+	keyboard.interaction_blocked = true
 	var points: int = 0
 	var row_letters := grid.get_row(current_row)
 	for coord in row_letters:
@@ -73,6 +74,7 @@ func resolve_guess() -> void:
 			_lose()
 	correct_letters_in_guess = 0
 	current_guess = ""
+	keyboard.interaction_blocked = false
 
 
 func _resolve_letter_guess(coordinates: Vector2i, letter: LetterBox):

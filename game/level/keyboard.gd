@@ -7,6 +7,7 @@ const KEYBOARD_SCENE_PATH = "res://game/level/keyboard.tscn"
 var _key_rows : Array[HBoxContainer] = []
 var _string_rows : Array[String] = ["AZERTYUIOP", "QSDFGHJKLM", "WXCVBN"]
 var _keys : Array[KeyboardKey] = []
+var interaction_blocked := false
 #endregion
 
 #region Signals
@@ -45,14 +46,20 @@ func update_letter(letter: String, correctness: LetterBox.Correctness):
 
 
 func _on_enter_button_up() -> void:
+	if interaction_blocked:
+		return
 	enter_pressed.emit()
 
 
 func _on_del_button_up() -> void:
+	if interaction_blocked:
+		return
 	delete_pressed.emit()
 
 
 func _on_char_pressed(c : String) -> void:
+	if interaction_blocked:
+		return
 	character_pressed.emit(c)
 	
 
