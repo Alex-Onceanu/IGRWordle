@@ -31,7 +31,7 @@ func setup() -> void:
 	add_child(keyboard)
 	add_child(background)
 
-	move_child(background, -1)
+	move_child(background, 0)
 	move_child(grid, -1)
 	move_child(keyboard, -1)
 	
