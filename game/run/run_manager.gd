@@ -29,6 +29,7 @@ func _create_next_level() -> Node:
 	level_generator.attempts = current_difficulty.attempts
 	point_threshold += current_difficulty.point_threshold_increase
 	level_generator.point_threshold = point_threshold
+	level_generator.current_level = current_level
 	current_level += 1
 	for difficulty in run_progression_list:
 		if current_level >= difficulty.level_start:
