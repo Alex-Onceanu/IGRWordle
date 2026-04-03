@@ -23,6 +23,8 @@ var grid: Grid
 var keyboard: Keyboard
 var secret_word: Dictionary[String, Array] # (character, list of column indices this character occurs)
 var secret_word_string: String
+var point_threshold: int
+var current_points: int
 
 
 func choose_secret_word() -> void: 
@@ -60,9 +62,15 @@ func resolve_guess() -> void:
 		row_letters[coord].animate(points)
 		# TODO I feel this should be inside the animation script
 		await get_tree().create_timer(0.3).timeout
-	if correct_letters_in_guess == current_guess.length() \
-		and current_guess.length() == secret_word_string.length():
-		_win()
+	current_points += points
+	# TODO when point threshold is introduced, change win condition here
+	#if correct_letters_in_guess == current_guess.length() \
+	#	and current_guess.length() == secret_word_string.length():
+	if _get_next_row() == current_row:
+		if current_points >= point_threshold:
+			_win()
+		else:
+			_lose()
 	correct_letters_in_guess = 0
 	current_guess = ""
 

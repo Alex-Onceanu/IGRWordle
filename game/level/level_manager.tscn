@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvaakqo7jy3n1"]
 
-[ext_resource type="Script" path="res://game/level/level_manager.gd" id="1_q76y6"]
+[ext_resource type="Script" uid="uid://dnkflkt4bbb20" path="res://game/level/level_manager.gd" id="1_q76y6"]
 [ext_resource type="PackedScene" uid="uid://b4665yy0lwvt5" path="res://util/signal_bus/signal_bus_receiver.tscn" id="2_83rrn"]
 
 [node name="LevelManager" type="Node2D" unique_id=1138216490 node_paths=PackedStringArray("receiver")]

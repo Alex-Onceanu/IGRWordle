@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dd0ghiy6m86pg"]
 
 [ext_resource type="Script" uid="uid://df2gmrvkmddap" path="res://game/level/level_template.gd" id="1_pp25q"]
-[ext_resource type="PackedScene" uid="uid://dknl00pcu0rb" path="res://game/level/level_manager.tscn" id="4_pp25q"]
-[ext_resource type="PackedScene" path="res://game/level/winning_menu.tscn" id="5_hc0mr"]
+[ext_resource type="PackedScene" uid="uid://dvaakqo7jy3n1" path="res://game/level/level_manager.tscn" id="4_pp25q"]
+[ext_resource type="PackedScene" uid="uid://bmoauvxgxh2nr" path="res://game/level/winning_menu.tscn" id="5_hc0mr"]
 [ext_resource type="PackedScene" path="res://game/level/score.tscn" id="6_4ub6d"]
 
 [node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager")]

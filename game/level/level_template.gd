@@ -17,6 +17,7 @@ class_name LevelTemplate
 @export var keyboard: Keyboard
 @export var background: ColorRect
 @export var level_manager: LevelManager
+@export var point_threshold: int
 
 
 var words_list : Array = []
@@ -40,5 +41,6 @@ func setup() -> void:
 
 	level_manager.grid = grid
 	level_manager.keyboard = keyboard
+	level_manager.point_threshold = point_threshold
 
 	level_manager.choose_secret_word()

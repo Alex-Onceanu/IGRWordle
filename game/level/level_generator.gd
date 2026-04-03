@@ -10,6 +10,8 @@ class_name LevelGenerator
 @export var min_word_size: int
 @export var max_word_size: int
 @export var attempts: int
+@export_group("Level parameters")
+@export var point_threshold: int
 
 
 ## This function builds a [Level] from [Grid], [Keyboard], and [Background] resources.
@@ -28,6 +30,7 @@ func generate_level(grid_resource: GridResource, keyboard_resource: Resource, ba
 	level_template_node.grid = grid_node
 	level_template_node.keyboard = keyboard_node
 	level_template_node.background = background_node
+	level_template_node.point_threshold = point_threshold
 	level_template_node.setup()
 
 	return level_template_node
