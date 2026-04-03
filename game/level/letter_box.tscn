@@ -1,13 +1,15 @@
-[gd_scene format=3 uid="uid://dvlaq8o7sq7c6"]
+[gd_scene format=3 uid="uid://n0dpnwncyxlj"]
 
 [ext_resource type="Script" uid="uid://byaqov2n12fjb" path="res://game/level/letter_box.gd" id="1_w7ff6"]
-[ext_resource type="PackedScene" uid="uid://db1vwod7r5k1t" path="res://game/power_up/animated_char.tscn" id="2_qvapa"]
+[ext_resource type="PackedScene" path="res://game/power_up/animated_char.tscn" id="2_qvapa"]
+[ext_resource type="PackedScene" uid="uid://bpq1adqtxt4iq" path="res://util/cell_state_machine/cell_state_machine.tscn" id="3_xooru"]
 
-[node name="LetterBox" type="Control" unique_id=573317305]
+[node name="LetterBox" type="Control" unique_id=573317305 node_paths=PackedStringArray("state_machine")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_w7ff6")
+state_machine = NodePath("CellStateMachine")
 
 [node name="TextureRect" type="ColorRect" parent="." unique_id=400592472]
 layout_mode = 0
@@ -31,3 +33,5 @@ offset_bottom = 11.0
 rotation = 0.47822022
 theme_override_constants/outline_size = 6
 text = "+10"
+
+[node name="CellStateMachine" parent="." unique_id=64147097 instance=ExtResource("3_xooru")]

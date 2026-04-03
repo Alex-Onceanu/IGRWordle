@@ -30,4 +30,4 @@ func _make_connections():
 		sig.connect(func(...args):
 			SignalBus.send(sig_name, args)
 		)
-		print("signal ", sig_name, " connected!")
+		#printw_rich("[color=gray]signal [/color]", sig_name, "[color=gray] connected![/color]")

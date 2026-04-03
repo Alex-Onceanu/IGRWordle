@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b0mgopcnvgraw"]
+
+[ext_resource type="Script" uid="uid://d1k538muviepv" path="res://game/shop_menu/modal_shop_item_window.gd" id="1_rm6vh"]
+[ext_resource type="Texture2D" uid="uid://bd0i7fgi5dulu" path="res://icon.svg" id="2_l0q1o"]
+
+[node name="ModalShopItemWindow" type="Control" unique_id=793837409]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rm6vh")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=267727039]
+layout_mode = 0
+offset_left = -66.0
+offset_top = -55.0
+offset_right = 712.0
+offset_bottom = 1214.0
+color = Color(0.2, 0.2, 0.2, 0.31764707)
+
+[node name="WindowBackground" type="Panel" parent="." unique_id=1598237804]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 428.0
+offset_right = 522.0
+offset_bottom = 706.0
+
+[node name="Back" type="TextureButton" parent="." unique_id=465600073]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 434.0
+offset_right = 514.0
+offset_bottom = 480.0
+texture_normal = ExtResource("2_l0q1o")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="BuyButton" type="Button" parent="." unique_id=1899726162]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 649.0
+offset_right = 411.0
+offset_bottom = 699.0
+text = "Buy"
+
+[node name="Panel" type="Panel" parent="." unique_id=326328117]
+modulate = Color(0.06708798, 0, 0.06708798, 1)
+layout_mode = 0
+offset_left = 125.0
+offset_top = 486.0
+offset_right = 515.0
+offset_bottom = 638.0
+
+[node name="ItemImage" type="TextureRect" parent="." unique_id=1922358441]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 436.0
+offset_right = 165.0
+offset_bottom = 476.0
+texture = ExtResource("2_l0q1o")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Panel2" type="Panel" parent="." unique_id=494835051]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 435.0
+offset_right = 457.0
+offset_bottom = 475.0
+
+[node name="Name" type="Label" parent="." unique_id=1243208760]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 437.0
+offset_right = 425.0
+offset_bottom = 473.0
+text = "Item name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="." unique_id=1499289899]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 494.0
+offset_right = 505.0
+offset_bottom = 632.0
+text = "« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit."
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
