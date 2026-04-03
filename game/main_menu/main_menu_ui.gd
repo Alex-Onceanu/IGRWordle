@@ -9,3 +9,4 @@ func _ready() -> void:
 
 func _on_button_button_up() -> void:
 	play.emit()
+	SceneSwitcher.go_to_level()
