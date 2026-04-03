@@ -26,8 +26,12 @@ func choose_secret_word() -> void:
 	if not grid:
 		push_error("there is no grid for generating secret word!")
 	var last_row: int = -1
+	print("grid cell layout: ", grid.cell_layout)
 	for coord in grid.cell_layout.keys():
+		print("last row: ", last_row)
+		print("coord: ", coord, ", and coord.x: ", coord.x)
 		last_row = max(last_row, coord.x)
+	print("last row is row ", last_row)
 	var last_row_cells = grid.get_row(last_row)
 	print("cells in last row are: ", last_row_cells)
 	secret_word_string = GameDictionary.pick_random_word_of_size(last_row_cells.size())
