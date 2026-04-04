@@ -1,0 +1,51 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dr2nowduc1u04"]
+
+[ext_resource type="Shader" uid="uid://vboffduihwot" path="res://assets/powerups/fire_background.gdshader" id="1_7aeaa"]
+[ext_resource type="Texture2D" uid="uid://c3s3a8wqnp0el" path="res://assets/powerups/air_clr.tres" id="2_51i0v"]
+[ext_resource type="Texture2D" uid="uid://b65vkxjfjp4rc" path="res://assets/powerups/fire_clr.tres" id="2_s4e3k"]
+[ext_resource type="Texture2D" uid="uid://pbsxwpbm8gc2" path="res://assets/powerups/earth_clr.tres" id="3_vbamt"]
+[ext_resource type="Texture2D" uid="uid://c4ji7t585j4jk" path="res://assets/powerups/lightning_clr.tres" id="4_51i0v"]
+[ext_resource type="Texture2D" uid="uid://b1x18ld283tnr" path="res://assets/powerups/water_clr.tres" id="5_pgxau"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7aeaa"]
+resource_local_to_scene = true
+noise_type = 2
+seed = 9
+frequency = 0.0028
+fractal_octaves = 3
+fractal_lacunarity = 1.725
+fractal_gain = 0.635
+fractal_weighted_strength = 0.16
+fractal_ping_pong_strength = 1.025
+domain_warp_type = 1
+domain_warp_amplitude = 20.045
+domain_warp_fractal_octaves = 3
+domain_warp_fractal_lacunarity = 1.87
+domain_warp_fractal_gain = 0.955
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s4e3k"]
+noise = SubResource("FastNoiseLite_7aeaa")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g4x7v"]
+noise_type = 2
+seed = 4
+frequency = 0.0083
+fractal_octaves = 2
+fractal_lacunarity = 1.59
+fractal_weighted_strength = 0.15
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r46po"]
+noise = SubResource("FastNoiseLite_g4x7v")
+seamless = true
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_7aeaa")
+shader_parameter/fire_grad = ExtResource("2_s4e3k")
+shader_parameter/air_grad = ExtResource("2_51i0v")
+shader_parameter/lightning_grad = ExtResource("4_51i0v")
+shader_parameter/water_grad = ExtResource("5_pgxau")
+shader_parameter/earth_grad = ExtResource("3_vbamt")
+shader_parameter/fire_noise = SubResource("NoiseTexture2D_r46po")
+shader_parameter/air_noise = SubResource("NoiseTexture2D_s4e3k")
