@@ -22,7 +22,7 @@ var description : String = "Lorem ipsum dolor sit amet, consectetur adipiscing e
 		_update_display(item_name, description)
 var price : int = 0
 var i : int = 0
-var icon : Texture2D = preload("res://icon.svg"):
+var icon : Texture2D = preload("res://assets/icon.svg"):
 	set(icon_v):
 		icon = icon_v
 		if icon != null:

@@ -7,6 +7,8 @@ class_name Grid
 
 const WORD_GRID_SCENE_PATH = "res://game/level/grid.tscn"
 
+var cell_layout: Dictionary[Vector2i, LetterBox] # position of cell in grid / instance of cell
+
 @export var resource: GridResource = null
 @export_category("Nodes")
 @export var grid_container: GridContainer
@@ -20,6 +22,10 @@ func _ready() -> void:
 
 func _get_index(row : int, col : int) -> int:
 	return resource.grid_size.y*row + col
+
+
+func _get_coordinates(index: int) -> Vector2i:
+	return Vector2i(index / resource.grid_size.y, index % resource.grid_size.y)
 #endregion
 
 #region Public functions
@@ -34,8 +40,23 @@ func get_cell_by_coordinates(row : int, col : int) -> LetterBox:
 func get_cell_by_index(i: int) -> LetterBox:
 	if i >= resource.cell_layout.size():
 		return null
-	var cell_position = resource.cell_layout.keys()[i]
+	# HACK this is a problem about doing things with dictionaries.
+	# Anything that needs to consider order will break sooner or later
+	var sorted_keys = resource.cell_layout.keys()
+	sorted_keys.sort()
+	var cell_position = sorted_keys[i]
 	return get_cell_by_coordinates(cell_position.x, cell_position.y)
+
+
+## Get all the [LetterBox] in a single row
+func get_row(row: int) -> Dictionary[Vector2i, LetterBox]:
+	var coordinates_in_row = cell_layout.keys().filter(func(x):
+		return x.x == row and cell_layout[x].status != LetterBox.Status.DISABLED
+	)
+	var cells_in_row: Dictionary[Vector2i, LetterBox] = {}
+	for coord in coordinates_in_row:
+		cells_in_row[coord] =  cell_layout[coord]
+	return cells_in_row
 
 
 ## Set the cell at given coordinates
@@ -45,8 +66,8 @@ func set_cell(row : int, col : int, letter_box : LetterBox = null) -> void:
 	if letter_box == null:
 		letter_box = LetterBox.create(" ", LetterBox.Status.EMPTY)
 	var index = _get_index(row, col)
-	var old_node = grid_container.get_child(index)
-	if old_node != null:
+	if index < grid_container.get_child_count():
+		var old_node = grid_container.get_child(index)
 		old_node.queue_free()
 	grid_container.add_child(letter_box)
 	grid_container.move_child(letter_box, index)
@@ -84,3 +105,4 @@ func _setup_cells() -> void:
 			else:
 				letter_box = LetterBox.create(" ", LetterBox.Status.DISABLED)
 			set_cell(row, col, letter_box)
+			cell_layout[Vector2i(row, col)] = letter_box

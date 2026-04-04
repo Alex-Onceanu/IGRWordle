@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://fjhnfmwsawo3"]
+[gd_scene format=3 uid="uid://bmoauvxgxh2nr"]
 
 [ext_resource type="Script" uid="uid://l747hlnlmm8e" path="res://game/level/winning_menu.gd" id="1_pu2fo"]
-[ext_resource type="PackedScene" uid="uid://c2nte72hxcrri" path="res://game/level/milestone.tscn" id="2_dxu7c"]
+[ext_resource type="PackedScene" path="res://game/level/milestone.tscn" id="2_dxu7c"]
+[ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="3_a1b3a"]
 
 [node name="WinningMenu" type="Control" unique_id=1377076184]
 layout_mode = 3
@@ -53,4 +54,8 @@ offset_bottom = 278.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("3_a1b3a")]
+signal_prefix = "winning_menu_"
+
+[connection signal="next_level_pressed" from="." to="SignalBusSender" method="connect_signal"]
 [connection signal="button_up" from="NextLevel" to="." method="_on_button_button_up"]

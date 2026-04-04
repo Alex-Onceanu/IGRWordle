@@ -18,11 +18,6 @@ func go_to_main_menu():
 	_change_to_scene(main_menu_root)
 
 
-func go_to_level():
-	var level_root = level_scene.instantiate()
-	_change_to_scene(level_root)
-
-
 func go_to_shop():
 	var shop_root = shop_scene.instantiate()
 	_change_to_scene(shop_root)

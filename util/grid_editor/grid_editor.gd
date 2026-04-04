@@ -7,10 +7,12 @@ class_name GridEditor
 @export_range(1, 100) var grid_size_x: int = 5:
 	set(value):
 		grid_size_x = value
+		grid_resource.grid_size.x = value
 		_update_grid_container()
 @export_range(1, 100) var grid_size_y: int = 5:
 	set(value):
 		grid_size_y = value
+		grid_resource.grid_size.y = value
 		_update_grid_container()
 @export var grid_resource: GridResource = GridResource.new():
 	set(value):
@@ -33,13 +35,13 @@ func _ready() -> void:
 func _update_grid_container() -> void:
 	if grid_container == null:
 		return
-	grid_container.columns = grid_size_x
+	grid_container.columns = grid_size_y
 	var cells = grid_container.get_children()
 	for cell in cells:
 		cell.queue_free()
 	for i in range(grid_size_x * grid_size_y):
 		var cell_node = editor_cell_scene.instantiate()
-		cell_node.cell_position = Vector2i(i / grid_size_x, i % grid_size_x)
+		cell_node.cell_position = Vector2i(i / grid_size_y, i % grid_size_y)
 		if cell_layout.has(cell_node.cell_position):
 			cell_node.activated = true
 		grid_container.add_child(cell_node)
@@ -91,7 +93,29 @@ func _on_editor_cell_pressed(cell: EditorCell) -> void:
 
 func _on_save_pressed() -> void:
 	grid_resource.cell_layout = cell_layout
+	print("previous grid layout: ", cell_layout)
 	_save_normalized_grid()
+	print("new grid layout: ", grid_resource.cell_layout)
 	if not grid_resource.resource_path.ends_with(".tres"):
-		grid_resource.take_over_path(default_save_path + "grid_" + Time.get_datetime_string_from_system() + ".tres")
+		var time = Time.get_datetime_string_from_system()
+		grid_resource.take_over_path(default_save_path + "grid_" + time + ".tres")
+		grid_resource = load(default_save_path + "grid_" + time + ".tres")
 	ResourceSaver.save(grid_resource, grid_resource.resource_path)
+
+
+# NOTE: this random generator function only generates grids that bound the max_word_size, and
+# that have no blank space between attempts. To craft a crazier level, please use the editor.
+# Further improvement in this sense could be made for the random generator.
+static func generate_random_grid(min_word_size: int, max_word_size: int, attempts: int) -> GridResource:
+	var resource = GridResource.new()
+	var grid_size: Vector2i = Vector2i(attempts, max_word_size)
+	var cell_layout: Dictionary[Vector2i, int] = {}
+	for attempt in range(attempts):
+		var columns = range(max_word_size)
+		for i in range(randi_range(min_word_size, max_word_size)):
+			var column = columns.pick_random()
+			columns.erase(column)
+			cell_layout[Vector2i(attempt, column)] = 0		
+	resource.grid_size = grid_size
+	resource.cell_layout = cell_layout
+	return resource

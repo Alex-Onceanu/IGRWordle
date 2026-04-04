@@ -27,7 +27,8 @@ func _make_connections():
 		else:
 			sig_name += sig.get_name()
 		
+		print("name of the signal connected: ", sig_name)
 		sig.connect(func(...args):
 			SignalBus.send(sig_name, args)
 		)
-		#printw_rich("[color=gray]signal [/color]", sig_name, "[color=gray] connected![/color]")
+		#print_rich("[color=gray]signal [/color]", sig_name, "[color=gray] connected![/color]")

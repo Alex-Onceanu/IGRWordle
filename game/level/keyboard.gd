@@ -7,6 +7,7 @@ const KEYBOARD_SCENE_PATH = "res://game/level/keyboard.tscn"
 var _key_rows : Array[HBoxContainer] = []
 var _string_rows : Array[String] = ["AZERTYUIOP", "QSDFGHJKLM", "WXCVBN"]
 var _keys : Array[KeyboardKey] = []
+var interaction_blocked := false
 #endregion
 
 #region Signals
@@ -35,15 +36,32 @@ func _ready() -> void:
 			_keys.append(key)
 			key.key_pressed.connect(_on_char_pressed)
 
+
+# Updates letter color based on secret word correctness
+func update_letter(letter: String, correctness: LetterBox.Correctness):
+	var key = get_key(letter)
+	var button: Button = key.find_child("Button")
+	button.modulate = correctness
+
+
 func _on_enter_button_up() -> void:
+	if interaction_blocked:
+		return
 	enter_pressed.emit()
 
+
 func _on_del_button_up() -> void:
+	if interaction_blocked:
+		return
 	delete_pressed.emit()
 
+
 func _on_char_pressed(c : String) -> void:
+	if interaction_blocked:
+		return
 	character_pressed.emit(c)
 	
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		var key_name = OS.get_keycode_string(event.keycode)

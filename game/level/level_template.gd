@@ -5,6 +5,7 @@ class_name LevelTemplate
 # This script's sole purpose is to organize the elements visually on the screen for the level. That means:
 # - taking a grid, a keyboard, and a background node, and organizing the UI visually
 # - making all signal connections needed for the interaction to work
+# - initiating all the components of the level accordingly
 # What this script DOES NOT do:
 # - keep updating the UI (the ones who _should_ do this are specialized scripts, such as [for example] PointsLabel, LetterBox, Grid...)
 
@@ -16,6 +17,8 @@ class_name LevelTemplate
 @export var keyboard: Keyboard
 @export var background: ColorRect
 @export var level_manager: LevelManager
+@export var blackout: ColorRect
+@export var point_threshold: int
 
 
 var words_list : Array = []
@@ -28,13 +31,23 @@ func setup() -> void:
 	add_child(keyboard)
 	add_child(background)
 
-	move_child(background, -1)
+	move_child(background, 0)
 	move_child(grid, -1)
 	move_child(keyboard, -1)
 	
+	blackout.size = Vector2(
+		ProjectSettings.get_setting("display/window/size/viewport_width"), 
+		ProjectSettings.get_setting("display/window/size/viewport_height")
+	)
+	move_child(blackout, -1)
+	move_child(winning_menu, -1)
 	grid.size = Vector2(229, 200)
 	grid.position = Vector2(220, 278)
 	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)
 	keyboard.position = Vector2(325, 971)
 
 	level_manager.grid = grid
+	level_manager.keyboard = keyboard
+	level_manager.point_threshold = point_threshold
+
+	level_manager.choose_secret_word()
