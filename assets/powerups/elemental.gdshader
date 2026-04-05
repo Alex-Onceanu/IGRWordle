@@ -10,6 +10,10 @@ uniform sampler2D fire_noise : repeat_enable;
 uniform sampler2D air_noise : repeat_enable;
 uniform sampler2D earth_noise : repeat_enable;
 
+uniform float lerping;
+uniform int base_elem;
+uniform int target_elem;
+
 vec4 fire(vec2 uv)
 {
 	float n1 = texture(fire_noise, uv * vec2(0.6, 1.0) + vec2(0.144, 0.191) * TIME).r;
@@ -110,8 +114,34 @@ vec4 earth(vec2 uv)
 	return combine(clr, vegetation(uv));
 }
 
-void fragment()
+vec4 normal(vec2 uv)
 {
-	COLOR = fire(UV);
+	uv += vec2(0.012, -0.02);
+	vec2 uv2 = 2.0 * uv - 1.0;
+	return vec4(vec3(1.), 1.0 - smoothstep(0.82, 0.83, max(abs(uv2.x), abs(uv2.y))));
+}
+
+vec4 choose(vec2 uv, int which)
+{
+	switch(which)
+	{
+		case 1:
+			return fire(uv);
+		case 2:
+			return water(uv);
+		case 3:
+			return air(uv);
+		case 4:
+			return earth(uv);
+		default:
+			return normal(uv);
+	}
+}
+
+void fragment()
+{	
+	COLOR = lerping > 1e-4 ? 
+			mix(choose(UV, base_elem), choose(UV, target_elem), lerping) 
+			: choose(UV, base_elem);	
 }
 
