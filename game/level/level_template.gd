@@ -19,6 +19,7 @@ class_name LevelTemplate
 @export var level_manager: LevelManager
 @export var blackout: ColorRect
 @export var point_threshold: int
+@export var inventory : LevelInventory
 
 
 var words_list : Array = []
@@ -34,6 +35,7 @@ func setup() -> void:
 	move_child(background, 0)
 	move_child(grid, -1)
 	move_child(keyboard, -1)
+	move_child(inventory,-1)
 	
 	blackout.size = Vector2(
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
