@@ -101,5 +101,17 @@ text = "10 $"
 [node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("3_c3sla")]
 signal_prefix = "shop_manager_"
 
+[node name="NextlevelLabel" type="Label" parent="." unique_id=1397366615]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 49.0
+offset_right = 470.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Next level threshold
+100 pts"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="NextLevel" to="ShopManager" method="_on_next_level_pressed"]
 [connection signal="next_level_pressed" from="ShopManager" to="SignalBusSender" method="connect_signal"]
