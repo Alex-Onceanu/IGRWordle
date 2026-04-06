@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmoauvxgxh2nr"]
 
 [ext_resource type="Script" uid="uid://l747hlnlmm8e" path="res://game/level/winning_menu.gd" id="1_pu2fo"]
+[ext_resource type="Theme" uid="uid://bjb8rfrsie661" path="res://winning_menu_theme.tres" id="2_6nfhv"]
 [ext_resource type="PackedScene" uid="uid://c2nte72hxcrri" path="res://game/level/milestone.tscn" id="2_dxu7c"]
 [ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="3_a1b3a"]
 
@@ -32,7 +33,7 @@ offset_right = 343.5
 offset_bottom = 593.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.7529412)
+color = Color(0, 0, 0, 0.4745098)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=144945439]
 layout_mode = 1
@@ -47,6 +48,7 @@ offset_right = 219.5
 offset_bottom = 426.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_6nfhv")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=827306827]
 self_modulate = Color(18.892157, 18.892157, 18.892157, 1)
