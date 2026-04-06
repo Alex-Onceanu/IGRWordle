@@ -2,6 +2,8 @@ extends Node
 class_name ShopManager
 
 signal next_level_pressed
+@export var next_level_label : Label
+@export var threshold_prefix: String = "Next level threshold \n"
 @export var permanents_container : HBoxContainer
 @export var temporaries_container : HBoxContainer
 @export var challenges_container : HBoxContainer
@@ -69,4 +71,7 @@ func remove_item(index : int) -> ShopItem:
 
 func get_items(index : int) -> ShopItem:
 	return _shop_items_available[index]
+
+func update_threshold_display(value: Variant):
+	next_level_label.text = "%s %s" % [threshold_prefix, str(value)]
 #endregion

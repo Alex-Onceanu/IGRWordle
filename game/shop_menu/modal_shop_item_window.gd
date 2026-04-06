@@ -19,5 +19,7 @@ static func create(shop_item : ShopItem) -> ModalShopItemWindow:
 func _on_buy_button_pressed() -> void:
 	buy_pressed.emit()
 	
+	
+
 func _on_back_pressed() -> void:
 	back_pressed.emit()

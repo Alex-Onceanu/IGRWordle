@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://c0hsy6u3o3kiq" path="res://game/level/grid.tscn" id="2_5u05p"]
 [ext_resource type="Shader" uid="uid://c05k3j03rqccv" path="res://game/level/sharp_grid.gdshader" id="4_igljq"]
 [ext_resource type="PackedScene" uid="uid://dvaakqo7jy3n1" path="res://game/level/level_manager.tscn" id="4_pp25q"]
+[ext_resource type="PackedScene" uid="uid://hwgva634g6ey" path="res://game/level/power_up_bar.tscn" id="5_5u05p"]
 [ext_resource type="PackedScene" uid="uid://bmoauvxgxh2nr" path="res://game/level/winning_menu.tscn" id="5_hc0mr"]
-[ext_resource type="PackedScene" path="res://game/level/score.tscn" id="6_4ub6d"]
-[ext_resource type="Shader" uid="uid://bqbt5214hwxwf" path="res://game/level/grid_blur.gdshader" id="7_igljq"]
+[ext_resource type="PackedScene" uid="uid://dy1bci3rg7qji" path="res://game/level/score.tscn" id="6_4ub6d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_puvdw"]
 shader = ExtResource("7_igljq")
@@ -115,10 +115,15 @@ score = NodePath("../Score")
 
 [node name="WinningMenu" parent="." unique_id=1377076184 instance=ExtResource("5_hc0mr")]
 visible = false
-offset_left = 318.0
-offset_top = 587.0
-offset_right = 418.0
-offset_bottom = 687.0
+anchors_preset = -1
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 279.0
+offset_top = 520.0
+offset_right = 372.0
+offset_bottom = 624.0
+
+[node name="PowerUpBar" parent="." unique_id=2124472487 instance=ExtResource("5_5u05p")]
 
 [connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
 [connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]
