@@ -23,12 +23,19 @@ func _ready() -> void:
 	camera.limit_bottom = screen_h + extra_limit.y
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_on_touch_gestures_pinch_detected(5)
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_on_touch_gestures_pinch_detected(-5)
+
+
 func _on_touch_gestures_drag_detected(dist_vec: Vector2) -> void:
 	camera.position -= dist_vec * move_factor
 
 
 func _on_touch_gestures_pinch_detected(dist_diff: float) -> void:
-	print("pinching! Lemme scale grid...")
 	var zoom_change = Vector2(dist_diff, dist_diff) * zoom_factor
 	var new_zoom = camera.zoom + zoom_change
 	new_zoom = clamp(new_zoom, min_zoom, max_zoom)
