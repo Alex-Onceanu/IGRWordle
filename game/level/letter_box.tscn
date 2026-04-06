@@ -13,10 +13,13 @@ shader = ExtResource("3_g4x7v")
 shader_parameter/which = 0
 shader_parameter/clr = Vector3(1, 1, 1)
 
+[sub_resource type="Theme" id="Theme_xooru"]
+
 [node name="LetterBox" type="Control" unique_id=573317305 node_paths=PackedStringArray("state_machine")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 0
+theme = SubResource("Theme_xooru")
 script = ExtResource("1_w7ff6")
 state_machine = NodePath("CellStateMachine")
 metadata/_edit_horizontal_guides_ = [54.0]

@@ -5,6 +5,9 @@ extends Node
 @export var challenges_grid_container : GridContainer
 @export var inventory : Control
 
+func _ready():
+	inventory.hide()
+
 func append_item(item: LevelItem, category: ShopItem.ItemType) -> void:
 	if not item:
 		push_warning("Attempted to append a null item.")
