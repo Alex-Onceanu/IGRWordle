@@ -20,6 +20,7 @@ class_name LevelTemplate
 @export var blackout: ColorRect
 @export var sub_viewport: SubViewport
 @export var sub_viewport_container: SubViewportContainer
+@export var camera: Camera2D
 @export var point_threshold: int
 
 
@@ -36,7 +37,8 @@ func setup() -> void:
 	move_child(background, 0)
 	#move_child(sub_viewport_container, -1)
 	move_child(keyboard, -1)
-	
+
+	grid.grid_gestures.camera = camera
 	blackout.size = Vector2(
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
 		ProjectSettings.get_setting("display/window/size/viewport_height")

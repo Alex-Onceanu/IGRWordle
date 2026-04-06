@@ -24,7 +24,7 @@ shader_parameter/vignette_softness = 0.350000016625
 [sub_resource type="ViewportTexture" id="ViewportTexture_puvdw"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager", "blackout", "sub_viewport", "sub_viewport_container")]
+[node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager", "blackout", "sub_viewport", "sub_viewport_container", "camera")]
 script = ExtResource("1_pp25q")
 winning_menu = NodePath("WinningMenu")
 game_over_ui = NodePath("GameOverUI")
@@ -33,6 +33,7 @@ level_manager = NodePath("LevelManager")
 blackout = NodePath("Blackout")
 sub_viewport = NodePath("SubViewportContainer/SubViewport")
 sub_viewport_container = NodePath("SubViewportContainer")
+camera = NodePath("SubViewportContainer/SubViewport/Camera2D")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1308685668]
 material = SubResource("ShaderMaterial_puvdw")
@@ -51,6 +52,8 @@ offset_left = 97.0
 offset_top = 245.0
 offset_right = 97.0
 offset_bottom = 245.0
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=548771083 groups=["grid_camera"]]
 
 [node name="SharpGridView" type="TextureRect" parent="." unique_id=701944746]
 material = SubResource("ShaderMaterial_cq453")
