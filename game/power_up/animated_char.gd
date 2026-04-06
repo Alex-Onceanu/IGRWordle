@@ -5,6 +5,7 @@ extends Control
 @export var scale_anim : Curve
 var txt : String = "W":
 	set(v):
+		txt = v
 		$Movable/Label.text = v
 
 func spring(t : float) -> void:

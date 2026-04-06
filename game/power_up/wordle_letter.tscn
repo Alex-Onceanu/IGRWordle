@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://ks61qrx3p0ng"]
+
+[ext_resource type="Shader" uid="uid://cus4isjs4gr63" path="res://assets/powerups/bg.gdshader" id="1_f4vux"]
+[ext_resource type="PackedScene" uid="uid://db1vwod7r5k1t" path="res://game/power_up/animated_char.tscn" id="2_0il5h"]
+[ext_resource type="Script" uid="uid://cc2dcjocc3bur" path="res://game/power_up/animated_char.gd" id="3_53poa"]
+[ext_resource type="Shader" uid="uid://bbyk6w2lfgqwy" path="res://assets/powerups/elemental_letter.gdshader" id="4_kjvy1"]
+[ext_resource type="Texture2D" uid="uid://c3s3a8wqnp0el" path="res://assets/powerups/air_clr.tres" id="5_31s1g"]
+[ext_resource type="Texture2D" uid="uid://c1pe2yikgflhe" path="res://assets/powerups/air_noise.tres" id="6_u3fjr"]
+[ext_resource type="Texture2D" uid="uid://pbsxwpbm8gc2" path="res://assets/powerups/earth_clr.tres" id="7_sr7vy"]
+[ext_resource type="Texture2D" uid="uid://csw40c372ygyg" path="res://assets/powerups/earth_noise.tres" id="8_j576p"]
+[ext_resource type="Texture2D" uid="uid://b65vkxjfjp4rc" path="res://assets/powerups/fire_clr.tres" id="9_6ebqi"]
+[ext_resource type="Texture2D" uid="uid://cpqobja2bsaj1" path="res://assets/powerups/fire_noise.tres" id="10_klfhj"]
+[ext_resource type="Texture2D" uid="uid://c4ji7t585j4jk" path="res://assets/powerups/lightning_clr.tres" id="11_4wgwg"]
+[ext_resource type="Texture2D" uid="uid://bqdxai13l58v8" path="res://assets/powerups/vegetal_clr.tres" id="12_7oubl"]
+[ext_resource type="Texture2D" uid="uid://b1x18ld283tnr" path="res://assets/powerups/water_clr.tres" id="13_m31st"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0il5h"]
+shader = ExtResource("1_f4vux")
+shader_parameter/which = 1
+shader_parameter/clr = Vector3(1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_v35ln"]
+_limits = [-18.0, 18.0, 0.0, 0.3]
+_data = [Vector2(0, -4.7683716e-07), 0.0, 0.0, 0, 0, Vector2(0.07615386, -18), 0.0, 0.0, 0, 0, Vector2(0.15000002, 10.658824), 0.0, 0.0, 0, 0, Vector2(0.22538464, -4.533333), 0.0, 0.0, 0, 0, Vector2(0.3, -4.7683716e-07), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_150kp"]
+_limits = [0.8, 1.2, 0.0, 0.3]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.07923077, 1.2), 0.0, 0.0, 0, 0, Vector2(0.15307693, 0.90864795), 0.0, 0.0, 0, 0, Vector2(0.22615384, 1.054324), 0.0, 0.0, 0, 0, Vector2(0.3, 0.99943155), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ld1cy"]
+resource_local_to_scene = true
+shader = ExtResource("4_kjvy1")
+shader_parameter/fire_grad = ExtResource("9_6ebqi")
+shader_parameter/air_grad = ExtResource("5_31s1g")
+shader_parameter/lightning_grad = ExtResource("11_4wgwg")
+shader_parameter/water_grad = ExtResource("13_m31st")
+shader_parameter/vegetal_grad = ExtResource("12_7oubl")
+shader_parameter/earth_grad = ExtResource("7_sr7vy")
+shader_parameter/fire_noise = ExtResource("10_klfhj")
+shader_parameter/air_noise = ExtResource("6_u3fjr")
+shader_parameter/earth_noise = ExtResource("8_j576p")
+shader_parameter/base_elem = 2
+
+[node name="wordle_letter" type="Control" unique_id=2141971402]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_horizontal_guides_ = [64.0]
+metadata/_edit_vertical_guides_ = [176.0]
+
+[node name="bg" type="ColorRect" parent="." unique_id=1614148921]
+material = SubResource("ShaderMaterial_0il5h")
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 49.0
+offset_bottom = 49.0
+
+[node name="letter" parent="." unique_id=1376181817 instance=ExtResource("2_0il5h")]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 27.0
+offset_right = 27.0
+offset_bottom = 27.0
+
+[node name="diacritic" type="Control" parent="." unique_id=926695794]
+anchors_preset = 0
+offset_left = 26.0
+offset_top = 10.0
+offset_right = 26.0
+offset_bottom = 10.0
+script = ExtResource("3_53poa")
+rotation_anim = SubResource("Curve_v35ln")
+scale_anim = SubResource("Curve_150kp")
+
+[node name="Movable" type="Control" parent="diacritic" unique_id=929566901]
+anchors_preset = 0
+offset_left = -39.0
+offset_top = -39.0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="diacritic/Movable" unique_id=345489196]
+material = SubResource("ShaderMaterial_ld1cy")
+layout_mode = 0
+offset_left = -19.0
+offset_top = 16.0
+offset_right = 97.0
+offset_bottom = 62.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "~"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimDelay" type="Timer" parent="diacritic" unique_id=2138483255]
+one_shot = true
+
+[connection signal="timeout" from="diacritic/AnimDelay" to="diacritic" method="_on_anim_delay_timeout"]

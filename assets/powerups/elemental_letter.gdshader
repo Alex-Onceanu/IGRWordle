@@ -10,9 +10,7 @@ uniform sampler2D fire_noise : repeat_enable;
 uniform sampler2D air_noise : repeat_enable;
 uniform sampler2D earth_noise : repeat_enable;
 
-uniform float lerping;
 uniform int base_elem;
-uniform int target_elem;
 
 vec4 fire(vec2 uv)
 {
@@ -58,11 +56,11 @@ vec4 air(vec2 uv)
 	vec2 uv2 = 2.0 * uv - 1.0;
 	float n1 = texture(air_noise, uv * vec2(0.8, 1.0) + 0.2 * vec2(0.144, 0.191) * TIME).r;
 	float n2 = texture(air_noise, uv * vec2(0.6, 1.0) + 0.21 * vec2(0.123, -0.187) * TIME).r;
-	float n = n1 * n2 + 0.2 * (1.0 - uv.y);
+	float n = n1 * n2;
 	vec4 clr;
 	clr.rgb = texture(air_grad, vec2(n, 0.0)).rgb;
 	float pn = 8.0;
-	clr.a = 1.0 - smoothstep(0.84, 0.92, pow(pow(-0.05 + uv2.x * 1.06 + 0.2 * (abs(1.3 * n1 - 0.5)), pn) + pow(-0.08 + uv2.y * 1.06 + 0.2 * (abs(1.3 * n2 - 0.5)), pn), 1.0 / pn));
+	clr.a = 1.0 - smoothstep(0.84, 0.97, pow(pow(-0.05 + uv2.x * 1.06 + 0.2 * (abs(1.3 * n1 - 0.5)), pn) + pow(-0.08 + uv2.y * 1.06 + 0.2 * (abs(1.3 * n2 - 0.5)), pn), 1.0 / pn));
 	return combine(clr, lightning(uv));
 }
 
@@ -76,7 +74,7 @@ vec4 water(vec2 uv)
 	vec4 clr;
 	clr.rgb = texture(water_grad, vec2(n, 0.0)).rgb;
 	float pn = 8.0;
-	clr.a = 1.0 - smoothstep(0.87, 0.9, pow(pow(0.03 + uv2.x * 1.06 + 0.06 * (abs(1.3 * n1 - 0.5)), pn) + pow(-0.04 + uv2.y * 1.06 + 0.06 * (abs(1.3 * n2 - 0.5)), pn), 1.0 / pn));
+	clr.a = 1.0 - smoothstep(0.89, 0.96, pow(pow(0.03 + uv2.x * 1.06 + 0.06 * (abs(1.3 * n1 - 0.5)), pn) + pow(-0.04 + uv2.y * 1.06 + 0.06 * (abs(1.3 * n2 - 0.5)), pn), 1.0 / pn));
 	return clr;
 }
 
@@ -140,8 +138,10 @@ vec4 choose(vec2 uv, int which)
 
 void fragment()
 {	
-	COLOR = lerping > 1e-4 ? 
-			mix(choose(UV, base_elem), choose(UV, target_elem), lerping) 
-			: choose(UV, base_elem);	
+	if(base_elem != 0)
+	{
+		COLOR.rgb = texture(TEXTURE, UV).r * choose(vec2(4.0, 2.) * SCREEN_UV, base_elem).rgb;
+		COLOR.a = texture(TEXTURE, UV).a;
+	}
 }
 

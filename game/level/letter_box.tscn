@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://n0dpnwncyxlj"]
 
 [ext_resource type="Script" uid="uid://byaqov2n12fjb" path="res://game/level/letter_box.gd" id="1_w7ff6"]
-[ext_resource type="PackedScene" uid="uid://db1vwod7r5k1t" path="res://game/power_up/animated_char.tscn" id="2_qvapa"]
 [ext_resource type="Material" uid="uid://dr2nowduc1u04" path="res://assets/powerups/elemental.tres" id="2_scr7o"]
 [ext_resource type="Texture2D" uid="uid://b65vkxjfjp4rc" path="res://assets/powerups/fire_clr.tres" id="3_g4x7v"]
 [ext_resource type="PackedScene" uid="uid://bpq1adqtxt4iq" path="res://util/cell_state_machine/cell_state_machine.tscn" id="3_xooru"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bqdxai13l58v8" path="res://assets/powerups/vegetal_clr.tres" id="8_of618"]
 [ext_resource type="Texture2D" uid="uid://b1x18ld283tnr" path="res://assets/powerups/water_clr.tres" id="9_y6cai"]
 [ext_resource type="Texture2D" uid="uid://c1pe2yikgflhe" path="res://assets/powerups/air_noise.tres" id="10_of618"]
+[ext_resource type="PackedScene" uid="uid://ks61qrx3p0ng" path="res://game/power_up/wordle_letter.tscn" id="11_of618"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r46po"]
 noise_type = 3
@@ -36,8 +36,8 @@ shader_parameter/lightning_noise = SubResource("NoiseTexture2D_lmcic")
 shader_parameter/fire_noise = ExtResource("6_lmcic")
 shader_parameter/water_noise = ExtResource("10_of618")
 shader_parameter/t_reaction = 0.0
-shader_parameter/which_a = 2
-shader_parameter/which_b = 3
+shader_parameter/which_a = 3
+shader_parameter/which_b = 2
 
 [node name="LetterBox" type="Control" unique_id=573317305 node_paths=PackedStringArray("state_machine")]
 custom_minimum_size = Vector2(50, 50)
@@ -47,24 +47,27 @@ script = ExtResource("1_w7ff6")
 state_machine = NodePath("CellStateMachine")
 metadata/_edit_horizontal_guides_ = [139.0]
 
+[node name="CellStateMachine" parent="." unique_id=64147097 instance=ExtResource("3_xooru")]
+
 [node name="TextureRect" type="ColorRect" parent="." unique_id=855465558]
 material = ExtResource("2_scr7o")
 layout_mode = 0
-offset_left = -5.2359643
+offset_left = -5.0
 offset_top = -7.0
-offset_right = 60.904377
+offset_right = 60.90438
 offset_bottom = 58.0
 
-[node name="AnimatedChar" parent="." unique_id=1376181817 instance=ExtResource("2_qvapa")]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 27.0
-offset_right = 27.0
-offset_bottom = 27.0
+[node name="wordle_letter" parent="." unique_id=2141971402 instance=ExtResource("11_of618")]
+layout_mode = 1
+offset_right = 2.0
+offset_bottom = 2.0
+scale = Vector2(1.08, 1.08)
 
-[node name="BonusPoints" type="Label" parent="." unique_id=1550608380]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=337452097]
+layer = 3
+
+[node name="BonusPoints" type="Label" parent="CanvasLayer" unique_id=1550608380]
 z_index = 1
-layout_mode = 0
 offset_left = 54.0
 offset_top = -13.0
 offset_right = 85.0
@@ -73,15 +76,8 @@ rotation = 0.47822022
 theme_override_constants/outline_size = 6
 text = "+10"
 
-[node name="CellStateMachine" parent="." unique_id=64147097 instance=ExtResource("3_xooru")]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=331098258]
-position = Vector2(27, 25)
-zoom = Vector2(8, 8)
-
-[node name="Impact" type="ColorRect" parent="." unique_id=185558988]
+[node name="Impact" type="ColorRect" parent="CanvasLayer" unique_id=185558988]
 material = SubResource("ShaderMaterial_r46po")
-layout_mode = 0
 offset_left = -16.0
 offset_top = -19.0
 offset_right = 72.0
