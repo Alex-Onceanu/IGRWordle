@@ -16,6 +16,10 @@ signal main_menu_play_pressed()
 signal level_manager_level_won()
 signal level_manager_level_lost()
 
+signal touch_gestures_pinch_detected(dist_diff: float)
+signal touch_gestures_drag_detected(dist_vec: Vector2)
+
+
 const GROUP := &'RECEIVER_GROUP'
 
 static var _s_dirty := true
