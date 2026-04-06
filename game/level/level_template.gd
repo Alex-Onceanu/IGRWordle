@@ -12,7 +12,7 @@ class_name LevelTemplate
 
 @export var winning_menu: WinningMenuUI
 @export var game_over_ui: Control
-@export var level_label: RichTextLabel
+@export var level_label: Label
 @export var grid: Grid
 @export var keyboard: Keyboard
 @export var background: ColorRect

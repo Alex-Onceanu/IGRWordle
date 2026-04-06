@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://4e3foaoxv622" path="res://game/level/inventory_manager.gd" id="1_5t8o4"]
 [ext_resource type="Script" uid="uid://dhq81xuk8px3d" path="res://game/level/inventory_template.gd" id="1_oqn0l"]
+[ext_resource type="StyleBox" uid="uid://cu8toan3mk4ld" path="res://assets/outer_panel.tres" id="2_2frnf"]
+[ext_resource type="StyleBox" uid="uid://dkbo28cwo6amh" path="res://assets/inner_panel.tres" id="3_pcj20"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqn0l"]
+
+[sub_resource type="Theme" id="Theme_l01lk"]
+Panel/styles/panel = SubResource("StyleBoxFlat_oqn0l")
 
 [node name="LevelInventory" type="Control" unique_id=2124472487]
 layout_mode = 3
@@ -21,7 +28,8 @@ layout_mode = 0
 offset_left = 564.0
 offset_top = 141.0
 offset_right = 738.0
-offset_bottom = 815.0
+offset_bottom = 733.0
+theme_override_styles/panel = ExtResource("2_2frnf")
 
 [node name="ShowInventory" type="Button" parent="Panel" unique_id=2075352281]
 modulate = Color(1, 1, 1, 0)
@@ -29,6 +37,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -40,6 +49,7 @@ offset_right = 59.0
 offset_bottom = 666.0
 theme_override_font_sizes/font_size = 50
 text = "INVENTORY"
+horizontal_alignment = 1
 autowrap_mode = 1
 
 [node name="Inventory" type="Control" parent="." unique_id=212359490]
@@ -49,6 +59,7 @@ offset_left = 112.0
 offset_top = 232.0
 offset_right = 543.0
 offset_bottom = 888.0
+theme = SubResource("Theme_l01lk")
 
 [node name="ColorRect" type="ColorRect" parent="Inventory" unique_id=2085381080]
 layout_mode = 0
@@ -71,6 +82,7 @@ offset_bottom = 954.0
 layout_mode = 0
 offset_right = 431.0
 offset_bottom = 656.0
+theme_override_styles/panel = ExtResource("2_2frnf")
 
 [node name="MarginContainer" type="MarginContainer" parent="Inventory/PanelContainer" unique_id=1870452051]
 layout_mode = 2
@@ -90,6 +102,7 @@ horizontal_alignment = 1
 [node name="PanelContainer2" type="PanelContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=648584307]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_pcj20")
 
 [node name="GridContainer" type="GridContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2" unique_id=663327005]
 layout_mode = 2
@@ -103,6 +116,7 @@ horizontal_alignment = 1
 [node name="PanelContainer3" type="PanelContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=1150665500]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_pcj20")
 
 [node name="GridContainer2" type="GridContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3" unique_id=495154335]
 layout_mode = 2
@@ -116,6 +130,7 @@ horizontal_alignment = 1
 [node name="PanelContainer4" type="PanelContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=2142884185]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("3_pcj20")
 
 [node name="GridContainer3" type="GridContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4" unique_id=248925769]
 layout_mode = 2

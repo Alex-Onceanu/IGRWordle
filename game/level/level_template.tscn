@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvaakqo7jy3n1" path="res://game/level/level_manager.tscn" id="4_pp25q"]
 [ext_resource type="PackedScene" uid="uid://hwgva634g6ey" path="res://game/level/inventory_template.tscn" id="5_5u05p"]
 [ext_resource type="PackedScene" uid="uid://bmoauvxgxh2nr" path="res://game/level/winning_menu.tscn" id="5_hc0mr"]
-[ext_resource type="PackedScene" path="res://game/level/score.tscn" id="6_4ub6d"]
+[ext_resource type="PackedScene" uid="uid://dy1bci3rg7qji" path="res://game/level/score.tscn" id="6_4ub6d"]
 [ext_resource type="Shader" uid="uid://bqbt5214hwxwf" path="res://game/level/grid_blur.gdshader" id="7_igljq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_puvdw"]
@@ -25,16 +25,17 @@ shader_parameter/vignette_softness = 0.350000016625
 [sub_resource type="ViewportTexture" id="ViewportTexture_puvdw"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager", "blackout", "sub_viewport", "sub_viewport_container", "camera")]
+[node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager", "blackout", "sub_viewport", "sub_viewport_container", "camera", "inventory")]
 script = ExtResource("1_pp25q")
 winning_menu = NodePath("WinningMenu")
 game_over_ui = NodePath("GameOverUI")
-level_label = NodePath("LevelLabel")
+level_label = NodePath("Level Label")
 level_manager = NodePath("LevelManager")
 blackout = NodePath("Blackout")
 sub_viewport = NodePath("SubViewportContainer/SubViewport")
 sub_viewport_container = NodePath("SubViewportContainer")
 camera = NodePath("SubViewportContainer/SubViewport/Camera2D")
+inventory = NodePath("LevelInventory")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1308685668]
 material = SubResource("ShaderMaterial_puvdw")
@@ -68,13 +69,14 @@ texture = SubResource("ViewportTexture_puvdw")
 visible = false
 color = Color(0, 0, 0, 0.89411765)
 
-[node name="LevelLabel" type="RichTextLabel" parent="." unique_id=331414528]
-offset_left = 518.0
-offset_top = 19.0
-offset_right = 594.0
-offset_bottom = 43.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Level 1"
+[node name="Level Label" type="Label" parent="." unique_id=1302074881]
+offset_left = 48.0
+offset_top = 49.0
+offset_right = 159.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Level"
 
 [node name="GameOverUI" type="Control" parent="." unique_id=1686120609]
 visible = false
