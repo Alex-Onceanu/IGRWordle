@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bgqr6a5l1ohly"]
 
 [ext_resource type="Script" uid="uid://b2rrxnacshgix" path="res://game/level/keyboard.gd" id="1_m6qkj"]
+[ext_resource type="Theme" uid="uid://bki84y31fsu55" path="res://assets/keyboard_theme.tres" id="2_1ey7e"]
 [ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="2_77wxd"]
 
 [node name="Keyboard" type="Control" unique_id=1574060102]
@@ -43,15 +44,24 @@ layout_mode = 2
 alignment = 1
 
 [node name="rowEnterDel" type="HBoxContainer" parent="VBoxContainer" unique_id=610934483]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme_override_constants/separation = 300
+alignment = 1
 
 [node name="Enter" type="Button" parent="VBoxContainer/rowEnterDel" unique_id=2023936444]
 layout_mode = 2
-text = "Enter"
+theme = ExtResource("2_1ey7e")
+theme_override_constants/align_to_largest_stylebox = 1
+text = "ENTER"
 
 [node name="Del" type="Button" parent="VBoxContainer/rowEnterDel" unique_id=1680678328]
 layout_mode = 2
-text = "Delete"
+theme = ExtResource("2_1ey7e")
+theme_override_constants/align_to_largest_stylebox = 1
+theme_override_constants/line_spacing = 0
+text = "DELETE
+"
 
 [node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("2_77wxd")]
 signal_prefix = "keyboard_"

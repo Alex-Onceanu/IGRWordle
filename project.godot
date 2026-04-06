@@ -41,6 +41,10 @@ window/handheld/orientation=1
 
 theme/custom="uid://cwhvccfudrlg"
 
+[input_devices]
+
+theme/custom="uid://cwhvccfudrlg"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
