@@ -23,4 +23,4 @@ shader_parameter/earth_grad = ExtResource("4_gywyd")
 shader_parameter/fire_noise = ExtResource("7_kk8d6")
 shader_parameter/air_noise = ExtResource("3_nftsr")
 shader_parameter/earth_noise = ExtResource("5_xhmi1")
-shader_parameter/base_elem = 2
+shader_parameter/base_elem = 0

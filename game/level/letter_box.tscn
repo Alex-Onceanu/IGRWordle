@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bqdxai13l58v8" path="res://assets/powerups/vegetal_clr.tres" id="8_of618"]
 [ext_resource type="Texture2D" uid="uid://b1x18ld283tnr" path="res://assets/powerups/water_clr.tres" id="9_y6cai"]
 [ext_resource type="Texture2D" uid="uid://c1pe2yikgflhe" path="res://assets/powerups/air_noise.tres" id="10_of618"]
-[ext_resource type="PackedScene" uid="uid://ks61qrx3p0ng" path="res://game/power_up/wordle_letter.tscn" id="11_of618"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_r46po"]
 noise_type = 3
@@ -56,12 +55,6 @@ offset_left = -5.0
 offset_top = -7.0
 offset_right = 60.90438
 offset_bottom = 58.0
-
-[node name="wordle_letter" parent="." unique_id=2141971402 instance=ExtResource("11_of618")]
-layout_mode = 1
-offset_right = 2.0
-offset_bottom = 2.0
-scale = Vector2(1.08, 1.08)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=337452097]
 layer = 3

@@ -59,7 +59,7 @@ void fragment()
     vec2 uv3 = 2.0 * UV - 1.0;
     float pn = 8.0;
     float d = pow(pow(uv3.x, pn) + pow(uv3.y, pn), 1. / pn);
-    float sz = 0.95 + 0.015 * sin(10. * atan(uv3.y, uv3.x) + TIME);
+    float sz = 0.95 + 0.017 * sin(7. * atan(uv3.y, uv3.x) + 1.13 * TIME);
     float border = 0.025;
     float contour = smoothstep(sz - 0.05, sz, d) * (1. - smoothstep(sz - 0.05, sz + 0.15, d));
 

@@ -16,7 +16,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0il5h"]
 shader = ExtResource("1_f4vux")
-shader_parameter/which = 1
+shader_parameter/which = 0
 shader_parameter/clr = Vector3(1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_v35ln"]
@@ -41,7 +41,7 @@ shader_parameter/earth_grad = ExtResource("7_sr7vy")
 shader_parameter/fire_noise = ExtResource("10_klfhj")
 shader_parameter/air_noise = ExtResource("6_u3fjr")
 shader_parameter/earth_noise = ExtResource("8_j576p")
-shader_parameter/base_elem = 2
+shader_parameter/base_elem = 0
 
 [node name="wordle_letter" type="Control" unique_id=2141971402]
 layout_mode = 3
