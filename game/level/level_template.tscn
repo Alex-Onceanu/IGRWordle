@@ -25,7 +25,7 @@ shader_parameter/vignette_softness = 0.350000016625
 [sub_resource type="ViewportTexture" id="ViewportTexture_puvdw"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager", "blackout", "sub_viewport", "sub_viewport_container", "camera")]
+[node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager", "blackout", "sub_viewport", "sub_viewport_container", "camera", "inventory")]
 script = ExtResource("1_pp25q")
 winning_menu = NodePath("WinningMenu")
 game_over_ui = NodePath("GameOverUI")
@@ -35,6 +35,7 @@ blackout = NodePath("Blackout")
 sub_viewport = NodePath("SubViewportContainer/SubViewport")
 sub_viewport_container = NodePath("SubViewportContainer")
 camera = NodePath("SubViewportContainer/SubViewport/Camera2D")
+inventory = NodePath("LevelInventory")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1308685668]
 material = SubResource("ShaderMaterial_puvdw")
