@@ -58,6 +58,7 @@ text = "ENTER"
 [node name="Del" type="Button" parent="VBoxContainer/rowEnterDel" unique_id=1680678328]
 layout_mode = 2
 theme = ExtResource("2_1ey7e")
+theme_override_constants/h_separation = 5
 theme_override_constants/align_to_largest_stylebox = 1
 theme_override_constants/line_spacing = 0
 text = "DELETE
