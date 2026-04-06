@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://df2gmrvkmddap" path="res://game/level/level_template.gd" id="1_pp25q"]
 [ext_resource type="PackedScene" uid="uid://dvaakqo7jy3n1" path="res://game/level/level_manager.tscn" id="4_pp25q"]
+[ext_resource type="PackedScene" uid="uid://hwgva634g6ey" path="res://game/level/power_up_bar.tscn" id="5_5u05p"]
 [ext_resource type="PackedScene" uid="uid://bmoauvxgxh2nr" path="res://game/level/winning_menu.tscn" id="5_hc0mr"]
-[ext_resource type="PackedScene" path="res://game/level/score.tscn" id="6_4ub6d"]
+[ext_resource type="PackedScene" uid="uid://dy1bci3rg7qji" path="res://game/level/score.tscn" id="6_4ub6d"]
 
 [node name="LevelTemplate" type="Node2D" unique_id=1641894213 node_paths=PackedStringArray("winning_menu", "game_over_ui", "level_label", "level_manager", "blackout")]
 script = ExtResource("1_pp25q")
@@ -65,10 +66,15 @@ score = NodePath("../Score")
 
 [node name="WinningMenu" parent="." unique_id=1377076184 instance=ExtResource("5_hc0mr")]
 visible = false
-offset_left = 318.0
-offset_top = 587.0
-offset_right = 418.0
-offset_bottom = 687.0
+anchors_preset = -1
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 279.0
+offset_top = 520.0
+offset_right = 372.0
+offset_bottom = 624.0
+
+[node name="PowerUpBar" parent="." unique_id=2124472487 instance=ExtResource("5_5u05p")]
 
 [connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
 [connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]

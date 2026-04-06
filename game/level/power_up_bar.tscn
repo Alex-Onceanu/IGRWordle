@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://hwgva634g6ey"]
+
+[ext_resource type="Script" uid="uid://4e3foaoxv622" path="res://game/level/inventory_manager.gd" id="1_5t8o4"]
+
+[node name="PowerUpBar" type="Control" unique_id=2124472487]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=700327734]
+layout_mode = 0
+offset_left = 564.0
+offset_top = 141.0
+offset_right = 738.0
+offset_bottom = 815.0
+
+[node name="ShowInventory" type="Button" parent="Panel" unique_id=2075352281]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=2091733412]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 10.0
+offset_right = 59.0
+offset_bottom = 666.0
+theme_override_font_sizes/font_size = 50
+text = "Inventory"
+autowrap_mode = 1
+
+[node name="Inventory" type="Control" parent="." unique_id=212359490]
+visible = false
+anchors_preset = 0
+offset_left = 112.0
+offset_top = 232.0
+offset_right = 543.0
+offset_bottom = 888.0
+
+[node name="ColorRect" type="ColorRect" parent="Inventory" unique_id=2085381080]
+layout_mode = 0
+offset_left = -133.0
+offset_top = -259.0
+offset_right = -93.0
+offset_bottom = -217.4705
+scale = Vector2(17.493906, 29.160002)
+color = Color(0, 0, 0, 0.13725491)
+
+[node name="Back" type="Button" parent="Inventory" unique_id=69402219]
+modulate = Color(1.4369954, 1.4369954, 1.4369954, 0)
+layout_mode = 0
+offset_left = -133.0
+offset_top = -259.0
+offset_right = 572.0
+offset_bottom = 954.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Inventory" unique_id=338644506]
+layout_mode = 0
+offset_right = 431.0
+offset_bottom = 656.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory/PanelContainer" unique_id=1870452051]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/PanelContainer/MarginContainer" unique_id=7361318]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=583101536]
+layout_mode = 2
+text = "Permanents"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=648584307]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2" unique_id=663327005]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=310718760]
+layout_mode = 2
+text = "Temporaries"
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=1150665500]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer2" type="GridContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3" unique_id=495154335]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=790620357]
+layout_mode = 2
+text = "Challenges"
+horizontal_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer" unique_id=2142884185]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer3" type="GridContainer" parent="Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4" unique_id=248925769]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryManager" type="Node" parent="." unique_id=617274674 node_paths=PackedStringArray("permanents_grid_container", "temporaries_grid_container", "challenges_grid_container", "inventory")]
+script = ExtResource("1_5t8o4")
+permanents_grid_container = NodePath("../Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/GridContainer")
+temporaries_grid_container = NodePath("../Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/GridContainer2")
+challenges_grid_container = NodePath("../Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer4/GridContainer3")
+inventory = NodePath("../Inventory")
+
+[connection signal="pressed" from="Panel/ShowInventory" to="InventoryManager" method="_on_show_inventory_pressed"]
+[connection signal="pressed" from="Inventory/Back" to="InventoryManager" method="_on_back_pressed"]
