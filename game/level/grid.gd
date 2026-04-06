@@ -12,6 +12,7 @@ var cell_layout: Dictionary[Vector2i, LetterBox] # position of cell in grid / in
 @export var resource: GridResource = null
 @export_category("Nodes")
 @export var grid_container: GridContainer
+@export var grid_gestures: GridGestures
 #endregion
 
 #region Private functions
