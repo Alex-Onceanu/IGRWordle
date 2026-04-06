@@ -1,5 +1,4 @@
 extends Node
-class_name LevelInventory
 
 @export var permanents_grid_container : GridContainer
 @export var temporaries_grid_container : GridContainer

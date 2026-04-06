@@ -22,6 +22,7 @@ class_name LevelTemplate
 @export var sub_viewport_container: SubViewportContainer
 @export var camera: Camera2D
 @export var point_threshold: int
+@export var inventory : LevelInventory
 
 
 var words_list : Array = []
@@ -39,6 +40,8 @@ func setup() -> void:
 	move_child(keyboard, -1)
 
 	grid.grid_gestures.camera = camera
+	move_child(inventory,-1)
+	
 	blackout.size = Vector2(
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
 		ProjectSettings.get_setting("display/window/size/viewport_height")
