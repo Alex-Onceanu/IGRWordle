@@ -18,6 +18,9 @@ class_name LevelTemplate
 @export var background: ColorRect
 @export var level_manager: LevelManager
 @export var blackout: ColorRect
+@export var sub_viewport: SubViewport
+@export var sub_viewport_container: SubViewportContainer
+@export var camera: Camera2D
 @export var point_threshold: int
 @export var inventory : LevelInventory
 
@@ -28,23 +31,24 @@ var words_list : Array = []
 ## Sets up the current level's UI elements. It assumes [member LevelTemplate.grid], [member LevelTemplate.keyboard] and
 ## [member LevelTemplate.background] are set.
 func setup() -> void:
-	add_child(grid)
+	sub_viewport.add_child(grid)
 	add_child(keyboard)
 	add_child(background)
 
 	move_child(background, 0)
-	move_child(grid, -1)
+	#move_child(sub_viewport_container, -1)
 	move_child(keyboard, -1)
 	move_child(inventory,-1)
 	
+
+	grid.grid_gestures.camera = camera
 	blackout.size = Vector2(
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
 		ProjectSettings.get_setting("display/window/size/viewport_height")
 	)
 	move_child(blackout, -1)
 	move_child(winning_menu, -1)
-	grid.size = Vector2(229, 200)
-	grid.position = Vector2(220, 278)
+	#grid.size = Vector2(229, 200)
 	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)
 	keyboard.position = Vector2(325, 971)
 

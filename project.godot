@@ -37,9 +37,9 @@ window/size/viewport_height=1152
 window/stretch/mode="viewport"
 window/handheld/orientation=1
 
-[gui]
+[input_devices]
 
-theme/custom="uid://cwhvccfudrlg"
+pointing/emulate_touch_from_mouse=true
 
 [physics]
 
@@ -49,3 +49,4 @@ theme/custom="uid://cwhvccfudrlg"
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
