@@ -92,6 +92,7 @@ theme_override_constants/margin_bottom = 5
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
 
 [node name="Panel2" type="Panel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=847887528]
