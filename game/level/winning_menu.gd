@@ -22,10 +22,10 @@ func _on_button_button_up() -> void:
 
 #region Public functions
 func set_word(word : String):
-	$PanelContainer/MarginContainer/VBoxContainer/WordDefinition.text = word
+	$PanelContainer/MarginContainer/VBoxContainer/WordLabel.text = word
 
 func set_definition(definition : String):
-	$PanelContainer/MarginContainer/VBoxContainer/YouWinLabel.text = definition
+	$PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/WordDefinition.text = definition
 	
 ## Add a milestone to show in the UI.
 ##
