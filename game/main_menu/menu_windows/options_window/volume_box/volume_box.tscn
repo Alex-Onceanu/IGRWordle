@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bviheak4ftht6"]
+
+[ext_resource type="Script" uid="uid://cng80440wkj28" path="res://game/main_menu/menu_windows/options_window/volume_box/volume_box.gd" id="1_hcjau"]
+
+[node name="VolumeBox" type="HBoxContainer" unique_id=2046647714]
+script = ExtResource("1_hcjau")
+
+[node name="Label" type="Label" parent="." unique_id=748258183]
+layout_mode = 2
+text = "Volume Label"
+
+[node name="VolSlider" type="HSlider" parent="." unique_id=929402614]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.001
+
+[connection signal="value_changed" from="VolSlider" to="." method="_on_vol_slider_value_changed"]

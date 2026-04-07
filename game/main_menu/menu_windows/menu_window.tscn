@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bqwrt0yk58q3d"]
+
+[ext_resource type="Script" uid="uid://cm8tqhuc53opk" path="res://game/main_menu/menu_windows/menu_window.gd" id="1_ighl6"]
+[ext_resource type="Theme" uid="uid://xryu4hs6oadt" path="res://resources/global_themes/regular_text.tres" id="2_qecyx"]
+[ext_resource type="Theme" uid="uid://b10kj1gv6m57x" path="res://resources/global_themes/close_button.tres" id="2_x76pn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3pqo"]
+bg_color = Color(1, 1, 1, 0.85490197)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5v8ap"]
+bg_color = Color(0.62796617, 0.49832577, 0.9834724, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MenuWindow" type="PanelContainer" unique_id=1375118631]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3pqo")
+script = ExtResource("1_ighl6")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=891594517]
+custom_minimum_size = Vector2(250, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_5v8ap")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1536343653]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="WindowContent" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1243591664]
+layout_mode = 2
+theme = ExtResource("2_qecyx")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/WindowContent" unique_id=1840616644]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Title"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="PanelContainer" unique_id=1094423363]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("2_x76pn")
+text = "X"
+icon_alignment = 1
+
+[connection signal="pressed" from="PanelContainer/CloseButton" to="." method="_on_close_button_pressed"]

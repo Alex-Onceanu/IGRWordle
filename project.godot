@@ -29,6 +29,7 @@ SignalBus="*uid://c8whqqleu2jbv"
 SceneSwitcher="*uid://cn25v5353cw3i"
 GameDictionary="*uid://boljwodxieax"
 RunManager="*uid://chl0c2lvafrq7"
+GlobalThemes="*res://resources/global_themes/global_themes.tscn"
 
 [display]
 

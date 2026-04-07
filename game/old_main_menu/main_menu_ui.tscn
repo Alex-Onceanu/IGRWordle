@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clhkh6p1yd0xt"]
 
-[ext_resource type="Script" uid="uid://cqdw4q01x5l72" path="res://game/main_menu/main_menu_ui.gd" id="1_uc8a1"]
+[ext_resource type="Script" uid="uid://cqdw4q01x5l72" path="res://game/old_main_menu/main_menu_ui.gd" id="1_uc8a1"]
 [ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="2_katpf"]
 
 [node name="MainMenuUi" type="Node2D" unique_id=1041060977]

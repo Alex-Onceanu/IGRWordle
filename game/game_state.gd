@@ -23,3 +23,5 @@ signal coins_changed(coins : int)
 		coins = value
 		coins_changed.emit(coins)
 @export var power_ups: Array[PowerUp] = []
+
+var highest_score = 0

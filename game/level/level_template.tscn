@@ -5,8 +5,9 @@
 [ext_resource type="Shader" uid="uid://c05k3j03rqccv" path="res://game/level/sharp_grid.gdshader" id="4_igljq"]
 [ext_resource type="PackedScene" uid="uid://dvaakqo7jy3n1" path="res://game/level/level_manager.tscn" id="4_pp25q"]
 [ext_resource type="PackedScene" uid="uid://bmoauvxgxh2nr" path="res://game/level/winning_menu.tscn" id="5_hc0mr"]
-[ext_resource type="PackedScene" path="res://game/level/score.tscn" id="6_4ub6d"]
+[ext_resource type="PackedScene" uid="uid://dy1bci3rg7qji" path="res://game/level/score.tscn" id="6_4ub6d"]
 [ext_resource type="Shader" uid="uid://bqbt5214hwxwf" path="res://game/level/grid_blur.gdshader" id="7_igljq"]
+[ext_resource type="PackedScene" uid="uid://q5l8yasue8ia" path="res://game/main_menu/menu_tab/menu_tab.tscn" id="8_cq453"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_puvdw"]
 shader = ExtResource("7_igljq")
@@ -119,6 +120,8 @@ offset_left = 318.0
 offset_top = 587.0
 offset_right = 418.0
 offset_bottom = 687.0
+
+[node name="MenuTab" parent="." unique_id=1756768620 instance=ExtResource("8_cq453")]
 
 [connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
 [connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]

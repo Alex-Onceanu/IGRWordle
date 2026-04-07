@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://sbgddoki8edb"]
+
+[sub_resource type="SystemFont" id="SystemFont_ighl6"]
+font_names = PackedStringArray("Timmana")
+
+[resource]
+default_font = SubResource("SystemFont_ighl6")
+default_font_size = 25
+CheckButton/constants/outline_size = 0
+Label/constants/outline_size = 0

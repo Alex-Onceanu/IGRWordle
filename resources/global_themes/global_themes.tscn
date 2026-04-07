@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c3h8n4srjr3ft"]
+
+[ext_resource type="Script" uid="uid://qcas2f1wr78j" path="res://resources/global_themes/global_themes.gd" id="1_7vpc5"]
+[ext_resource type="Theme" uid="uid://bhybsqvej7ifj" path="res://resources/global_themes/regular_text.tres" id="2_5ru2w"]
+
+[node name="GlobalThemes" type="Node" unique_id=1967609675]
+script = ExtResource("1_7vpc5")
+regular_text_theme = ExtResource("2_5ru2w")
+main_color_1 = Color(0.08627451, 0.5568628, 0.13333334, 1)
