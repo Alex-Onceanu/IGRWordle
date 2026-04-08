@@ -38,6 +38,8 @@ func setup() -> void:
 	move_child(background, 0)
 	#move_child(sub_viewport_container, -1)
 	move_child(keyboard, -1)
+	move_child(inventory,-1)
+	
 
 	grid.grid_gestures.camera = camera
 	move_child(inventory,-1)
