@@ -2,7 +2,7 @@ extends Node
 ## Class for loading a dictionary into the game and consulting it. It provides an API for
 ## consulting whether a word is or not in the dictionary, and also to randomly pick words.
 
-const DICTIONARY_FILE_PATH = "res://util/dictionary/english_dictionary.json"
+const DICTIONARY_FILE_PATH = "res://util/dictionary/english_dictionary_2.json"
 var words: Dictionary = {}
 
 
@@ -19,11 +19,11 @@ func is_in_dictionary(word: String) -> bool:
 	return words[str(word_size)].has(word)
 
 
-func get_definition(word: String) -> Array:
+func get_definitions(word: String) -> Array:
 	if not is_in_dictionary(word):
 		return []
 	var word_size = word.length()
-	return words[str(word_size)][word]["MEANINGS"]
+	return words[str(word_size)][word]["meanings"]
 
 
 func _load_dictionary(path: String) -> void:

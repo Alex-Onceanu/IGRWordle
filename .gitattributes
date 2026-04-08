@@ -33,3 +33,7 @@
 *.anim filter=lfs diff=lfs merge=lfs -text
 *.mesh filter=lfs diff=lfs merge=lfs -text
 *.lmbake filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
+util/dictionary/english_dictionary_2.json filter=lfs diff=lfs merge=lfs -text
+util/dictionary/english_dictionary_3.json filter=lfs diff=lfs merge=lfs -text
+util/dictionary/english_dictionary.json filter=lfs diff=lfs merge=lfs -text
