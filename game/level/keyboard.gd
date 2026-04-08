@@ -41,7 +41,7 @@ func _ready() -> void:
 func update_letter(letter: String, correctness: LetterBox.Correctness):
 	var key = get_key(letter)
 	var button: Button = key.find_child("Button")
-	button.modulate = correctness
+	button.modulate = LetterBox.CORRECTNESS_COLORS[correctness]
 
 
 func _on_enter_button_up() -> void:
