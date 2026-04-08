@@ -21,6 +21,7 @@ class_name LevelTemplate
 @export var sub_viewport: SubViewport
 @export var sub_viewport_container: SubViewportContainer
 @export var camera: Camera2D
+@export var point_threshold_label: Label
 @export var point_threshold: int
 @export var inventory : LevelInventory
 
@@ -48,6 +49,7 @@ func setup() -> void:
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
 		ProjectSettings.get_setting("display/window/size/viewport_height")
 	)
+	point_threshold_label.text = "/" + str(point_threshold)
 	move_child(blackout, -1)
 	move_child(winning_menu, -1)
 	#grid.size = Vector2(229, 200)

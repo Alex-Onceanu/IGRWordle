@@ -29,7 +29,27 @@ var secret_word: Dictionary[String, Array] # (character, list of column indices 
 var secret_word_string: String
 var point_threshold: int
 var current_points: int
+var secret_word_bonus : int = 2 # this is the multiplier applied to points when guessing the right word
 
+class Update:
+	var letter : LetterBox
+	var where : Vector2i
+	var should_diacritic : bool
+	var should_elem : bool
+	var should_guess : bool
+	var apply_element : LetterPowerUp.Element
+
+static func init_update(l : LetterBox, w : Vector2i, sh_diacritic : bool, sh_elem : bool, sh_guess : bool, ap_element : LetterPowerUp.Element) -> Update:
+	var u := Update.new()
+	u.letter = l
+	u.where = w
+	u.should_diacritic = sh_diacritic
+	u.should_elem = sh_elem
+	u.should_guess = sh_guess
+	u.apply_element = ap_element
+	return u
+
+var update_queue : Array[Update]
 
 func choose_secret_word() -> void: 
 	if not grid:
@@ -56,18 +76,19 @@ func get_next_cell_to_fill() -> void:
 # those "base_points" and return the modified value to chain with the next effect or something like that.
 func resolve_guess() -> void:
 	keyboard.interaction_blocked = true
-	var points: int = 0
 	var row_letters := grid.get_row(current_row)
+	
 	for coord in row_letters:
-		points += _resolve_letter_guess(coord, row_letters[coord])
-		_resolve_letter_effect(coord, row_letters[coord])
-		row_letters[coord].animate(points)
-		# TODO I feel this should be inside the animation script
-		await get_tree().create_timer(0.3).timeout
-	current_points += points
-	# TODO when point threshold is introduced, change win condition here
-	#if correct_letters_in_guess == current_guess.length() \
-	#	and current_guess.length() == secret_word_string.length():
+		update_queue.push_back(init_update(row_letters[coord], coord, true, true, true, LetterPowerUp.Element.None))
+		
+	while len(update_queue) > 0:
+		var up = update_queue.pop_front()
+		await _resolve_letter_effect(up)
+	
+	if correct_letters_in_guess == current_guess.length() and current_guess.length() == secret_word_string.length():
+		current_points *= secret_word_bonus
+		score.update_points(current_points)
+	
 	keyboard.interaction_blocked = false
 	if _get_next_row() == current_row:
 		if current_points >= point_threshold:
@@ -76,14 +97,14 @@ func resolve_guess() -> void:
 			_lose()	
 	correct_letters_in_guess = 0
 	current_guess = ""
-	score.update_points(current_points)
 
 
 func _resolve_letter_guess(coordinates: Vector2i, letter: LetterBox):
 	var points := 0
-	if letter.letter in secret_word.keys():
-		if coordinates.y in secret_word[letter.letter]:
+	if letter.get_letter() in secret_word.keys():
+		if coordinates.y in secret_word[letter.get_letter()]:
 			letter.correctness = LetterBox.Correctness.CORRECT
+			print(letter.correctness)
 			correct_letters_in_guess += 1
 			points += 10
 		else:
@@ -92,13 +113,113 @@ func _resolve_letter_guess(coordinates: Vector2i, letter: LetterBox):
 	else:
 		letter.correctness = LetterBox.Correctness.WRONG
 		points += 1
-	keyboard.update_letter(letter.letter, letter.correctness)
+	keyboard.update_letter(letter.get_letter(), letter.correctness)
 	return points
+	
+func shuffle_string(s):
+	randomize()
+	var a = []
+	for c in s: a.append(c)
+	a.shuffle()
+	return "".join(a)
+
+func resolve_diacritic(letter : LetterBox) -> bool:
+	match letter.powerUp.diacritic:
+		LetterPowerUp.Diacritic.Tilde:
+			letter.animate("x2", true)
+			current_points *= 2
+			score.update_points(current_points)
+		LetterPowerUp.Diacritic.Circumflex:
+			letter.animate("+50", true)
+			current_points += 50
+			score.update_points(current_points)
+		LetterPowerUp.Diacritic.Dieresis:
+			var pt = randi_range(1, 100)
+			letter.animate("+" + str(pt), true)
+			current_points += pt
+			score.update_points(current_points)
+		LetterPowerUp.Diacritic.Macron:
+			letter.animate("+???", true)
+			current_points = int(shuffle_string(str(current_points)))
+			score.update_points(current_points)
+	return letter.powerUp.diacritic != LetterPowerUp.Diacritic.None
+
+func resolve_element(coordinates: Vector2i, letter: LetterBox):
+	if letter.powerUp.element == LetterPowerUp.Element.None:
+		return
+
+	var apply_to_who : Dictionary[Vector2i, LetterBox] = { coordinates : letter }
+
+	match letter.powerUp.pattern:
+		LetterPowerUp.Pattern.Line:
+			apply_to_who = grid.get_row(coordinates.x)
+		LetterPowerUp.Pattern.Column:
+			apply_to_who = grid.get_column(coordinates.y)
+		LetterPowerUp.Pattern.Cross:
+			apply_to_who = grid.get_cross(coordinates)
+		LetterPowerUp.Pattern.Square:
+			apply_to_who = grid.get_neighbours(coordinates)
+
+	for curr in apply_to_who:
+		update_queue.push_front(init_update(apply_to_who[curr], curr, false, false, false, letter.powerUp.element))
 
 
-func _resolve_letter_effect(coordinates: Vector2i, letter: LetterBox):
-	# call here the "apply_effect()" or equivalent in the PowerUp stored in the LetterBox instance.
-	pass
+func resolve_reaction(coordinates: Vector2i, letter: LetterBox, incoming : LetterPowerUp.Element) -> bool:
+	if incoming == letter.cell_element: return false
+	var is_reaction := not (letter.cell_element == LetterPowerUp.Element.None)
+	
+	var next_elem = incoming
+	if is_reaction:
+		var a = letter.cell_element if int(letter.cell_element)  < int(incoming) else incoming
+		var b = letter.cell_element if int(letter.cell_element) >= int(incoming) else incoming
+		match [a, b]:
+			[LetterPowerUp.Element.Fire, LetterPowerUp.Element.Water]:
+				current_points += 50
+				score.update_points(current_points)
+				next_elem = LetterPowerUp.Element.Water
+			[LetterPowerUp.Element.Fire, LetterPowerUp.Element.Air]:
+				next_elem = LetterPowerUp.Element.None
+				letter.again()
+				update_queue.push_front(init_update(letter, coordinates, true, true, false, LetterPowerUp.Element.None))
+			[LetterPowerUp.Element.Fire, LetterPowerUp.Element.Earth]:
+				next_elem = LetterPowerUp.Element.Fire
+				var neighbours = [coordinates + Vector2i(-1, 0), coordinates + Vector2i(1, 0), coordinates + Vector2i(0, -1), coordinates + Vector2i(0, 1)]
+				for n in neighbours:
+					var tmpl : LetterBox = grid.get_cell_by_coordinates(n.x, n.y)
+					if tmpl and tmpl.status != LetterBox.Status.DISABLED and tmpl.cell_element == LetterPowerUp.Element.Earth:
+						update_queue.push_front(init_update(tmpl, n, false, false, false, LetterPowerUp.Element.Fire))
+			[LetterPowerUp.Element.Water, LetterPowerUp.Element.Air]:
+				next_elem = LetterPowerUp.Element.None
+				update_queue.push_front(init_update(letter, coordinates, true, false, false, LetterPowerUp.Element.None))
+				letter.again()
+			[LetterPowerUp.Element.Water, LetterPowerUp.Element.Earth]:
+				secret_word_bonus += 1
+				next_elem = LetterPowerUp.Element.Earth
+			[LetterPowerUp.Element.Air, LetterPowerUp.Element.Earth]:
+				next_elem = LetterPowerUp.Element.None
+				update_queue.push_front(init_update(letter, coordinates, false, true, false, LetterPowerUp.Element.None))
+				letter.again()
+		
+	letter.apply_element(incoming, is_reaction, next_elem)
+
+	return true
+
+func _resolve_letter_effect(up : Update) -> void:
+	if up.should_guess:
+		var tmp_points = _resolve_letter_guess(up.where, up.letter)
+		up.letter.animate("+" + str(tmp_points), false)
+		current_points += tmp_points
+		score.update_points(current_points)
+		await get_tree().create_timer(0.3).timeout
+	if up.should_diacritic:
+		if resolve_diacritic(up.letter):
+			await get_tree().create_timer(0.3).timeout
+	if up.apply_element != LetterPowerUp.Element.None:
+		var wait_time : float = 0.3 if up.letter.cell_element == LetterPowerUp.Element.None else 0.8
+		if resolve_reaction(up.where, up.letter, up.apply_element):
+			await get_tree().create_timer(wait_time).timeout
+	elif up.should_elem:
+		resolve_element(up.where, up.letter)
 
 
 func _get_next_row() -> int:
@@ -141,7 +262,7 @@ func _on_keyboard_character_pressed(c: String) -> void:
 	current_guess += c 
 	var letter_box := grid.get_cell_by_index(next_cell_to_fill_idx)
 	next_cell_to_fill_idx += 1
-	letter_box.letter = c
+	letter_box.set_letter(c)
 	letter_box.status = LetterBox.Status.FULL
 
 
@@ -151,7 +272,7 @@ func _on_keyboard_delete_pressed() -> void:
 	current_guess = current_guess.erase(current_guess.length() - 1, 1)
 	next_cell_to_fill_idx -= 1
 	var letter_box := grid.get_cell_by_index(next_cell_to_fill_idx)
-	letter_box.letter = " "
+	letter_box.reset()
 	letter_box.status = LetterBox.Status.EMPTY
 	
 

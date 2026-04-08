@@ -11,6 +11,18 @@ extends Node
 @export var run_progression_list: Array[RunProgression]
 @export var level_generator: LevelGenerator
 
+static func random_val():
+	randomize()
+	var lt : LetterPowerUp = LetterPowerUp.new()
+	lt.diacritic = randi_range(0, 4)
+	lt.element = randi_range(0, 4)
+	lt.pattern = randi_range(0, 4)
+	if lt.element == LetterPowerUp.Element.None:
+		lt.pattern = LetterPowerUp.Pattern.None
+	return lt
+
+# allPowerUps should be updated during shop phase
+@onready var allPowerUps : Dictionary[String, LetterPowerUp] = { "A" : random_val(), "E" : random_val(), "I" : random_val(), "O" : random_val(), "U" : random_val(), "Y" : random_val() }
 var current_difficulty: RunProgression
 var current_level := 1
 var point_threshold := 0

@@ -58,6 +58,37 @@ func get_row(row: int) -> Dictionary[Vector2i, LetterBox]:
 	for coord in coordinates_in_row:
 		cells_in_row[coord] =  cell_layout[coord]
 	return cells_in_row
+	
+## Get all the [LetterBox] in a single column
+func get_column(column: int) -> Dictionary[Vector2i, LetterBox]:
+	var coordinates = cell_layout.keys().filter(func(x):
+		return x.y == column and cell_layout[x].status != LetterBox.Status.DISABLED
+	)
+	var cells: Dictionary[Vector2i, LetterBox] = {}
+	for coord in coordinates:
+		cells[coord] =  cell_layout[coord]
+	return cells
+	
+## Get all the [LetterBox] in the square around center
+func get_neighbours(center : Vector2i) -> Dictionary[Vector2i, LetterBox]:
+	var coordinates = cell_layout.keys().filter(func(x):
+		return (abs(x.x - center.x) <= 1 and abs(x.y - center.y) <= 1) and cell_layout[x].status != LetterBox.Status.DISABLED
+	)
+	var cells: Dictionary[Vector2i, LetterBox] = {}
+	for coord in coordinates:
+		cells[coord] =  cell_layout[coord]
+	return cells
+
+## Get all the [LetterBox] in the line of sight of the bishop put in "center"
+func get_cross(center : Vector2i) -> Dictionary[Vector2i, LetterBox]:
+	var coordinates = cell_layout.keys().filter(func(x):
+		return (center.y - center.x == x.y - x.x or center.x + center.y == x.x + x.y) and cell_layout[x].status != LetterBox.Status.DISABLED
+	)
+	var cells: Dictionary[Vector2i, LetterBox] = {}
+	for coord in coordinates:
+		cells[coord] =  cell_layout[coord]
+	return cells
+	
 
 
 ## Set the cell at given coordinates
@@ -65,7 +96,7 @@ func get_row(row: int) -> Dictionary[Vector2i, LetterBox]:
 ## [param row, col]: ith-row, jth-column
 func set_cell(row : int, col : int, letter_box : LetterBox = null) -> void:
 	if letter_box == null:
-		letter_box = LetterBox.create(" ", LetterBox.Status.EMPTY)
+		letter_box = LetterBox.create(LetterBox.Status.EMPTY)
 	var index = _get_index(row, col)
 	if index < grid_container.get_child_count():
 		var old_node = grid_container.get_child(index)
@@ -102,8 +133,8 @@ func _setup_cells() -> void:
 		for col in resource.grid_size.y:
 			var letter_box: LetterBox
 			if Vector2i(row, col) in resource.cell_layout.keys():
-				letter_box = LetterBox.create(" ", LetterBox.Status.EMPTY)
+				letter_box = LetterBox.create(LetterBox.Status.EMPTY)
 			else:
-				letter_box = LetterBox.create(" ", LetterBox.Status.DISABLED)
+				letter_box = LetterBox.create(LetterBox.Status.DISABLED)
 			set_cell(row, col, letter_box)
 			cell_layout[Vector2i(row, col)] = letter_box
