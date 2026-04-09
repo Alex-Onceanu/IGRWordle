@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpytldosla1jg" path="res://game/shop_menu/shop_template.gd" id="1_3csxk"]
 [ext_resource type="PackedScene" uid="uid://cml01k8m38vln" path="res://game/shop_menu/shop_manager.tscn" id="2_3csxk"]
-[ext_resource type="Shader" uid="uid://bbbm7wmqldd57" path="res://assets/shop_bg.gdshader" id="2_nh8kd"]
+[ext_resource type="Shader" path="res://assets/shop_bg.gdshader" id="2_nh8kd"]
 [ext_resource type="Theme" uid="uid://bki84y31fsu55" path="res://assets/keyboard_theme.tres" id="2_t31gw"]
 [ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="3_c3sla"]
 [ext_resource type="StyleBox" uid="uid://cu8toan3mk4ld" path="res://assets/outer_panel.tres" id="4_nh8kd"]
@@ -133,4 +133,5 @@ text = "Next level threshold
 horizontal_alignment = 1
 
 [connection signal="pressed" from="NextLevel" to="ShopManager" method="_on_next_level_pressed"]
+[connection signal="item_bought" from="ShopManager" to="SignalBusSender" method="connect_signal"]
 [connection signal="next_level_pressed" from="ShopManager" to="SignalBusSender" method="connect_signal"]

@@ -10,6 +10,7 @@ signal editor_cell_pressed(cell: EditorCell)
 signal winning_menu_next_level_pressed()
 
 signal shop_manager_next_level_pressed()
+signal shop_manager_item_bought(item: ShopItem)
 
 signal main_menu_play_pressed()
 

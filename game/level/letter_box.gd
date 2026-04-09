@@ -164,6 +164,14 @@ func get_random_power_up():
 	powerUp.diacritic = randi_range(0, 4)
 	powerUp.element = randi_range(0, 4)
 	powerUp.pattern = randi_range(0, 4)
+	while (
+		powerUp.diacritic == 0 
+		and powerUp.element == 0
+		and powerUp.pattern == 0
+	):
+		powerUp.diacritic = randi_range(0, 4)
+		powerUp.element = randi_range(0, 4)
+		powerUp.pattern = randi_range(0, 4)
 	if powerUp.element == LetterPowerUp.Element.None:
 		powerUp.pattern = LetterPowerUp.Pattern.None
 	update_diacritic(powerUp.diacritic)

@@ -13,6 +13,7 @@ extends Node
 
 # allPowerUps should be updated during shop phase
 @onready var allPowerUps : Dictionary[String, LetterPowerUp] = {}
+var power_ups: Array[ShopItem]
 var current_difficulty: RunProgression
 var current_level := 1
 var point_threshold := 0
@@ -57,3 +58,7 @@ func _on_winning_menu_next_level_pressed() -> void:
 
 func _on_main_menu_play_pressed() -> void:
 	SceneSwitcher._change_to_scene(_create_next_level())
+
+
+func _on_shop_manager_item_bought(item: ShopItem) -> void:
+	power_ups.append(item)

@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://d1k538muviepv" path="res://game/shop_menu/modal_shop_item_window.gd" id="1_rm6vh"]
 [ext_resource type="Texture2D" uid="uid://bd0i7fgi5dulu" path="res://assets/icon.svg" id="2_l0q1o"]
 
-[node name="ModalShopItemWindow" type="Control" unique_id=793837409]
+[node name="ModalShopItemWindow" type="Control" unique_id=793837409 node_paths=PackedStringArray("buy_button")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rm6vh")
+buy_button = NodePath("BuyButton")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=267727039]
 layout_mode = 0

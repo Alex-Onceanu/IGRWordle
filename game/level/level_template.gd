@@ -42,7 +42,7 @@ func setup() -> void:
 	move_child(inventory,-1)
 
 	grid.grid_gestures.camera = camera
-	move_child(inventory,-1)
+	inventory.setup_inventory()
 	
 	blackout.size = Vector2(
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
