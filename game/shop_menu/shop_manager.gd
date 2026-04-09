@@ -1,7 +1,7 @@
 extends Node
 class_name ShopManager
 
-signal next_level_pressed
+signal next_level_pressed(level: LevelTemplate)
 signal item_bought(item: ShopItem)
 @export var next_level_label : Label
 @export var threshold_prefix: String = "Next level threshold \n"
@@ -11,13 +11,15 @@ signal item_bought(item: ShopItem)
 @export var MAX_ITEMS_PER_TYPES : int = 3
 #region Variables
 var _shop_items_available : Array[ShopItem] = []
+var next_level: LevelTemplate
 #endregion
 
 func _ready() -> void :
 	# append_item(ShopItem.create("caca","cacaprout", 100,preload("res://assets/icon.svg")))
 	for i in range(3):
 		append_item(ShopItem.create_random_permanent())
-	pass
+	next_level = RunManager._create_next_level()
+	update_threshold_display(next_level.point_threshold)
 	
 #region Private functions
 	
@@ -48,7 +50,7 @@ func _on_buy_item(item : ShopItem) -> void:
 	# TODO: Implement the buy action
 	
 func _on_next_level_pressed() -> void:
-	next_level_pressed.emit()
+	next_level_pressed.emit(next_level)
 #endregion
 
 #region Public functions

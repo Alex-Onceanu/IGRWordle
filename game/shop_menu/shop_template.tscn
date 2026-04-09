@@ -48,7 +48,8 @@ offset_bottom = 1101.0
 theme = ExtResource("2_t31gw")
 text = "Next level !"
 
-[node name="ShopManager" parent="." unique_id=1060757852 node_paths=PackedStringArray("permanents_container", "temporaries_container", "challenges_container") instance=ExtResource("2_3csxk")]
+[node name="ShopManager" parent="." unique_id=1060757852 node_paths=PackedStringArray("next_level_label", "permanents_container", "temporaries_container", "challenges_container") instance=ExtResource("2_3csxk")]
+next_level_label = NodePath("../NextlevelLabel")
 permanents_container = NodePath("../ItemsContainer/MarginContainer/VBoxContainer/PanelContainer/Permanents")
 temporaries_container = NodePath("../ItemsContainer/MarginContainer/VBoxContainer/PanelContainer2/Temporaries")
 challenges_container = NodePath("../ItemsContainer/MarginContainer/VBoxContainer/PanelContainer3/Challenges")

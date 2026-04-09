@@ -48,8 +48,8 @@ func _on_level_manager_level_won() -> void:
 	pass # Replace with function body.
 
 
-func _on_shop_manager_next_level_pressed() -> void:
-	SceneSwitcher._change_to_scene(_create_next_level())
+func _on_shop_manager_next_level_pressed(next_level: LevelTemplate) -> void:
+	SceneSwitcher._change_to_scene(next_level)
 
 
 func _on_winning_menu_next_level_pressed() -> void:
