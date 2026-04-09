@@ -4,6 +4,7 @@ extends Node
 
 const DICTIONARY_FILE_PATH = "res://util/dictionary/english_dictionary_2.json"
 var words: Dictionary = {}
+var plurals: Dictionary = {}
 
 
 func _ready() -> void:
@@ -14,13 +15,19 @@ func pick_random_word_of_size(size: int) -> String:
 	return words[str(size)].keys().pick_random()
 
 
-func is_in_dictionary(word: String) -> bool:
+func is_word_in_dictionary(word: String) -> bool:
 	var word_size = word.length()
 	return words[str(word_size)].has(word)
 
 
+func is_word_or_plural_in_dictionary(word: String) -> bool:
+	var word_size = word.length()
+	return words[str(word_size)].has(word) \
+		or plurals.has(word)
+	
+
 func get_word_data(word: String) -> Dictionary:
-	if not is_in_dictionary(word):
+	if not is_word_in_dictionary(word):
 		return {}
 	var word_size = word.length()
 	return words[str(word_size)][word]
@@ -65,3 +72,9 @@ func _load_dictionary(path: String) -> void:
 		print("Error loading dictionary.")
 		return 
 	words = parsed_result
+	
+	# TODO make this in a cleaner way
+	for l_size in words.keys():
+		for word in words[l_size]:
+			if words[l_size][word].has("plural"):
+				plurals[words[l_size][word]["plural"]] = words[l_size][word]["word"]

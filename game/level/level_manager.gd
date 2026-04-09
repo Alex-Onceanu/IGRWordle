@@ -237,7 +237,7 @@ func _is_last_cell_in_row() -> bool:
 
 
 func _is_valid_guess() -> bool:
-	return _is_last_cell_in_row() and GameDictionary.is_in_dictionary(current_guess)
+	return _is_last_cell_in_row() and GameDictionary.is_word_or_plural_in_dictionary(current_guess)
 	
 
 func _win() -> void:
