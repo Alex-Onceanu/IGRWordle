@@ -55,9 +55,11 @@ size = Vector2i(800, 1300)
 render_target_update_mode = 4
 
 [node name="Grid" parent="SubViewportContainer/SubViewport" unique_id=688690635 instance=ExtResource("2_5u05p")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=548771083 groups=["grid_camera"]]
-position = Vector2(200, 380)
+position = Vector2(50, 110)
+zoom = Vector2(1.6, 1.6)
 
 [node name="SharpGridView" type="TextureRect" parent="." unique_id=701944746]
 material = SubResource("ShaderMaterial_cq453")
