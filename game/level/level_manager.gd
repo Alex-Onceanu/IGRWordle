@@ -10,8 +10,8 @@ class_name LevelManager
 # - it keeps track of the "challenges" the player has to complete to gain coins (coin power-ups)
 # - it keeps track of word resolution (ordering of effect resolution function calls, total number of points scored, etc.)
 
-signal level_manager_level_won
-signal level_manager_level_lost
+signal level_won
+signal level_lost
 
 @export var receiver: SignalBusReceiver
 @export var winning_menu: WinningMenuUI
@@ -246,19 +246,18 @@ func _is_valid_guess() -> bool:
 	
 
 func _win() -> void:
-	print("you won... now what?")
 	blackout.visible = true
 	winning_menu.visible = true
 	keyboard.interaction_blocked = true
-	level_manager_level_won.emit()
+	print("bouta win man")
+	level_won.emit()
 	
 
 func _lose() -> void:
-	print("nooo, you lost ;-;")
 	blackout.visible = true
 	game_over.visible = true
 	keyboard.interaction_blocked = true	
-	level_manager_level_lost.emit()
+	level_lost.emit()
 
 
 func _show_invalid_guess() -> void:
