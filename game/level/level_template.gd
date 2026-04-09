@@ -60,4 +60,3 @@ func setup() -> void:
 	level_manager.point_threshold = point_threshold
 
 	level_manager.choose_secret_word()
-	print("camera position: ", camera.position)

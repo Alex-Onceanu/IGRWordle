@@ -18,6 +18,8 @@ signal level_manager_level_lost
 @export var game_over: Control
 @export var blackout: ColorRect
 @export var score: Control
+@export var invalid_guess_label: Label
+@export var invalid_guess_timer: Timer
 
 var next_cell_to_fill_idx: int = 0
 var current_row: int = 0
@@ -256,6 +258,14 @@ func _lose() -> void:
 	level_manager_level_lost.emit()
 
 
+func _show_invalid_guess() -> void:
+	print("not a valid guess")
+	invalid_guess_label.visible = true
+	invalid_guess_timer.start(1)
+	await invalid_guess_timer.timeout
+	invalid_guess_label.visible = false
+	
+
 func _on_keyboard_character_pressed(c: String) -> void:
 	if _is_last_cell_in_row():
 		return
@@ -278,7 +288,7 @@ func _on_keyboard_delete_pressed() -> void:
 
 func _on_keyboard_enter_pressed() -> void:
 	if not _is_valid_guess():
-		print("not a valid guess")
+		_show_invalid_guess()
 		return
 	# TODO resolve guess, effects, and earn points
 	await resolve_guess()
