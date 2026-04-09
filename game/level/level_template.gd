@@ -50,6 +50,7 @@ func setup() -> void:
 	)
 	point_threshold_label.text = "/" + str(point_threshold)
 	move_child(blackout, -1)
+	move_child(game_over_ui, -1)
 	move_child(winning_menu, -1)
 	#grid.position = Vector2(129, 230)
 	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)

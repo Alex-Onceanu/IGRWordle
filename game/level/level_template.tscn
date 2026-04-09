@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://bqbt5214hwxwf" path="res://game/level/grid_blur.gdshader" id="7_igljq"]
 [ext_resource type="PackedScene" uid="uid://hwgva634g6ey" path="res://game/level/inventory_template.tscn" id="8_cq453"]
 [ext_resource type="Theme" uid="uid://cwhvccfudrlg" path="res://assets/global_theme.tres" id="9_t27k2"]
+[ext_resource type="Theme" uid="uid://bki84y31fsu55" path="res://assets/keyboard_theme.tres" id="10_hc0mr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_puvdw"]
 shader = ExtResource("7_igljq")
@@ -79,32 +80,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Level"
 
-[node name="GameOverUI" type="Control" parent="." unique_id=1686120609]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = 54.0
-offset_top = 597.0
-offset_right = 605.0
-offset_bottom = 758.0
-
-[node name="RestartGameButton" type="Button" parent="GameOverUI" unique_id=42441061]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 59.0
-offset_right = 187.0
-offset_bottom = 135.0
-text = "Restart ?"
-
-[node name="ReturnMainMenu" type="Button" parent="GameOverUI" unique_id=1336147775]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 279.0
-offset_top = 61.0
-offset_right = 516.0
-offset_bottom = 136.0
-text = "Return to main menu"
-
 [node name="Score" parent="." unique_id=768050888 instance=ExtResource("6_4ub6d")]
 offset_left = 334.0
 offset_top = 13.0
@@ -155,6 +130,51 @@ text = "Invalid guess!"
 
 [node name="InvalidGuessTimer" type="Timer" parent="." unique_id=547202955]
 one_shot = true
+
+[node name="GameOverUI" type="Control" parent="." unique_id=1686120609]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 54.0
+offset_top = 597.0
+offset_right = 605.0
+offset_bottom = 758.0
+theme = ExtResource("10_hc0mr")
+
+[node name="ColorRect" type="ColorRect" parent="GameOverUI" unique_id=36127622]
+layout_mode = 0
+offset_left = -104.0
+offset_top = -646.0
+offset_right = 646.0
+offset_bottom = 629.0
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="Label" type="Label" parent="GameOverUI" unique_id=1085180650]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -172.0
+offset_right = 533.0
+offset_bottom = -61.375
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 90
+text = "GAME OVER !"
+
+[node name="RestartGameButton" type="Button" parent="GameOverUI" unique_id=42441061]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 59.0
+offset_right = 187.0
+offset_bottom = 135.0
+text = "Restart ?"
+
+[node name="ReturnMainMenu" type="Button" parent="GameOverUI" unique_id=1336147775]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 279.0
+offset_top = 61.0
+offset_right = 516.0
+offset_bottom = 136.0
+text = "Return to main menu"
 
 [connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
 [connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]

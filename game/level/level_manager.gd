@@ -254,7 +254,7 @@ func _win() -> void:
 	
 
 func _lose() -> void:
-	blackout.visible = true
+	blackout.visible = false
 	game_over.visible = true
 	keyboard.interaction_blocked = true	
 	level_lost.emit()
