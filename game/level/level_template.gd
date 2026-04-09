@@ -42,7 +42,7 @@ func setup() -> void:
 	move_child(inventory,-1)
 
 	grid.grid_gestures.camera = camera
-	inventory.setup_inventory()
+	inventory.setup()
 	
 	blackout.size = Vector2(
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
@@ -60,3 +60,7 @@ func setup() -> void:
 	level_manager.point_threshold = point_threshold
 
 	level_manager.choose_secret_word()
+
+
+func setup_level_inventory() -> void:
+	inventory.setup()

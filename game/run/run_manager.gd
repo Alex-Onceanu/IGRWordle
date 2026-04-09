@@ -50,6 +50,7 @@ func _on_level_manager_level_won() -> void:
 
 
 func _on_shop_manager_next_level_pressed(next_level: LevelTemplate) -> void:
+	next_level.setup_level_inventory()
 	SceneSwitcher._change_to_scene(next_level)
 
 
