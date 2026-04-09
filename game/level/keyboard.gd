@@ -41,7 +41,13 @@ func _ready() -> void:
 func update_letter(letter: String, correctness: LetterBox.Correctness):
 	var key = get_key(letter)
 	var button: Button = key.find_child("Button")
-	button.modulate = LetterBox.CORRECTNESS_COLORS[correctness]
+	for stylebox_string in ["normal", "pressed", "hover"]:
+		var new_stylebox = button.get_theme_stylebox(stylebox_string).duplicate()
+		if new_stylebox is StyleBoxFlat:
+			new_stylebox.bg_color = LetterBox.CORRECTNESS_COLORS[correctness]
+		button.add_theme_stylebox_override(stylebox_string, new_stylebox)
+	#button.modulate = LetterBox.CORRECTNESS_COLORS[correctness]
+	#button.add_theme_stylebox_override("normal", new_stylebox)
 
 
 func _on_enter_button_up() -> void:

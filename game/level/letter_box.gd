@@ -25,9 +25,9 @@ const STATUS_COLORS = {
 
 const CORRECTNESS_COLORS = {
 	0 : Color(1.0, 1.0, 1.0),
-	Correctness.WRONG: Color(0.9, 0.9, 0.9),
-	Correctness.MISPLACED: Color(1, 0.8, 0.2),
-	Correctness.CORRECT: Color(0.384, 0.873, 0.0),
+	Correctness.WRONG: Color(0.549, 0.549, 0.549, 1.0),
+	Correctness.MISPLACED: Color(0.94, 0.736, 0.0, 1.0),
+	Correctness.CORRECT: Color(0.321, 0.74, 0.0, 1.0),
 }
 
 @export var state_machine: CellStateMachine

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d1k538muviepv" path="res://game/shop_menu/modal_shop_item_window.gd" id="1_rm6vh"]
 [ext_resource type="Texture2D" uid="uid://bd0i7fgi5dulu" path="res://assets/icon.svg" id="2_l0q1o"]
+[ext_resource type="StyleBox" uid="uid://cu8toan3mk4ld" path="res://assets/outer_panel.tres" id="2_n5hb8"]
+[ext_resource type="StyleBox" uid="uid://dkbo28cwo6amh" path="res://assets/inner_panel.tres" id="3_htryr"]
 
 [node name="ModalShopItemWindow" type="Control" unique_id=793837409 node_paths=PackedStringArray("buy_button")]
 layout_mode = 3
@@ -29,6 +31,7 @@ offset_left = 117.0
 offset_top = 428.0
 offset_right = 522.0
 offset_bottom = 706.0
+theme_override_styles/panel = ExtResource("2_n5hb8")
 
 [node name="Back" type="Button" parent="." unique_id=68616487]
 layout_mode = 0
@@ -53,6 +56,7 @@ offset_left = 125.0
 offset_top = 486.0
 offset_right = 515.0
 offset_bottom = 638.0
+theme_override_styles/panel = ExtResource("3_htryr")
 
 [node name="ItemImage" type="TextureRect" parent="." unique_id=1922358441]
 visible = false
