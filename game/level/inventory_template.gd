@@ -3,9 +3,10 @@ class_name LevelInventory
 
 
 @export var permanent_items_grid: GridContainer
+var power_ups: Array[ShopItem]
 
 
-func setup_inventory() -> void:
+func setup() -> void:
 	var run_manager = RunManager
 	for item in run_manager.power_ups:
 		if item.get_parent():
