@@ -13,6 +13,9 @@ func _on_anim_delay_timeout() -> void:
 
 func set_char(ch : String) -> void:
 	$Movable/Label.text = ch
+	
+func get_char() -> String:
+	return $Movable/Label.text
 
 func set_element(e : int) -> void:
 	$Movable/Label.material.set_shader_parameter("base_elem", e)

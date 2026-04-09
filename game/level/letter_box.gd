@@ -42,7 +42,7 @@ var correctness: Correctness = Correctness.NONE:
 		$PlacedLetter/LetterBackground.material.set_shader_parameter("clr", CORRECTNESS_COLORS[correctness])
 
 @onready var bonus_points_anchor = $BonusPoints.position
-@onready var powerUp : LetterPowerUp = LetterPowerUp.new()
+var powerUp : LetterPowerUp = LetterPowerUp.new()
 
 @onready var cell_element : LetterPowerUp.Element = LetterPowerUp.Element.None
 
@@ -158,3 +158,18 @@ func _on_wait_for_reaction_timeout() -> void:
 	set_impact_t(0.0)
 	$TextureRect.material.set_shader_parameter("base_elem", int(cell_element))
 	set_background_lerp(0.0)
+	
+func get_random_power_up():
+	$PlacedLetter/Letter.set_char(char(ord('A') + randi_range(0, ord('Z') - ord('A'))))
+	powerUp.diacritic = randi_range(0, 4)
+	powerUp.element = randi_range(0, 4)
+	powerUp.pattern = randi_range(0, 4)
+	if powerUp.element == LetterPowerUp.Element.None:
+		powerUp.pattern = LetterPowerUp.Pattern.None
+	update_diacritic(powerUp.diacritic)
+	
+	$PlacedLetter/Letter.set_element(int(powerUp.element))
+	$PlacedLetter/Diacritic.set_element(int(powerUp.element))
+	$PlacedLetter/LetterBackground.material.set_shader_parameter("which", powerUp.pattern)
+	$TextureRect.visible = false
+	$PlacedLetter.visible = true

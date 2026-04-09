@@ -82,10 +82,13 @@ func resolve_guess() -> void:
 	
 	for coord in row_letters:
 		update_queue.push_back(init_update(row_letters[coord], coord, true, true, true, LetterPowerUp.Element.None))
-		
-	while len(update_queue) > 0:
+
+	for no_infinite_loop in range(42):
+		if len(update_queue) <= 0:
+			break
 		var up = update_queue.pop_front()
 		await _resolve_letter_effect(up)
+	update_queue = []
 	
 	if correct_letters_in_guess == current_guess.length() and current_guess.length() == secret_word_string.length():
 		current_points *= secret_word_bonus

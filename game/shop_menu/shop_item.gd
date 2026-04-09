@@ -60,4 +60,44 @@ static func create(p_name: String, p_desc: String, p_price: int, p_tex: Texture2
 	node.price = p_price
 	node.icon = p_tex
 	return node
+	
+"""
+enum Element {
+	None, Fire, Water, Air, Earth
+}
+
+enum Diacritic {
+	None, Tilde, Circumflex, Dieresis, Macron
+}
+
+enum Pattern {
+	None, Square, Cross, Column, Line
+}
+"""
+
+static func create_random_permanent() -> ShopItem:
+	const string_of_elem : Array[String]      = ["nothing", "fire", "water", "a storm", "vegetation"]
+	const string_of_pattern : Array[String]   = ["its grid cell", "the adjacent grid cells", "its two grid diagonals",  "the entire column", "the entire row"]
+	const string_of_diacritic : Array[String] = ["bruh", "Tilde : doubles the score", "Circumflex : gives 50 points", "Dieresis : gives a random amount of points", "Macron : shuffles the digits of the score"]
+	var scene = load(ITEM_SCENE_PATH)
+	var node : ShopItem = scene.instantiate()
+	var lb : LetterBox = node.get_node("LetterBox")
+	lb.get_random_power_up()
+	
+	node.item_name = lb.get_node("PlacedLetter/Letter").get_char()[0]
+	node.price = randi_range(2, 4)
+	node.description = node.item_name
+	if lb.powerUp.element != LetterPowerUp.Element.None:
+		node.description += " : applies " + string_of_elem[int(lb.powerUp.element)] + " to " + string_of_pattern[int(lb.powerUp.pattern)]
+		node.price += randi_range(1, 3)
+		if lb.powerUp.pattern != LetterPowerUp.Pattern.None:
+			node.price += randi_range(1, 3)
+	if lb.powerUp.diacritic != LetterPowerUp.Diacritic.None:
+		node.price += randi_range(1, 3)
+		node.description += "\n" + string_of_diacritic[int(lb.powerUp.diacritic)]
+	node.price = floori(node.price / 2)
+
+	lb.visible = true
+	
+	return node
 #endregion

@@ -14,6 +14,8 @@ var _shop_items_available : Array[ShopItem] = []
 
 func _ready() -> void :
 	# append_item(ShopItem.create("caca","cacaprout", 100,preload("res://assets/icon.svg")))
+	for i in range(3):
+		append_item(ShopItem.create_random_permanent())
 	pass
 	
 #region Private functions
@@ -36,6 +38,7 @@ func _on_buy_item(item : ShopItem) -> void:
 	var idx = _shop_items_available.find(item)
 	if idx != -1:
 		var bought_item = remove_item(idx)
+		RunManager.allPowerUps[item.get_node("LetterBox/PlacedLetter/Letter").get_char()[0]] = item.get_node("LetterBox").powerUp
 		print("Purchase suceeded : {n}".format({"n": item.item_name}))
 	else:
 		print("Error : item not found in the shop.")
