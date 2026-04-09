@@ -12,7 +12,7 @@ class_name LevelTemplate
 
 @export var winning_menu: WinningMenuUI
 @export var game_over_ui: Control
-@export var level_label: RichTextLabel
+@export var level_label: Label
 @export var grid: Grid
 @export var keyboard: Keyboard
 @export var background: ColorRect
@@ -21,7 +21,9 @@ class_name LevelTemplate
 @export var sub_viewport: SubViewport
 @export var sub_viewport_container: SubViewportContainer
 @export var camera: Camera2D
+@export var point_threshold_label: Label
 @export var point_threshold: int
+@export var inventory : LevelInventory
 
 
 var words_list : Array = []
@@ -37,12 +39,17 @@ func setup() -> void:
 	move_child(background, 0)
 	#move_child(sub_viewport_container, -1)
 	move_child(keyboard, -1)
+	move_child(inventory,-1)
+	
 
 	grid.grid_gestures.camera = camera
+	move_child(inventory,-1)
+	
 	blackout.size = Vector2(
 		ProjectSettings.get_setting("display/window/size/viewport_width"), 
 		ProjectSettings.get_setting("display/window/size/viewport_height")
 	)
+	point_threshold_label.text = "/" + str(point_threshold)
 	move_child(blackout, -1)
 	move_child(winning_menu, -1)
 	#grid.size = Vector2(229, 200)

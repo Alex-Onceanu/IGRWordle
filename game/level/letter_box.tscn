@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bpq1adqtxt4iq" path="res://util/cell_state_machine/cell_state_machine.tscn" id="3_xooru"]
 [ext_resource type="Material" uid="uid://co8k1ma7w6355" path="res://assets/powerups/impact.tres" id="4_scr7o"]
 
+[sub_resource type="Theme" id="Theme_xooru"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r46po"]
 resource_local_to_scene = true
 shader = ExtResource("3_g4x7v")
@@ -17,6 +19,7 @@ shader_parameter/clr = Vector3(1, 1, 1)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 0
+theme = SubResource("Theme_xooru")
 script = ExtResource("1_w7ff6")
 state_machine = NodePath("CellStateMachine")
 metadata/_edit_horizontal_guides_ = [54.0]

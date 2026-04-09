@@ -61,6 +61,8 @@ func choose_secret_word() -> void:
 	secret_word_string = GameDictionary.pick_random_word_of_size(last_row_cells.size())
 	for i in secret_word_string.length():
 		secret_word.get_or_add(secret_word_string[i], []).append(last_row_cells.keys()[i].y)
+	winning_menu.set_definition(GameDictionary.get_formatted_word_data(secret_word_string))
+	winning_menu.set_word(secret_word_string)
 	print("secret word is: ", secret_word_string)
 	print(secret_word)
 	
