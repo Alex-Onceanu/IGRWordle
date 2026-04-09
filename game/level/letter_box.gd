@@ -71,6 +71,17 @@ func animate(pts_txt : String, should_diacritic : bool) -> void:
 	create_tween().tween_property(which_bonus_points, "position", bonus_points_anchor + Vector2(0.0, -30.0), 0.8)
 	create_tween().tween_property(which_bonus_points, "modulate:a", 0.0, 0.8)
 
+func get_random_power_up():
+	randomize()
+	$TextureRect.visible = false
+	$PlacedLetter.visible = true
+	powerUp.diacritic = randi_range(0, 4)
+	powerUp.element = randi_range(0, 4)
+	powerUp.pattern = randi_range(0, 4)
+	if powerUp.element == LetterPowerUp.Element.None:
+		powerUp.pattern = LetterPowerUp.Pattern.None
+	update_diacritic(powerUp.diacritic)
+
 func again():
 	$Again.position = bonus_points_anchor
 	$Again.modulate.a = 1.0

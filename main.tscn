@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cftaeb25ya241"]
 
 [ext_resource type="Script" uid="uid://c7xdehpddckwg" path="res://main.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://b1836ertt7ahd" path="res://game/level/level.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dvaakqo7jy3n1" path="res://game/level/level_manager.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://clhkh6p1yd0xt" path="res://game/main_menu/main_menu_ui.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node2D" unique_id=481944964 node_paths=PackedStringArray("main_menu_ui", "level")]
