@@ -40,7 +40,6 @@ func setup() -> void:
 	#move_child(sub_viewport_container, -1)
 	move_child(keyboard, -1)
 	move_child(inventory,-1)
-	
 
 	grid.grid_gestures.camera = camera
 	move_child(inventory,-1)
@@ -52,7 +51,7 @@ func setup() -> void:
 	point_threshold_label.text = "/" + str(point_threshold)
 	move_child(blackout, -1)
 	move_child(winning_menu, -1)
-	#grid.size = Vector2(229, 200)
+	#grid.position = Vector2(129, 230)
 	keyboard.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)
 	keyboard.position = Vector2(325, 971)
 
@@ -61,3 +60,4 @@ func setup() -> void:
 	level_manager.point_threshold = point_threshold
 
 	level_manager.choose_secret_word()
+	print("camera position: ", camera.position)

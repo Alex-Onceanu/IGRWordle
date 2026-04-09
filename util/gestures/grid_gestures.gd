@@ -16,7 +16,7 @@ func _ready() -> void:
 	var extra_limit = Vector2(200, 500)
 	var screen_w = ProjectSettings.get_setting("display/window/size/viewport_width")
 	var screen_h = ProjectSettings.get_setting("display/window/size/viewport_height")
-	camera.position = Vector2(screen_w / 2.0, screen_h / 2.0)
+	#camera.position = Vector2(screen_w / 2.0, screen_h / 2.0)
 	camera.limit_left = -extra_limit.x * 2
 	camera.limit_top = -extra_limit.y * 2
 	camera.limit_right = screen_w + extra_limit.x
