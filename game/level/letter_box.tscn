@@ -7,15 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://bpq1adqtxt4iq" path="res://util/cell_state_machine/cell_state_machine.tscn" id="3_xooru"]
 [ext_resource type="Material" uid="uid://co8k1ma7w6355" path="res://assets/powerups/impact.tres" id="4_scr7o"]
 
+[sub_resource type="Theme" id="Theme_xooru"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r46po"]
 resource_local_to_scene = true
 shader = ExtResource("3_g4x7v")
 shader_parameter/which = 0
 shader_parameter/clr = Vector3(1, 1, 1)
-
-[sub_resource type="Theme" id="Theme_xooru"]
-
-[sub_resource type="Theme" id="Theme_xooru"]
 
 [node name="LetterBox" type="Control" unique_id=573317305 node_paths=PackedStringArray("state_machine")]
 custom_minimum_size = Vector2(50, 50)

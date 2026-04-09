@@ -19,33 +19,42 @@ func is_in_dictionary(word: String) -> bool:
 	return words[str(word_size)].has(word)
 
 
-func get_definitions(word: String) -> Array:
+func get_word_data(word: String) -> Dictionary:
 	if not is_in_dictionary(word):
 		return {}
 	var word_size = word.length()
-	return words[str(word_size)][word]["meanings"]
+	print("meanigs found for that word: ", words[str(word_size)][word]["meanings"])
+	return words[str(word_size)][word]
 
 
-static func format_dictionary_data(data: Dictionary) -> String:
+func format_word_data(word_data: Dictionary) -> String:
+	print("word: ", word_data)
 	var bbcode = ""
-	if data.has("MEANINGS"):
+	if word_data.has("meanings"):
 		bbcode += "[p][font_size=24][b]Definitions[/b][/font_size][/p]\n"
 		
-		for meaning in data["MEANINGS"]:
-			var part_of_speech = meaning[0]
-			var definition = meaning[1] + "."
+		for meaning in word_data["meanings"]:
+			var part_of_speech = meaning["speech_part"]
+			var definition = meaning["def"] + "."
 			
 			bbcode += "[color=blue][i]" + part_of_speech + "[/i][/color]: "
 			bbcode += definition + "\n"
 			bbcode += "\n"
-	if data.has("SYNONYMS") and data["SYNONYMS"].size() > 0:
+	if word_data.has("synonyms") and word_data["synonyms"].size() > 0:
 		bbcode += "[b][color=dark_green]Synonyms:[/color][/b] "
-		bbcode += ", ".join(data["SYNONYMS"]) + "\n\n"
+		bbcode += ", ".join(word_data["synonyms"]) + "\n\n"
 	
-	if data.has("ANTONYMS") and data["ANTONYMS"].size() > 0:
+	if word_data.has("antonyms") and word_data["antonyms"].size() > 0:
 		bbcode += "[b][color=red]Antonyms:[/color][/b] "
-		bbcode += ", ".join(data["ANTONYMS"]) + "\n"
+		bbcode += ", ".join(word_data["antonyms"]) + "\n"
 	return bbcode
+
+
+func get_formatted_word_data(word: String) -> String:
+	var word_data = get_word_data(word)
+	if word_data == {}:
+		return ""
+	return format_word_data(word_data)
 
 
 func _load_dictionary(path: String) -> void:
