@@ -23,12 +23,10 @@ func get_word_data(word: String) -> Dictionary:
 	if not is_in_dictionary(word):
 		return {}
 	var word_size = word.length()
-	print("meanigs found for that word: ", words[str(word_size)][word]["meanings"])
 	return words[str(word_size)][word]
 
 
 func format_word_data(word_data: Dictionary) -> String:
-	print("word: ", word_data)
 	var bbcode = ""
 	if word_data.has("meanings"):
 		bbcode += "[p][font_size=24][b]Definitions[/b][/font_size][/p]\n"

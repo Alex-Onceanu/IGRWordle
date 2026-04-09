@@ -45,12 +45,14 @@ func update_letter(letter: String, correctness: LetterBox.Correctness):
 
 
 func _on_enter_button_up() -> void:
+	print("bbbb")
 	if interaction_blocked:
 		return
 	enter_pressed.emit()
 
 
 func _on_del_button_up() -> void:
+	print("aaaa")
 	if interaction_blocked:
 		return
 	delete_pressed.emit()
