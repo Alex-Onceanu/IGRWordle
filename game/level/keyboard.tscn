@@ -25,9 +25,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -56.5
-offset_top = -21.5
+offset_top = -54.0
 offset_right = 56.5
-offset_bottom = 21.5
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -46,16 +46,19 @@ alignment = 1
 [node name="rowEnterDel" type="HBoxContainer" parent="VBoxContainer" unique_id=610934483]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 300
-alignment = 1
+alignment = 2
 
-[node name="Enter" type="Button" parent="VBoxContainer/rowEnterDel" unique_id=2023936444]
-layout_mode = 2
-theme = ExtResource("2_1ey7e")
-theme_override_constants/align_to_largest_stylebox = 1
-text = "ENTER"
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=715402498]
+layout_mode = 0
+offset_left = 172.67499
+offset_top = 32.559998
+offset_right = 251.675
+offset_bottom = 128.55992
+theme_override_constants/separation = 18
 
-[node name="Del" type="Button" parent="VBoxContainer/rowEnterDel" unique_id=1680678328]
+[node name="Del" type="Button" parent="VBoxContainer2" unique_id=1680678328]
 layout_mode = 2
 theme = ExtResource("2_1ey7e")
 theme_override_constants/h_separation = 5
@@ -64,11 +67,17 @@ theme_override_constants/line_spacing = 0
 text = "DELETE
 "
 
+[node name="Enter" type="Button" parent="VBoxContainer2" unique_id=2023936444]
+layout_mode = 2
+theme = ExtResource("2_1ey7e")
+theme_override_constants/align_to_largest_stylebox = 1
+text = "ENTER"
+
 [node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("2_77wxd")]
 signal_prefix = "keyboard_"
 
 [connection signal="character_pressed" from="." to="SignalBusSender" method="connect_signal"]
 [connection signal="delete_pressed" from="." to="SignalBusSender" method="connect_signal"]
 [connection signal="enter_pressed" from="." to="SignalBusSender" method="connect_signal"]
-[connection signal="button_up" from="VBoxContainer/rowEnterDel/Enter" to="." method="_on_enter_button_up"]
-[connection signal="button_up" from="VBoxContainer/rowEnterDel/Del" to="." method="_on_del_button_up"]
+[connection signal="button_up" from="VBoxContainer2/Del" to="." method="_on_del_button_up"]
+[connection signal="button_up" from="VBoxContainer2/Enter" to="." method="_on_enter_button_up"]
