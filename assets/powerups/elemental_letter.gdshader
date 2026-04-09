@@ -78,28 +78,6 @@ vec4 water(vec2 uv)
 	return clr;
 }
 
-vec4 vegetation(vec2 uv)
-{
-	uv.y -= 0.005;
-	vec2 uv2 = 2.0 * uv - 1.0;
-	uv2 *= 1.1;
-	float t = atan(uv2.y, uv2.x) + (0.1 + 0.28 * TIME);
-	float n = sin(t);
-	
-	float n2 = texture(fire_noise, vec2(uv) * vec2(1.6, 1.9) + vec2(0.1)).r;
-	float laby = smoothstep(0.46, 0.475, 1.0 - n2) * smoothstep(0.5, 0.515, n2);
-	vec4 clr = vec4(1.0);
-	clr.rgb = texture(vegetal_grad, vec2(laby, 0.0)).rgb;
-	float pn = 8.0;
-	float bb = pow(pow(uv2.x, pn) + pow(uv2.y, pn), 1.0 / pn) + 0.03 * sin(10.0 * t);
-	//uv2 *= 2.0;
-	//bb = (pow(pow(uv2.x, pn) + pow(uv2.y, pn), 1.0 / pn) + 0.03 * sin(10.0 * t));
-
-	clr.a = pow(smoothstep(0.99, 0.94, bb) * smoothstep(0.88, 0.94, bb), 0.5 + 0.4 * (sin(TIME / 0.5)));
-	//clr.a = 1.0;
-	return clr;
-}
-
 vec4 earth(vec2 uv)
 {
 	uv += vec2(0.01, -0.01);
@@ -109,7 +87,7 @@ vec4 earth(vec2 uv)
 	vec4 clr;
 	clr.rgb = texture(earth_grad, vec2(n, 0.0)).rgb;
 	clr.a = 1.0 - smoothstep(0.91, 0.97, max(abs(uv2.x), abs(uv2.y)));
-	return combine(clr, vegetation(uv));
+	return clr;
 }
 
 vec4 normal(vec2 uv)
@@ -140,8 +118,8 @@ void fragment()
 {	
 	if(base_elem != 0)
 	{
-		COLOR.rgb = texture(TEXTURE, UV).r * choose(fract(vec2(2.0, 1.) * SCREEN_UV), base_elem).rgb;
-		COLOR.a = texture(TEXTURE, UV).a;
+		COLOR.rgb = choose(fract(vec2(2.0, 1.) * SCREEN_UV), base_elem).rgb;
+		COLOR.a = smoothstep(0.47, 0.52, texture(TEXTURE, UV).a);
 	}
 }
 
