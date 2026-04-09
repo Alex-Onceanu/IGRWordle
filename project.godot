@@ -34,7 +34,8 @@ RunManager="*uid://chl0c2lvafrq7"
 
 window/size/viewport_width=648
 window/size/viewport_height=1152
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [gui]
