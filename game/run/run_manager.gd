@@ -20,7 +20,6 @@ var point_threshold := 0
 # - go to shop when button is pressed on win screen
 # - generate a new level when exiting shop
 
-
 func _create_next_level() -> Node:
 	if current_difficulty == null:
 		current_difficulty = run_progression_list[0]
@@ -30,7 +29,6 @@ func _create_next_level() -> Node:
 	point_threshold += current_difficulty.point_threshold_increase
 	level_generator.point_threshold = point_threshold
 	level_generator.current_level = current_level
-	current_level += 1
 	for difficulty in run_progression_list:
 		if current_level >= difficulty.level_start:
 			current_difficulty = difficulty
@@ -46,6 +44,7 @@ func _on_level_manager_level_won() -> void:
 
 
 func _on_shop_manager_next_level_pressed() -> void:
+	current_level += 1
 	SceneSwitcher._change_to_scene(_create_next_level())
 
 
@@ -53,5 +52,12 @@ func _on_winning_menu_next_level_pressed() -> void:
 	SceneSwitcher.go_to_shop()
 
 
-func _on_main_menu_play_pressed() -> void:
+func _on_main_menu_new_run_pressed() -> void:
+	RunManager.current_level = 1
+	SceneSwitcher._change_to_scene(_create_next_level())
+
+func _on_menu_tab_leave_pressed():
+	SceneSwitcher.go_to_main_menu()
+
+func _on_main_menu_continue_pressed():
 	SceneSwitcher._change_to_scene(_create_next_level())

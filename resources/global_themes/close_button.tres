@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://dnboukcb75c82" path="res://resources/global_themes/close_button_sb.tres" id="1_c74l6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovgfw"]
-bg_color = Color(0.9999595, 0.53298354, 0.47401994, 1)
+bg_color = Color(1, 0.53333336, 0.4745098, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bpytldosla1jg" path="res://game/shop_menu/shop_template.gd" id="1_3csxk"]
 [ext_resource type="PackedScene" uid="uid://cml01k8m38vln" path="res://game/shop_menu/shop_manager.tscn" id="2_3csxk"]
 [ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="3_c3sla"]
+[ext_resource type="PackedScene" uid="uid://q5l8yasue8ia" path="res://game/main_menu/menu_tab/menu_tab.tscn" id="4_d7ddy"]
 
 [node name="ShopTemplate" type="Control" unique_id=126797957]
 layout_mode = 3
@@ -100,6 +101,8 @@ text = "10 $"
 
 [node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("3_c3sla")]
 signal_prefix = "shop_manager_"
+
+[node name="MenuTab" parent="." unique_id=1756768620 instance=ExtResource("4_d7ddy")]
 
 [connection signal="pressed" from="NextLevel" to="ShopManager" method="_on_next_level_pressed"]
 [connection signal="next_level_pressed" from="ShopManager" to="SignalBusSender" method="connect_signal"]

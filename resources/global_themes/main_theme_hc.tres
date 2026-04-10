@@ -1,0 +1,49 @@
+[gd_resource type="Theme" format=3 uid="uid://ev2clxklxsij"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kt2sk"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.105882354, 0.7019608, 0.16470589, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.972549, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq7jq"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.105882354, 0.7019608, 0.16470589, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.972549, 0.8, 0.8, 0)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nu0ls"]
+bg_color = Color(0.7137792, 0.9992637, 0.70327425, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_w6qa2"]
+
+[resource]
+resource_name = "MainMenuButtonTheme"
+default_font = SubResource("SystemFont_w6qa2")
+default_font_size = 50
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_kt2sk")
+Button/styles/normal = SubResource("StyleBoxFlat_rq7jq")
+Button/styles/pressed = SubResource("StyleBoxFlat_nu0ls")

@@ -28,3 +28,9 @@ func _change_to_scene(node: Node):
 	await current_scene_root.tree_exited
 	current_scene_root = node
 	get_tree().root.add_child(node)
+
+func leave_to_main_menu():
+	var main_menu_root = main_menu_scene.instantiate()
+	#_change_to_scene(main_menu_root)
+	current_scene_root = main_menu_root
+	get_tree().root.add_child(main_menu_root)

@@ -28,7 +28,7 @@ func _on_leave_run_button_pressed() -> void:
 
 func _on_leave_button_pressed() -> void:
 	get_tree().paused = false
-	SceneSwitcher.go_to_main_menu()
+	RunManager._on_menu_tab_leave_pressed()
 
 
 func _on_cancel_button_pressed() -> void:
