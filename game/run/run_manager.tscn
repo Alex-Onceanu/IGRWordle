@@ -27,7 +27,7 @@ background_scene = ExtResource("12_mr1su")
 
 [connection signal="level_manager_level_lost" from="SignalBusReceiver" to="." method="_on_level_manager_level_lost"]
 [connection signal="level_manager_level_won" from="SignalBusReceiver" to="." method="_on_level_manager_level_won"]
-[connection signal="main_menu_play_pressed" from="SignalBusReceiver" to="." method="_on_main_menu_new_run_pressed"]
+[connection signal="main_menu_play_pressed" from="SignalBusReceiver" to="." method="_on_main_menu_play_pressed"]
 [connection signal="shop_manager_item_bought" from="SignalBusReceiver" to="." method="_on_shop_manager_item_bought"]
 [connection signal="shop_manager_next_level_pressed" from="SignalBusReceiver" to="." method="_on_shop_manager_next_level_pressed"]
 [connection signal="winning_menu_next_level_pressed" from="SignalBusReceiver" to="." method="_on_winning_menu_next_level_pressed"]

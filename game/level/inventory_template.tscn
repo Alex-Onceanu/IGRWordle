@@ -2,72 +2,9 @@
 
 [ext_resource type="Script" uid="uid://4e3foaoxv622" path="res://game/level/inventory_manager.gd" id="1_5t8o4"]
 [ext_resource type="Script" uid="uid://dhq81xuk8px3d" path="res://game/level/inventory_template.gd" id="1_oqn0l"]
-[ext_resource type="StyleBox" uid="uid://cu8toan3mk4ld" path="res://assets/outer_panel.tres" id="2_2frnf"]
-[ext_resource type="StyleBox" uid="uid://7c35g5guc261" path="res://assets/keyboard_hover.tres" id="2_ssqrh"]
+[ext_resource type="Theme" uid="uid://qy4su4i313nl" path="res://resources/global_themes/current_theme.tres" id="1_pcj20"]
 [ext_resource type="StyleBox" uid="uid://dkbo28cwo6amh" path="res://assets/inner_panel.tres" id="3_pcj20"]
 [ext_resource type="PackedScene" uid="uid://b4665yy0lwvt5" path="res://util/signal_bus/signal_bus_receiver.tscn" id="6_e78fm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcj20"]
-bg_color = Color(0.15, 0.15, 0.15, 1)
-border_width_bottom = 2
-border_color = Color(0.08, 0.08, 0.08, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e78fm"]
-bg_color = Color(0.19755395, 0.19755395, 0.19755395, 1)
-border_width_bottom = 2
-border_color = Color(0.09, 0.09, 0.09, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="Theme" id="Theme_f4bbp"]
-default_font_size = 20
-Button/styles/hover = SubResource("StyleBoxFlat_pcj20")
-Button/styles/normal = SubResource("StyleBoxFlat_e78fm")
-Button/styles/pressed = ExtResource("2_ssqrh")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q175b"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.19755395, 0.19755395, 0.19755395, 1)
-border_width_bottom = 2
-border_color = Color(0.09, 0.09, 0.09, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssqrh"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.06, 0.06, 0.06, 1)
-border_color = Color(0.19755395, 0.19755395, 0.19755395, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbcfg"]
-content_margin_left = 15.0
-content_margin_top = 15.0
-content_margin_right = 15.0
-content_margin_bottom = 15.0
-bg_color = Color(0.15, 0.15, 0.15, 1)
-border_width_bottom = 2
-border_color = Color(0.08, 0.08, 0.08, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqn0l"]
 
@@ -85,21 +22,26 @@ offset_right = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_pcj20")
 script = ExtResource("1_oqn0l")
 permanent_items_grid = NodePath("Inventory/PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/PermanentGrid")
 
 [node name="ShowInventory" type="Button" parent="." unique_id=2075352281]
 layout_mode = 0
-offset_left = 574.0
-offset_top = 157.0
+offset_left = 583.0
+offset_top = 228.0
 offset_right = 639.0
-offset_bottom = 750.0
-theme = SubResource("Theme_f4bbp")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_q175b")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ssqrh")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gbcfg")
-text = "INVENTORY
+offset_bottom = 688.0
+theme_override_font_sizes/font_size = 35
+text = "I
+N
+V
+E
+N
+T
+O
+R
+Y
 "
 autowrap_mode = 1
 
@@ -132,7 +74,6 @@ offset_bottom = 954.0
 layout_mode = 0
 offset_right = 431.0
 offset_bottom = 656.0
-theme_override_styles/panel = ExtResource("2_2frnf")
 
 [node name="MarginContainer" type="MarginContainer" parent="Inventory/PanelContainer" unique_id=1870452051]
 layout_mode = 2

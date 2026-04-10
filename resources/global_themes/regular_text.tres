@@ -1,10 +1,9 @@
-[gd_resource type="Theme" format=3 uid="uid://bsqukgmf15dcb"]
+[gd_resource type="Theme" format=3 uid="uid://det7bfw0smqbj"]
 
-[sub_resource type="SystemFont" id="SystemFont_ighl6"]
-font_names = PackedStringArray("Dyuthi")
+[ext_resource type="FontFile" uid="uid://b1s8jgquufkxc" path="res://assets/Coolvetica Rg.otf" id="1_gpbfs"]
 
 [resource]
-default_font = SubResource("SystemFont_ighl6")
+default_font = ExtResource("1_gpbfs")
 default_font_size = 25
 CheckButton/constants/outline_size = 0
 Label/constants/outline_size = 0

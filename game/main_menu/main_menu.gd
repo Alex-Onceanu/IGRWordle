@@ -15,7 +15,7 @@ func _on_continue_button_pressed() -> void:
 	RunManager._on_main_menu_continue_pressed()
 
 func _on_new_run_button_pressed() -> void:
-	RunManager._on_main_menu_new_run_pressed()
+	RunManager._on_main_menu_play_pressed()
 
 func _on_stats_button_pressed() -> void:
 	$StatsWindow.show()

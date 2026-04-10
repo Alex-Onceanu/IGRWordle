@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bgqr6a5l1ohly"]
 
+[ext_resource type="Theme" uid="uid://b6fss6lsto4to" path="res://resources/global_themes/main_theme_lc.tres" id="1_fwk1y"]
 [ext_resource type="Script" uid="uid://b2rrxnacshgix" path="res://game/level/keyboard.gd" id="1_m6qkj"]
 [ext_resource type="Theme" uid="uid://bki84y31fsu55" path="res://assets/keyboard_theme.tres" id="2_1ey7e"]
 [ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="2_77wxd"]
@@ -15,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_fwk1y")
 script = ExtResource("1_m6qkj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1012518237]

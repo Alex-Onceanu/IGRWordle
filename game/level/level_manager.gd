@@ -250,6 +250,8 @@ func _win() -> void:
 	winning_menu.visible = true
 	keyboard.interaction_blocked = true
 	print("bouta win man")
+	if current_points > GameState.highest_score:
+		GameState.highest_score = current_points
 	level_won.emit()
 	
 

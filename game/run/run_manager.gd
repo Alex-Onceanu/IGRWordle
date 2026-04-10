@@ -18,6 +18,8 @@ var current_difficulty: RunProgression
 var current_level := 1
 var point_threshold := 0
 var coins := 0
+
+
 # NOTE: this script needs to:
 # - go to win screen when level is won
 # - go to game over screen when level is failed
@@ -53,11 +55,13 @@ func _on_shop_manager_next_level_pressed(next_level: LevelTemplate) -> void:
 
 
 func _on_winning_menu_next_level_pressed() -> void:
+	current_level += 1
 	SceneSwitcher.go_to_shop()
 
 
-func _on_main_menu_new_run_pressed() -> void:
+func _on_main_menu_play_pressed() -> void:
 	RunManager.current_level = 1
+	RunManager.coins = 0
 	SceneSwitcher._change_to_scene(_create_next_level())
 
 func _on_menu_tab_leave_pressed():

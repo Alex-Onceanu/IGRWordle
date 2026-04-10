@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b0mgopcnvgraw"]
 
+[ext_resource type="Theme" uid="uid://lkk6y8g6lrv0" path="res://resources/global_themes/current_theme.tres" id="1_htryr"]
 [ext_resource type="Script" uid="uid://d1k538muviepv" path="res://game/shop_menu/modal_shop_item_window.gd" id="1_rm6vh"]
 [ext_resource type="Texture2D" uid="uid://bd0i7fgi5dulu" path="res://assets/icon.svg" id="2_l0q1o"]
 [ext_resource type="StyleBox" uid="uid://cu8toan3mk4ld" path="res://assets/outer_panel.tres" id="2_n5hb8"]
@@ -8,6 +9,7 @@
 [node name="ModalShopItemWindow" type="Control" unique_id=793837409 node_paths=PackedStringArray("buy_button")]
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_htryr")
 script = ExtResource("1_rm6vh")
 buy_button = NodePath("BuyButton")
 
@@ -27,26 +29,28 @@ offset_bottom = 1265.0
 
 [node name="WindowBackground" type="Panel" parent="." unique_id=1598237804]
 layout_mode = 0
-offset_left = 117.0
-offset_top = 428.0
-offset_right = 522.0
-offset_bottom = 706.0
+offset_left = 92.0
+offset_top = 418.0
+offset_right = 558.0
+offset_bottom = 771.0
 theme_override_styles/panel = ExtResource("2_n5hb8")
 
 [node name="Back" type="Button" parent="." unique_id=68616487]
 layout_mode = 0
-offset_left = 471.0
-offset_top = 434.0
-offset_right = 514.0
-offset_bottom = 480.0
+offset_left = 510.0
+offset_top = 416.0
+offset_right = 560.0
+offset_bottom = 471.0
+theme_type_variation = &"CloseButton"
+theme_override_font_sizes/font_size = 30
 text = "X"
 
 [node name="BuyButton" type="Button" parent="." unique_id=1899726162]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 649.0
-offset_right = 411.0
-offset_bottom = 699.0
+offset_left = 228.0
+offset_top = 686.0
+offset_right = 407.0
+offset_bottom = 758.0
 text = "Buy"
 
 [node name="Panel" type="Panel" parent="." unique_id=326328117]
@@ -71,17 +75,17 @@ stretch_mode = 4
 
 [node name="Panel2" type="Panel" parent="." unique_id=494835051]
 layout_mode = 0
-offset_left = 180.0
-offset_top = 435.0
-offset_right = 457.0
-offset_bottom = 475.0
+offset_left = 184.0
+offset_top = 400.0
+offset_right = 461.0
+offset_bottom = 440.0
 
 [node name="Name" type="Label" parent="." unique_id=1243208760]
 layout_mode = 0
-offset_left = 211.0
-offset_top = 437.0
-offset_right = 425.0
-offset_bottom = 473.0
+offset_left = 215.0
+offset_top = 402.0
+offset_right = 429.0
+offset_bottom = 438.0
 theme_override_font_sizes/font_size = 28
 text = "Item name"
 horizontal_alignment = 1

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dww1ftslqf567"]
 
 [ext_resource type="Script" uid="uid://cw7e8iw7run3s" path="res://game/main_menu/main_menu.gd" id="1_3shxk"]
-[ext_resource type="Theme" uid="uid://qy4su4i313nl" path="res://resources/global_themes/current_theme.tres" id="2_gxh41"]
+[ext_resource type="Theme" uid="uid://pe4nne3fw7nn" path="res://resources/global_themes/current_theme.tres" id="2_gxh41"]
 [ext_resource type="PackedScene" uid="uid://g7wqu2uey4mx" path="res://game/main_menu/menu_windows/stats_window/stats_window.tscn" id="3_3shxk"]
 [ext_resource type="PackedScene" uid="uid://dbnhpgtkbc2f7" path="res://game/main_menu/menu_windows/options_window/options_window.tscn" id="4_bws42"]
 [ext_resource type="PackedScene" uid="uid://bjfglhbeer4l7" path="res://game/main_menu/menu_windows/credits_window/credits_window.tscn" id="5_3f7m4"]
@@ -22,7 +22,7 @@ metadata/_edit_use_anchors_ = true
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=372528418]
 layout_mode = 2
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_top = 150
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
@@ -33,9 +33,9 @@ theme_override_constants/separation = 0
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2090063986]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
-text = "IGR
-WORDLE"
+text = "BIBLION !"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1658179984]
