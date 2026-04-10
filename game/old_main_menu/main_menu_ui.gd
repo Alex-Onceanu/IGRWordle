@@ -1,7 +1,8 @@
-extends Node2D
+extends Control
 class_name MainMenuUI
 
 signal play_pressed
+
 
 ## Minimal MainMenuUI
 func _ready() -> void:

@@ -11,9 +11,13 @@ extends Node
 @export var run_progression_list: Array[RunProgression]
 @export var level_generator: LevelGenerator
 
+# allPowerUps should be updated during shop phase
+@onready var allPowerUps : Dictionary[String, LetterPowerUp] = {}
+var power_ups: Array[ShopItem]
 var current_difficulty: RunProgression
 var current_level := 1
 var point_threshold := 0
+var coins := 0
 # NOTE: this script needs to:
 # - go to win screen when level is won
 # - go to game over screen when level is failed
@@ -40,12 +44,12 @@ func _on_level_manager_level_lost() -> void:
 
 
 func _on_level_manager_level_won() -> void:
-	pass # Replace with function body.
+	GameState.coins += 5
 
 
-func _on_shop_manager_next_level_pressed() -> void:
-	current_level += 1
-	SceneSwitcher._change_to_scene(_create_next_level())
+func _on_shop_manager_next_level_pressed(next_level: LevelTemplate) -> void:
+	next_level.setup_level_inventory()
+	SceneSwitcher._change_to_scene(next_level)
 
 
 func _on_winning_menu_next_level_pressed() -> void:
@@ -61,3 +65,7 @@ func _on_menu_tab_leave_pressed():
 
 func _on_main_menu_continue_pressed():
 	SceneSwitcher._change_to_scene(_create_next_level())
+
+
+func _on_shop_manager_item_bought(item: ShopItem) -> void:
+	power_ups.append(item)

@@ -21,6 +21,12 @@ func _on_button_button_up() -> void:
 #endregion
 
 #region Public functions
+func set_word(word : String):
+	$PanelContainer/MarginContainer/VBoxContainer/WordLabel.text = word
+
+func set_definition(definition : String):
+	$PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/WordDefinition.text = definition
+	
 ## Add a milestone to show in the UI.
 ##
 ## [param milestone]: the name of the reached milestone

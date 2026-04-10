@@ -2,7 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bpytldosla1jg" path="res://game/shop_menu/shop_template.gd" id="1_3csxk"]
 [ext_resource type="PackedScene" uid="uid://cml01k8m38vln" path="res://game/shop_menu/shop_manager.tscn" id="2_3csxk"]
-[ext_resource type="PackedScene" uid="uid://bqy1v2k8j2a25" path="res://util/signal_bus/signal_bus_sender.tscn" id="3_c3sla"]
+[ext_resource type="Shader" path="res://assets/shop_bg.gdshader" id="2_nh8kd"]
+[ext_resource type="Theme" uid="uid://bki84y31fsu55" path="res://assets/keyboard_theme.tres" id="2_t31gw"]
+[ext_resource type="StyleBox" uid="uid://cu8toan3mk4ld" path="res://assets/outer_panel.tres" id="4_nh8kd"]
+[ext_resource type="StyleBox" uid="uid://dkbo28cwo6amh" path="res://assets/inner_panel.tres" id="5_i30hj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i30hj"]
+shader = ExtResource("2_nh8kd")
+shader_parameter/clr = Vector3(1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_77wdp"]
+PanelContainer/styles/panel = ExtResource("4_nh8kd")
 [ext_resource type="PackedScene" uid="uid://q5l8yasue8ia" path="res://game/main_menu/menu_tab/menu_tab.tscn" id="4_d7ddy"]
 
 [node name="ShopTemplate" type="Control" unique_id=126797957]
@@ -10,10 +20,12 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3csxk")
 
-[node name="Panel" type="Panel" parent="." unique_id=1370780678]
+[node name="Panel" type="ColorRect" parent="." unique_id=1522502169]
 modulate = Color(18.892157, 18.892157, 18.892157, 1)
+material = SubResource("ShaderMaterial_i30hj")
 layout_mode = 0
 offset_left = -24.0
+offset_top = -11.0
 offset_right = 663.0
 offset_bottom = 1201.0
 
@@ -33,9 +45,11 @@ offset_left = 459.0
 offset_top = 1038.0
 offset_right = 607.0
 offset_bottom = 1101.0
+theme = ExtResource("2_t31gw")
 text = "Next level !"
 
-[node name="ShopManager" parent="." unique_id=1060757852 node_paths=PackedStringArray("permanents_container", "temporaries_container", "challenges_container") instance=ExtResource("2_3csxk")]
+[node name="ShopManager" parent="." unique_id=1060757852 node_paths=PackedStringArray("next_level_label", "permanents_container", "temporaries_container", "challenges_container") instance=ExtResource("2_3csxk")]
+next_level_label = NodePath("../NextlevelLabel")
 permanents_container = NodePath("../ItemsContainer/MarginContainer/VBoxContainer/PanelContainer/Permanents")
 temporaries_container = NodePath("../ItemsContainer/MarginContainer/VBoxContainer/PanelContainer2/Temporaries")
 challenges_container = NodePath("../ItemsContainer/MarginContainer/VBoxContainer/PanelContainer3/Challenges")
@@ -43,10 +57,11 @@ challenges_container = NodePath("../ItemsContainer/MarginContainer/VBoxContainer
 [node name="ItemsContainer" type="PanelContainer" parent="." unique_id=1714199002]
 z_as_relative = false
 layout_mode = 0
-offset_left = 175.0
-offset_top = 383.0
-offset_right = 475.0
-offset_bottom = 738.0
+offset_left = 121.0
+offset_top = 354.0
+offset_right = 528.0
+offset_bottom = 857.0
+theme = SubResource("Theme_77wdp")
 
 [node name="MarginContainer" type="MarginContainer" parent="ItemsContainer" unique_id=1117928354]
 layout_mode = 2
@@ -62,9 +77,11 @@ theme_override_constants/separation = 30
 [node name="PanelContainer" type="PanelContainer" parent="ItemsContainer/MarginContainer/VBoxContainer" unique_id=2141435181]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("5_i30hj")
 
 [node name="Permanents" type="HBoxContainer" parent="ItemsContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=723280308]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 alignment = 1
@@ -72,6 +89,7 @@ alignment = 1
 [node name="PanelContainer2" type="PanelContainer" parent="ItemsContainer/MarginContainer/VBoxContainer" unique_id=1449066031]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("5_i30hj")
 
 [node name="Temporaries" type="HBoxContainer" parent="ItemsContainer/MarginContainer/VBoxContainer/PanelContainer2" unique_id=1937655028]
 layout_mode = 2
@@ -82,6 +100,7 @@ alignment = 1
 [node name="PanelContainer3" type="PanelContainer" parent="ItemsContainer/MarginContainer/VBoxContainer" unique_id=1670712826]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("5_i30hj")
 
 [node name="Challenges" type="HBoxContainer" parent="ItemsContainer/MarginContainer/VBoxContainer/PanelContainer3" unique_id=1926378741]
 layout_mode = 2
@@ -99,10 +118,18 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 35
 text = "10 $"
 
-[node name="SignalBusSender" parent="." unique_id=1721126377 instance=ExtResource("3_c3sla")]
-signal_prefix = "shop_manager_"
+[node name="NextlevelLabel" type="Label" parent="." unique_id=1397366615]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 49.0
+offset_right = 470.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Next level threshold
+100 pts"
+horizontal_alignment = 1
 
 [node name="MenuTab" parent="." unique_id=1756768620 instance=ExtResource("4_d7ddy")]
 
 [connection signal="pressed" from="NextLevel" to="ShopManager" method="_on_next_level_pressed"]
-[connection signal="next_level_pressed" from="ShopManager" to="SignalBusSender" method="connect_signal"]

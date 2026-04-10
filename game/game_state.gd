@@ -18,7 +18,7 @@ signal coins_changed(coins : int)
 @export var current_string_guess : String = ""
 @export var current_attempt : int = 0
 @export_group("Player")
-@export var coins: int = 1000:
+@export var coins: int = 0:
 	set(value):
 		coins = value
 		coins_changed.emit(coins)

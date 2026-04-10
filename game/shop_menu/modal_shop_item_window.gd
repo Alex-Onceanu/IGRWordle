@@ -7,6 +7,8 @@ const MODAL_SHOP_ITEM_WINDOW_SCENE_PATH : String = "res://game/shop_menu/modal_s
 signal buy_pressed
 signal back_pressed
 
+@export var buy_button: Button
+
 static func create(shop_item : ShopItem) -> ModalShopItemWindow:
 	var scene = load(MODAL_SHOP_ITEM_WINDOW_SCENE_PATH)
 	var node = scene.instantiate() as ModalShopItemWindow
@@ -19,5 +21,7 @@ static func create(shop_item : ShopItem) -> ModalShopItemWindow:
 func _on_buy_button_pressed() -> void:
 	buy_pressed.emit()
 	
+	
+
 func _on_back_pressed() -> void:
 	back_pressed.emit()

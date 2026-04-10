@@ -8,13 +8,7 @@
 
 [node name="Grid" type="Control" unique_id=688690635 node_paths=PackedStringArray("grid_container", "grid_gestures")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 script = ExtResource("1_nl6dr")
@@ -38,6 +32,7 @@ columns = 5
 
 [node name="GridGestures" parent="." unique_id=2122793614 instance=ExtResource("3_ta2np")]
 script = ExtResource("4_yl3un")
+min_zoom = Vector2(0.5, 0.5)
 
 [node name="SignalBusReceiver" parent="." unique_id=1996817024 instance=ExtResource("4_jfrtg")]
 

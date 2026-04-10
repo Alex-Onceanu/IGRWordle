@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bgqr6a5l1ohly" path="res://game/level/keyboard.tscn" id="11_vkuut"]
 [ext_resource type="PackedScene" uid="uid://bjk1mgath82r3" path="res://game/level/background.tscn" id="12_mr1su"]
 
-[node name="RunManager" type="Node2D" unique_id=2011992443 node_paths=PackedStringArray("level_generator")]
+[node name="RunManager" type="Node2D" unique_id=2011992443 node_paths=PackedStringArray("level_generator") groups=["run_manager"]]
 script = ExtResource("1_h3nti")
 run_progression_list = Array[ExtResource("2_d02me")]([ExtResource("3_3r640"), ExtResource("4_1adc4"), ExtResource("5_eg8e5"), ExtResource("6_vkuut"), ExtResource("7_mr1su")])
 level_generator = NodePath("LevelGenerator")
@@ -28,5 +28,6 @@ background_scene = ExtResource("12_mr1su")
 [connection signal="level_manager_level_lost" from="SignalBusReceiver" to="." method="_on_level_manager_level_lost"]
 [connection signal="level_manager_level_won" from="SignalBusReceiver" to="." method="_on_level_manager_level_won"]
 [connection signal="main_menu_play_pressed" from="SignalBusReceiver" to="." method="_on_main_menu_new_run_pressed"]
+[connection signal="shop_manager_item_bought" from="SignalBusReceiver" to="." method="_on_shop_manager_item_bought"]
 [connection signal="shop_manager_next_level_pressed" from="SignalBusReceiver" to="." method="_on_shop_manager_next_level_pressed"]
 [connection signal="winning_menu_next_level_pressed" from="SignalBusReceiver" to="." method="_on_winning_menu_next_level_pressed"]

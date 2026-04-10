@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://db1vwod7r5k1t"]
 
 [ext_resource type="Script" uid="uid://cc2dcjocc3bur" path="res://game/power_up/animated_char.gd" id="1_v35ln"]
+[ext_resource type="Material" uid="uid://cy7xscfqwya20" path="res://assets/powerups/elemental_letter.tres" id="2_150kp"]
 
 [sub_resource type="Curve" id="Curve_v35ln"]
 _limits = [-18.0, 18.0, 0.0, 0.3]
@@ -28,6 +29,7 @@ offset_bottom = 40.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="Label" type="Label" parent="Movable" unique_id=345489196]
+material = ExtResource("2_150kp")
 layout_mode = 0
 offset_left = -19.0
 offset_top = 16.0
