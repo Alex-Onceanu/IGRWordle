@@ -27,3 +27,7 @@ func _on_options_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	$CreditsWindow.show()
+
+
+func _on_how_to_play_button_pressed() -> void:
+	$HowToPlayWindow/MiBombo.show()

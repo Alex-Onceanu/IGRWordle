@@ -65,3 +65,12 @@ func setup() -> void:
 
 func setup_level_inventory() -> void:
 	inventory.setup()
+
+
+func _on_return_main_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://game/main_menu/main_menu.tscn")
+
+
+func _on_restart_game_button_pressed() -> void:
+	RunManager.point_threshold = 0
+	RunManager._on_main_menu_play_pressed()

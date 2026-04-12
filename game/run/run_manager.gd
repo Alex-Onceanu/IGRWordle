@@ -72,4 +72,9 @@ func _on_main_menu_continue_pressed():
 
 
 func _on_shop_manager_item_bought(item: ShopItem) -> void:
+	for i in range(len(power_ups)):
+		if power_ups[i].item_name == item.item_name:
+			power_ups.remove_at(i)
+			break
 	power_ups.append(item)
+

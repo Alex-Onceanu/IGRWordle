@@ -32,6 +32,7 @@ var secret_word_string: String
 var point_threshold: int
 var current_points: int
 var secret_word_bonus : int = 2 # this is the multiplier applied to points when guessing the right word
+var known : Array[String] = []
 
 class Update:
 	var letter : LetterBox
@@ -242,7 +243,9 @@ func _is_last_cell_in_row() -> bool:
 
 
 func _is_valid_guess() -> bool:
-	return _is_last_cell_in_row() and GameDictionary.is_word_or_plural_in_dictionary(current_guess)
+	return _is_last_cell_in_row() \
+		and GameDictionary.is_word_or_plural_in_dictionary(current_guess) \
+		and (known.find(current_guess) == -1)
 	
 
 func _win() -> void:
@@ -294,6 +297,6 @@ func _on_keyboard_enter_pressed() -> void:
 	if not _is_valid_guess():
 		_show_invalid_guess()
 		return
-	# TODO resolve guess, effects, and earn points
+	known.push_back(current_guess)
 	await resolve_guess()
 	current_row = _get_next_row()

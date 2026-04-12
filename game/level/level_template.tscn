@@ -183,5 +183,5 @@ text = "Return to main menu"
 
 [node name="MenuTab" parent="." unique_id=1756768620 instance=ExtResource("8_cq453")]
 
-[connection signal="button_up" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_button_up"]
-[connection signal="button_up" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_button_up"]
+[connection signal="pressed" from="GameOverUI/RestartGameButton" to="." method="_on_restart_game_button_pressed"]
+[connection signal="pressed" from="GameOverUI/ReturnMainMenu" to="." method="_on_return_main_menu_pressed"]

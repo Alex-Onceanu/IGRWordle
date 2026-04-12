@@ -5,9 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://g7wqu2uey4mx" path="res://game/main_menu/menu_windows/stats_window/stats_window.tscn" id="3_3shxk"]
 [ext_resource type="PackedScene" uid="uid://dbnhpgtkbc2f7" path="res://game/main_menu/menu_windows/options_window/options_window.tscn" id="4_bws42"]
 [ext_resource type="PackedScene" uid="uid://bjfglhbeer4l7" path="res://game/main_menu/menu_windows/credits_window/credits_window.tscn" id="5_3f7m4"]
+[ext_resource type="PackedScene" uid="uid://btv2xh6l0pvnk" path="res://game/main_menu/menu_windows/how_to_play_window/how_to_play.tscn" id="6_u35ho"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa53l"]
 bg_color = Color(0.15686275, 0.75686276, 0.8392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3pqo"]
+bg_color = Color(1, 1, 1, 0.85490197)
 
 [node name="MainMenu" type="PanelContainer" unique_id=991109612]
 anchors_preset = 15
@@ -66,7 +70,6 @@ text = "Options"
 
 [node name="HowToPlayButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1545665172]
 layout_mode = 2
-disabled = true
 text = "How to Play"
 
 [node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=852339136]
@@ -76,17 +79,24 @@ text = "Credits"
 [node name="StatsWindow" parent="." unique_id=1375118631 instance=ExtResource("3_3shxk")]
 visible = false
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3pqo")
 
 [node name="OptionsWindow" parent="." unique_id=1080359808 instance=ExtResource("4_bws42")]
 visible = false
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3pqo")
 
 [node name="CreditsWindow" parent="." unique_id=716252879 instance=ExtResource("5_3f7m4")]
 visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3pqo")
+
+[node name="HowToPlayWindow" parent="." unique_id=538214713 instance=ExtResource("6_u35ho")]
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

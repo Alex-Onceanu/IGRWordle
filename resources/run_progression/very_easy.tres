@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_hnqtw")
-point_threshold_increase = 10
+point_threshold_increase = 20
 metadata/_custom_type_script = "uid://hmyk6lwfony8"
